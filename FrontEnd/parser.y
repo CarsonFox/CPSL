@@ -32,7 +32,7 @@ StatementList: StatementList Statement {}
 ;
 
 Statement: Expression DONE { std::cout << $1 << std::endl; }
-| LET ID EQUAL Expression DONE { variables.insert_or_assign($2, $4); delete($2); }
+| LET ID EQUAL Expression DONE { variables.insert_or_assign($2, $4); free($2); }
 | DONE {}
 ;
 
@@ -49,7 +49,7 @@ Term: Term MUL Factor { $$ = $1 * $3; }
 
 Factor: OPEN Expression CLOSE { $$ = $2; }
 | NUMBER { $$ = $1; }
-| ID { $$ = variables[$1]; delete $1; }
+| ID { $$ = variables[$1]; free($1); }
 ;
 
 %%
