@@ -12,7 +12,7 @@ std::map<std::string, double> variables;
 
 %union
 {
-double val;
+long val;
 char *id;
 }
 
@@ -29,30 +29,7 @@ char *id;
 
 %%
 
-StatementList: StatementList Statement {}
-| {}
-;
 
-Statement: Expression DONE { std::cout << $1 << std::endl; }
-| LET ID EQUAL Expression DONE { variables.insert_or_assign($2, $4); free($2); }
-| DONE {}
-;
-
-Expression: Expression ADD Term { $$ = $1 + $3; }
-| Expression SUB Term { $$ = $1 - $3; }
-| Term { $$ = $1; }
-;
-
-Term: Term MUL Factor { $$ = $1 * $3; }
-| Term Factor { $$ = $1 * $2; }
-| Term DIV Factor { $$ = $1 / $3; }
-| Factor { $$ = $1; }
-;
-
-Factor: OPEN Expression CLOSE { $$ = $2; }
-| NUMBER { $$ = $1; }
-| ID { $$ = variables[$1]; free($1); }
-;
 
 %%
 
