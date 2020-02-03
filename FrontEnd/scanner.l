@@ -8,7 +8,7 @@
 
 %%
 
-/* Keywords */
+    /* Keywords */
 "array"|"ARRAY" { return ARRAY; }
 "else"|"ELSE" { return ELSE; }
 "if"|"IF" { return IF; }
@@ -41,10 +41,10 @@
 "succ"|"SUCC" { return SUCC; }
 "while"|"WHILE" { return WHILE; }
 
-/* Identifiers */
+    /* Identifiers */
 [a-zA-Z][a-zA-Z0-9_]* { yylval.id = strdup(yytext); return ID; }
 
-/* Operators and delimiters */
+    /* Operators and delimiters */
 "+" { return PLUS; }
 "<>" { return NOT_EQUAL; }
 ";" { return SEMICOLON; }
@@ -68,10 +68,10 @@
 "=" { return EQUAL; }
 ":" { return COLON; }
 
-/* Integer constants */
+    /* Integer constants */
 [0-9]+|"0x"[0-9]+ { char *end; yylval.val = strtol(yytext, &end, 0); return NUMBER; }
 
-/* Character constants */
+    /* Character constants */
 '\\n' { yylval.val = '\n'; return CHARACTER; }
 '\\r' { yylval.val = '\r'; return CHARACTER; }
 '\\b' { yylval.val = '\b'; return CHARACTER; }
@@ -80,12 +80,12 @@
 '\\.'  { yylval.val = yytext[2]; return CHARACTER; }
 '.'    { yylval.val = yytext[1]; return CHARACTER; }
 
-/* String literals */
+    /* String literals */
 \"[\\\".]*\" { yylval.id = strdup(yytext); return STRING; }
 
-/* Comments */
+    /* Comments */
 "$".*"\n" {}
 
-/* Whitespace */
+    /* Whitespace */
 [ \b\t\n]* {}
 %%
