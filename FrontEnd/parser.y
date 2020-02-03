@@ -2,6 +2,8 @@
 #include <iostream>
 #include <map>
 
+#include "FrontEnd/AST.hpp"
+
 extern int yylex();
 void yyerror(const char*);
 
