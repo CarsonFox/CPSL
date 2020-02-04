@@ -1,6 +1,9 @@
 %{
 #include <iostream>
 
+#include "FrontEnd/AST/AST.hpp"
+#include "FrontEnd/AST/Program.hpp"
+
 extern int yylex();
 void yyerror(const char*);
 %}
@@ -29,7 +32,7 @@ char *str;
 
 %%
 
-Program: BEGIN_BLOCK END { $$ = 69; }
+Program: BEGIN_BLOCK END { ASTNode::main = new Program(); }
 ;
 
 %%
