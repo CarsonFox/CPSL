@@ -36,16 +36,19 @@ std::vector<ASTNode *> *nodelist;
 %type <nodelist> ConstantDeclList
 %type <node> ConstantDecl
 
+%type <str> ID
+%type <val> NUMBER
+
 %%
 
-Program: ConstantDeclList BEGIN_BLOCK END { ASTNode::main = new Program($1); }
+Program: BEGIN_BLOCK ConstantDeclList END { ASTNode::main = new Program($2); }
 ;
 
 ConstantDeclList: ConstantDeclList ConstantDecl { $1->push_back($2); $$ = $1; }
 | { $$ = new std::vector<ASTNode*>(); }
 ;
 
-ConstantDecl: STOP { $$ = (ASTNode *) new ConstantDecl(); std::cout << $$ << std::endl; }
+ConstantDecl: CONST ID EQUAL NUMBER SEMICOLON { $$ = (ASTNode *) new ConstantDecl($2, $4); }
 ;
 
 %%

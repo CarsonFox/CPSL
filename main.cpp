@@ -18,7 +18,8 @@ int main(int argc, char **argv) {
         yyin = infile;
     }
 
-    auto x = yyparse();
+    yyparse();
     ((Program *) ASTNode::main)->echo();
-    return x;
+    delete ASTNode::main;
+    return EXIT_SUCCESS;
 }

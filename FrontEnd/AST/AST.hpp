@@ -1,7 +1,10 @@
 #pragma once
 
+class Program;
+
 class ASTNode {
 public:
-    static ASTNode *main;
+    static Program *main;
+
     ASTNode() = default;
 };
