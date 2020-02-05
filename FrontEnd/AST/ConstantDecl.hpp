@@ -10,9 +10,8 @@ private:
     long val;
 
 public:
-    ConstantDecl(char *id, long val);
+    ConstantDecl(char *id, int val);
 
     explicit ConstantDecl(ASTNode *);
-
     void echo();
 };

@@ -1,6 +1,6 @@
 #include "ConstantDecl.hpp"
 
-ConstantDecl::ConstantDecl(char *id, long val) : id(id), val(val) {
+ConstantDecl::ConstantDecl(char *id, int val) : id(id), val(val) {
     free(id);
 }
 

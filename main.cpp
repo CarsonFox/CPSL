@@ -5,7 +5,6 @@
 #include "FrontEnd/AST/Program.hpp"
 
 extern int yyparse();
-
 extern FILE *yyin;
 
 int main(int argc, char **argv) {

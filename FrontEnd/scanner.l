@@ -45,7 +45,7 @@ read|READ { return READ; }
 succ|SUCC { return SUCC; }
 while|WHILE { return WHILE; }
 
-[a-zA-Z][a-zA-Z0-9_]* { yylval.str = strdup(yytext); return ID; }
+[a-zA-Z][a-zA-Z0-9_]* { yylval.str_val = strdup(yytext); return ID; }
 
 "+" { return PLUS; }
 "<>" { return NOT_EQUAL; }
@@ -70,17 +70,17 @@ while|WHILE { return WHILE; }
 "=" { return EQUAL; }
 ":" { return COLON; }
 
-[0-9]+|0x[0-9]+ { char *end; yylval.val = strtol(yytext, &end, 0); return NUMBER; }
+[0-9]+|0x[0-9]+ { char *end; yylval.int_val = strtol(yytext, &end, 0); return NUMBER; }
 
-'\\n' { yylval.val = '\n'; return CHARACTER; }
-'\\r' { yylval.val = '\r'; return CHARACTER; }
-'\\b' { yylval.val = '\b'; return CHARACTER; }
-'\\t' { yylval.val = '\t'; return CHARACTER; }
-'\\f' { yylval.val = '\f'; return CHARACTER; }
-'\\.' { yylval.val = yytext[2]; return CHARACTER; }
-'.'   { yylval.val = yytext[1]; return CHARACTER; }
+'\\n' { yylval.int_val = '\n'; return CHARACTER; }
+'\\r' { yylval.int_val = '\r'; return CHARACTER; }
+'\\b' { yylval.int_val = '\b'; return CHARACTER; }
+'\\t' { yylval.int_val = '\t'; return CHARACTER; }
+'\\f' { yylval.int_val = '\f'; return CHARACTER; }
+'\\.' { yylval.int_val = yytext[2]; return CHARACTER; }
+'.'   { yylval.int_val = yytext[1]; return CHARACTER; }
 
-\"[\\\".]*\" { yylval.str = strdup(yytext); return STRING; }
+\"[\\\".]*\" { yylval.str_val = strdup(yytext); return STRING; }
 
 $.*\n {}
 

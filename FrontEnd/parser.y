@@ -12,8 +12,8 @@ void yyerror(const char*);
 
 %union
 {
-long val;
-char *str;
+int int_val;
+char *str_val;
 ASTNode *node;
 std::vector<ASTNode *> *nodelist;
 }
@@ -32,12 +32,12 @@ std::vector<ASTNode *> *nodelist;
 %token CHARACTER
 %token STRING
 
-%type <val> Program
+%type <int_val> Program
 %type <nodelist> ConstantDeclList
 %type <node> ConstantDecl
 
-%type <str> ID
-%type <val> NUMBER
+%type <str_val> ID
+%type <int_val> NUMBER
 
 %%
 
@@ -50,6 +50,8 @@ ConstantDeclList: ConstantDeclList ConstantDecl { $1->push_back($2); $$ = $1; }
 
 ConstantDecl: CONST ID EQUAL NUMBER SEMICOLON { $$ = (ASTNode *) new ConstantDecl($2, $4); }
 ;
+
+
 
 %%
 
