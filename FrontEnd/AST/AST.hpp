@@ -3,4 +3,5 @@
 class ASTNode {
 public:
     static ASTNode *main;
+    ASTNode() = default;
 };

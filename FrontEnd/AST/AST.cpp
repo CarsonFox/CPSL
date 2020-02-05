@@ -1,3 +1,3 @@
 #include "AST.hpp"
 
-ASTNode *ASTNode::main = nullptr;
+ASTNode *ASTNode::main = new ASTNode();

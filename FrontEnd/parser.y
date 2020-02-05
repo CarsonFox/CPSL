@@ -1,8 +1,10 @@
 %{
 #include <iostream>
+#include <vector>
 
 #include "FrontEnd/AST/AST.hpp"
 #include "FrontEnd/AST/Program.hpp"
+#include "FrontEnd/AST/ConstantDecl.hpp"
 
 extern int yylex();
 void yyerror(const char*);
@@ -12,6 +14,8 @@ void yyerror(const char*);
 {
 long val;
 char *str;
+ASTNode *node;
+std::vector<ASTNode *> *nodelist;
 }
 
 %token ARRAY ELSE IF RECORD THEN WRITE BEGIN_BLOCK ELSEIF OF REF TO
@@ -29,10 +33,19 @@ char *str;
 %token STRING
 
 %type <val> Program
+%type <nodelist> ConstantDeclList
+%type <node> ConstantDecl
 
 %%
 
-Program: BEGIN_BLOCK END { ASTNode::main = new Program(); }
+Program: ConstantDeclList BEGIN_BLOCK END { ASTNode::main = new Program($1); }
+;
+
+ConstantDeclList: ConstantDeclList ConstantDecl { $1->push_back($2); $$ = $1; }
+| { $$ = new std::vector<ASTNode*>(); }
+;
+
+ConstantDecl: STOP { $$ = (ASTNode *) new ConstantDecl(); std::cout << $$ << std::endl; }
 ;
 
 %%
