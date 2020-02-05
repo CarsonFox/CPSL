@@ -18,7 +18,7 @@ int main(int argc, char **argv) {
     }
 
     yyparse();
-    ((Program *) ASTNode::main)->echo();
+    ASTNode::main->prettyPrint();
     delete ASTNode::main;
     return EXIT_SUCCESS;
 }

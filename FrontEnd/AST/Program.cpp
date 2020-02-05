@@ -6,10 +6,12 @@ Program::Program(std::vector<ASTNode *> *decls) {
     this->constantDecls = castNodeList<ConstantDecl>(decls);
 }
 
-void Program::echo() {
-    std::cout << "Program\n";
+void Program::prettyPrint() const {
+    std::cout << "BEGIN\n";
 
-    for (auto &c : this->constantDecls) {
-        c.echo();
+    for (const auto &c : this->constantDecls) {
+        c.prettyPrint();
     }
+
+    std::cout << "END.\n";
 }

@@ -6,11 +6,12 @@
 #include "AST.hpp"
 #include "ConstantDecl.hpp"
 
-class Program : public ASTNode {
-private:
+struct Program : ASTNode {
     std::vector<ConstantDecl> constantDecls;
-public:
+
     Program(std::vector<ASTNode *> *);
 
-    void echo();
+    void prettyPrint() const override;
+
+    ~Program() override = default;
 };

@@ -4,14 +4,15 @@
 
 #include "AST.hpp"
 
-class ConstantDecl : public ASTNode {
-private:
+struct ConstantDecl : ASTNode {
     std::string id;
     long val;
 
-public:
     ConstantDecl(char *id, int val);
 
     explicit ConstantDecl(ASTNode *);
-    void echo();
+
+    void prettyPrint() const override;
+
+    ~ConstantDecl() override = default;
 };

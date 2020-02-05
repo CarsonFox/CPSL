@@ -12,6 +12,6 @@ ConstantDecl::ConstantDecl(ASTNode *other) {
     this->val = c->val;
 }
 
-void ConstantDecl::echo() {
-    std::cout << "const " << this->id << " = " << this->val << std::endl;
+void ConstantDecl::prettyPrint() const {
+    std::cout << this->id << " = " << this->val << ";\n";
 }

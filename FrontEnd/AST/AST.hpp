@@ -4,13 +4,16 @@
 #include <algorithm>
 #include <iostream>
 
-class Program;
+struct Program;
 
-class ASTNode {
-public:
+struct ASTNode {
     static Program *main;
 
     ASTNode() = default;
+
+    virtual void prettyPrint() const = 0;
+
+    virtual ~ASTNode() = default;
 };
 
 template<typename T>
