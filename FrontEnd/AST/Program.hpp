@@ -9,7 +9,7 @@
 struct Program : ASTNode {
     std::vector<ConstantDecl> constantDecls;
 
-    Program(std::vector<ASTNode *> *);
+    explicit Program(std::vector<ASTNode *> *);
 
     void prettyPrint() const override;
 

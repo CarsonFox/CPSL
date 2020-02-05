@@ -7,11 +7,15 @@ Program::Program(std::vector<ASTNode *> *decls) {
 }
 
 void Program::prettyPrint() const {
-    std::cout << "BEGIN\n";
-
-    for (const auto &c : this->constantDecls) {
-        c.prettyPrint();
+    if (!this->constantDecls.empty()) {
+        std::cout << "CONST\n";
+        for (const auto &c : this->constantDecls) {
+            c.prettyPrint();
+        }
+        std::cout << std::endl;
     }
 
+    std::cout << "BEGIN\n";
+    //Body
     std::cout << "END.\n";
 }
