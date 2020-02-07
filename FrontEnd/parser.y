@@ -55,15 +55,14 @@ ConstantDeclList: ConstantDeclList ConstantDecl { $1->push_back($2); $$ = $1; }
 
 ConstantDecl: ID EQUAL NUMBER SEMICOLON { $$ = (ASTNode *) new ConstantDecl($1, $3); }
 ;
-
 /*
 LValue: ID
 | ID AccessList
 ;
 
 AccessList: ID DOT ID AccessList
+| ID OPEN_BRACKET NUMBER CLOSE_BRACKET
 */
-
 %%
 
 void yyerror(const char* msg)
