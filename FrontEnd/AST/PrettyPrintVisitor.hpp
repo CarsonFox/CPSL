@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-#include "Visitor.hpp"
 #include "AllNodes.hpp"
+#include "Visitor.hpp"
 
 struct PrettyPrintVisitor : Visitor {
     void visit(LiteralExpression *) override;
@@ -23,4 +23,6 @@ struct PrettyPrintVisitor : Visitor {
     void visit(ArrayAccessExpression *) override;
 
     void visit(FunctionCallExpression *) override;
+
+    void visit(BinaryOpExpression *) override;
 };

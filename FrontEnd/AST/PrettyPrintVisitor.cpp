@@ -77,3 +77,9 @@ void PrettyPrintVisitor::visit(FunctionCallExpression *functionCall) {
     }
     std::cout << ')';
 }
+
+void PrettyPrintVisitor::visit(BinaryOpExpression *binaryOpExpression) {
+    binaryOpExpression->left->accept(*this);
+    std::cout << ' ' << binaryOpExpression->opChar << ' ';
+    binaryOpExpression->right->accept(*this);
+}

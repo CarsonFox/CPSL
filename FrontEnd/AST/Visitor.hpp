@@ -9,6 +9,7 @@ struct RecordAccessExpression;
 struct IdentifierExpression;
 struct ArrayAccessExpression;
 struct FunctionCallExpression;
+struct BinaryOpExpression;
 
 struct Visitor {
     virtual void visit(LiteralExpression *) = 0;
@@ -28,4 +29,6 @@ struct Visitor {
     virtual void visit(ArrayAccessExpression *) = 0;
 
     virtual void visit(FunctionCallExpression *) = 0;
+
+    virtual void visit(BinaryOpExpression *) = 0;
 };

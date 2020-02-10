@@ -12,3 +12,4 @@
 #include "IdentifierExpression.hpp"
 #include "ArrayAccessExpression.hpp"
 #include "FunctionCallExpression.hpp"
+#include "BinaryOpExpression.hpp"

@@ -1,4 +1,5 @@
 hello.world[succ('\b')],
 10,
 foo(bar),
-(SUCC(10))
+(SUCC(10)),
+3 - 2

@@ -52,7 +52,8 @@ ExpressionList: ExpressionList COMMA Expression { $$ = new ExpressionList($1, $3
 | { $$ = nullptr; }
 ;
 
-Expression: ID OPEN_PAREN ExpressionList CLOSE_PAREN { $$ = new FunctionCallExpression($1, $3); }
+Expression: Expression MINUS Expression { $$ = BinaryOpExpression::Sub($1, $3); }
+| ID OPEN_PAREN ExpressionList CLOSE_PAREN { $$ = new FunctionCallExpression($1, $3); }
 | CHR OPEN_PAREN Expression CLOSE_PAREN { $$ = new ChrExpression($3); }
 | ORD OPEN_PAREN Expression CLOSE_PAREN { $$ = new OrdExpression($3); }
 | PRED OPEN_PAREN Expression CLOSE_PAREN { $$ = new PredExpression($3); }
