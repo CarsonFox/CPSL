@@ -57,6 +57,7 @@ Expression: ID OPEN_PAREN ExpressionList CLOSE_PAREN { $$ = new FunctionCallExpr
 | ORD OPEN_PAREN Expression CLOSE_PAREN { $$ = new OrdExpression($3); }
 | PRED OPEN_PAREN Expression CLOSE_PAREN { $$ = new PredExpression($3); }
 | SUCC OPEN_PAREN Expression CLOSE_PAREN { $$ = new SuccExpression($3); }
+| OPEN_PAREN Expression CLOSE_PAREN { $$ = $2; }
 | LValue { $$ = $1; }
 | NUMBER { $$ = new LiteralExpression($1); }
 | CHARACTER { $$ = new LiteralExpression(static_cast<char>($1)); }
