@@ -6,3 +6,4 @@
 #include "SuccExpression.hpp"
 #include "PredExpression.hpp"
 #include "OrdExpression.hpp"
+#include "ChrExpression.hpp"

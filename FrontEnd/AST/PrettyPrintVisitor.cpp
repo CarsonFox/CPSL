@@ -21,3 +21,9 @@ void PrettyPrintVisitor::visit(OrdExpression *ordExpression) {
     ordExpression->expr->accept(*this);
     std::cout << ")";
 }
+
+void PrettyPrintVisitor::visit(ChrExpression *chrExpression) {
+    std::cout << "chr(";
+    chrExpression->expr->accept(*this);
+    std::cout << ")";
+}

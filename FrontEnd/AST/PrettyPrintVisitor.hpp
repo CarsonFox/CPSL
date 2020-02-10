@@ -11,4 +11,6 @@ struct PrettyPrintVisitor : Visitor {
     void visit(PredExpression *) override;
 
     void visit(OrdExpression *) override;
+
+    void visit(ChrExpression *) override;
 };
