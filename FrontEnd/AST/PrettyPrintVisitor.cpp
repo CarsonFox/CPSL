@@ -15,3 +15,9 @@ void PrettyPrintVisitor::visit(PredExpression *predExpression) {
     predExpression->expr->accept(*this);
     std::cout << ")";
 }
+
+void PrettyPrintVisitor::visit(OrdExpression *ordExpression) {
+    std::cout << "ord(";
+    ordExpression->expr->accept(*this);
+    std::cout << ")";
+}
