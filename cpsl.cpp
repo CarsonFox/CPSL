@@ -2,7 +2,6 @@
 #include <cstdio>
 
 #include "FrontEnd/AST/AST.hpp"
-#include "FrontEnd/AST/Program.hpp"
 
 extern int yyparse();
 extern FILE *yyin;
@@ -18,7 +17,5 @@ int main(int argc, char **argv) {
     }
 
     yyparse();
-    ASTNode::main->prettyPrint();
-    delete ASTNode::main;
     return EXIT_SUCCESS;
 }

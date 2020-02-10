@@ -1,10 +1,10 @@
 %{
 #include <iostream>
 #include <vector>
+#include <memory>
 
 #include "FrontEnd/AST/AST.hpp"
-#include "FrontEnd/AST/Program.hpp"
-#include "FrontEnd/AST/ConstantDecl.hpp"
+#include "FrontEnd/AST/AllNodes.hpp"
 
 extern int yylex();
 void yyerror(const char*);
@@ -14,8 +14,7 @@ void yyerror(const char*);
 {
 int int_val;
 char *str_val;
-ASTNode *node;
-std::vector<ASTNode *> *nodelist;
+Expression *expression;
 }
 
 %token ARRAY ELSE IF RECORD THEN WRITE BEGIN_BLOCK ELSEIF OF REF TO
@@ -32,37 +31,18 @@ std::vector<ASTNode *> *nodelist;
 %token CHARACTER
 %token STRING
 
-%type <int_val> Program
-%type <nodelist> ConstantDecls
-%type <nodelist> ConstantDeclList
-%type <node> ConstantDecl
-
 %type <str_val> ID
 %type <int_val> NUMBER
+%type <expression> Expression
 
 %%
 
-Program: BEGIN_BLOCK ConstantDecls END { ASTNode::main = new Program($2); }
+Program: NUMBER { AST::main = std::make_unique<AST>(new LiteralExpression(1)); }
 ;
 
-ConstantDecls: CONST ConstantDeclList { $$ = $2; }
-| { $$ = new std::vector<ASTNode*>(); }
+Expression: NUMBER { $$ = new LiteralExpression($1); }
 ;
 
-ConstantDeclList: ConstantDeclList ConstantDecl { $1->push_back($2); $$ = $1; }
-| { $$ = new std::vector<ASTNode*>(); }
-;
-
-ConstantDecl: ID EQUAL NUMBER SEMICOLON { $$ = (ASTNode *) new ConstantDecl($1, $3); }
-;
-/*
-LValue: ID
-| ID AccessList
-;
-
-AccessList: ID DOT ID AccessList
-| ID OPEN_BRACKET NUMBER CLOSE_BRACKET
-*/
 %%
 
 void yyerror(const char* msg)

@@ -1,5 +1,1 @@
-begin
-    const
-        a = 1;
-        b = 3;
-end
+10

@@ -1,10 +1,8 @@
 %{
 #include <cstdlib>
-#include <vector>
 
 #include "FrontEnd/AST/AST.hpp"
-#include "FrontEnd/AST/Program.hpp"
-#include "FrontEnd/AST/ConstantDecl.hpp"
+#include "FrontEnd/AST/AllNodes.hpp"
 
 #include "parser.hpp"
 %}

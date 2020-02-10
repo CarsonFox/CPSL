@@ -13,8 +13,9 @@ add_flex_bison_dependency(Scanner Parser)
 
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -O0 -std=c++17 -fsanitize=address")
 
-set(src ${BISON_Parser_OUTPUTS} ${FLEX_Scanner_OUTPUTS} FrontEnd/AST/Program.cpp FrontEnd/AST/AST.cpp FrontEnd/AST/ConstantDecl.cpp FrontEnd/AST/RecordAccess.cpp)
+set(src ${BISON_Parser_OUTPUTS} ${FLEX_Scanner_OUTPUTS})
+set(src ${src} FrontEnd/AST/LiteralExpression.cpp FrontEnd/AST/AST.cpp)
 
-add_executable(main main.cpp ${src})
-target_link_libraries(main ${FLEX_LIBRARIES} ${BISON_LIBRARIES})
-target_include_directories(main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+add_executable(cpsl cpsl.cpp ${src})
+target_link_libraries(cpsl ${FLEX_LIBRARIES} ${BISON_LIBRARIES})
+target_include_directories(cpsl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
