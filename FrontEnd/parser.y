@@ -60,7 +60,7 @@ Expression: ID OPEN_PAREN ExpressionList CLOSE_PAREN { $$ = new FunctionCallExpr
 | OPEN_PAREN Expression CLOSE_PAREN { $$ = $2; }
 | LValue { $$ = $1; }
 | NUMBER { $$ = new LiteralExpression($1); }
-| CHARACTER { $$ = new LiteralExpression(static_cast<char>($1)); }
+| CHARACTER { $$ = new LiteralExpression($1); }
 ;
 
 LValue: LValue DOT ID { $$ = new RecordAccessExpression($1, $3); }
