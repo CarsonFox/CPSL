@@ -37,7 +37,7 @@ Expression *expression;
 
 %%
 
-Program: NUMBER { AST::main = std::make_unique<AST>(new LiteralExpression(1)); }
+Program: Expression { AST::main = std::make_unique<AST>($1); }
 ;
 
 Expression: NUMBER { $$ = new LiteralExpression($1); }

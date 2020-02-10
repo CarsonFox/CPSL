@@ -3,6 +3,7 @@
 #include <memory>
 
 #include "Expression.hpp"
+#include "PrettyPrintVisitor.hpp"
 
 struct AST {
     static std::unique_ptr<AST> main;
@@ -12,4 +13,6 @@ struct AST {
     explicit AST(Expression *e);
 
     ~AST() = default;
+
+    void prettyPrint();
 };

@@ -14,7 +14,7 @@ add_flex_bison_dependency(Scanner Parser)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -O0 -std=c++17 -fsanitize=address")
 
 set(src ${BISON_Parser_OUTPUTS} ${FLEX_Scanner_OUTPUTS})
-set(src ${src} FrontEnd/AST/LiteralExpression.cpp FrontEnd/AST/AST.cpp)
+set(src ${src} FrontEnd/AST/LiteralExpression.cpp FrontEnd/AST/AST.cpp FrontEnd/AST/PrettyPrintVisitor.cpp)
 
 add_executable(cpsl cpsl.cpp ${src})
 target_link_libraries(cpsl ${FLEX_LIBRARIES} ${BISON_LIBRARIES})
