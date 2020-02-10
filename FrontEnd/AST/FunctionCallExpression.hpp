@@ -1,6 +1,14 @@
 #pragma once
 
-#include "Expression.hpp"
+#include "ExpressionList.hpp"
 
-struct FunctionCallExpression {
+struct FunctionCallExpression : Expression {
+    std::string id;
+    std::vector<std::unique_ptr<Expression>> args;
+
+    FunctionCallExpression(char *, ExpressionList *);
+
+    ~FunctionCallExpression() override = default;
+
+    void accept(Visitor &) override;
 };

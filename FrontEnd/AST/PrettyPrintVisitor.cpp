@@ -69,3 +69,11 @@ void PrettyPrintVisitor::visit(ArrayAccessExpression *arrayAccess) {
     arrayAccess->right->accept(*this);
     std::cout << ']';
 }
+
+void PrettyPrintVisitor::visit(FunctionCallExpression *functionCall) {
+    std::cout << functionCall->id << '(';
+    for (auto &e : functionCall->args) {
+        e->accept(*this);
+    }
+    std::cout << ')';
+}

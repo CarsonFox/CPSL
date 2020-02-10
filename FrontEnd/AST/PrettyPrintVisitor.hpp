@@ -21,4 +21,6 @@ struct PrettyPrintVisitor : Visitor {
     void visit(IdentifierExpression *) override;
 
     void visit(ArrayAccessExpression *) override;
+
+    void visit(FunctionCallExpression *) override;
 };
