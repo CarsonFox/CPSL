@@ -1,1 +1,1 @@
-chr(succ(ord(010)))
+hello.world[succ(22)]

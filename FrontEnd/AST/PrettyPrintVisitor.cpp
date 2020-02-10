@@ -27,3 +27,19 @@ void PrettyPrintVisitor::visit(ChrExpression *chrExpression) {
     chrExpression->expr->accept(*this);
     std::cout << ")";
 }
+
+void PrettyPrintVisitor::visit(RecordAccessExpression *recordAccess) {
+    recordAccess->left->accept(*this);
+    std::cout << '.' << recordAccess->right;
+}
+
+void PrettyPrintVisitor::visit(IdentifierExpression *identifierExpression) {
+    std::cout << identifierExpression->id;
+}
+
+void PrettyPrintVisitor::visit(ArrayAccessExpression *arrayAccess) {
+    arrayAccess->left->accept(*this);
+    std::cout << '[';
+    arrayAccess->right->accept(*this);
+    std::cout << ']';
+}

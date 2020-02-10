@@ -7,3 +7,7 @@
 #include "PredExpression.hpp"
 #include "OrdExpression.hpp"
 #include "ChrExpression.hpp"
+#include "LValue.hpp"
+#include "RecordAccessExpression.hpp"
+#include "IdentifierExpression.hpp"
+#include "ArrayAccessExpression.hpp"

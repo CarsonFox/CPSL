@@ -15,6 +15,7 @@ void yyerror(const char*);
 int int_val;
 char *str_val;
 Expression *expression;
+LValue *lvalue;
 }
 
 %token ARRAY ELSE IF RECORD THEN WRITE BEGIN_BLOCK ELSEIF OF REF TO
@@ -34,6 +35,7 @@ Expression *expression;
 %type <str_val> ID
 %type <int_val> NUMBER
 %type <expression> Expression
+%type <lvalue> LValue
 
 %%
 
@@ -44,7 +46,13 @@ Expression: CHR OPEN_PAREN Expression CLOSE_PAREN { $$ = new ChrExpression($3); 
 | ORD OPEN_PAREN Expression CLOSE_PAREN { $$ = new OrdExpression($3); }
 | PRED OPEN_PAREN Expression CLOSE_PAREN { $$ = new PredExpression($3); }
 | SUCC OPEN_PAREN Expression CLOSE_PAREN { $$ = new SuccExpression($3); }
+| LValue { $$ = $1; }
 | NUMBER { $$ = new LiteralExpression($1); }
+;
+
+LValue: LValue DOT ID { $$ = new RecordAccessExpression($1, $3); }
+| LValue OPEN_BRACKET Expression CLOSE_BRACKET { $$ = new ArrayAccessExpression($1, $3); }
+| ID { $$ = new IdentifierExpression($1); }
 ;
 
 %%
