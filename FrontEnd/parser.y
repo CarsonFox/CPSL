@@ -5,6 +5,7 @@
 
 #include "FrontEnd/AST/AST.hpp"
 #include "FrontEnd/AST/AllNodes.hpp"
+#include "FrontEnd/AST/ExpressionList.hpp"
 
 extern int yylex();
 void yyerror(const char*);
@@ -16,6 +17,7 @@ int int_val;
 char char_val;
 char *str_val;
 Expression *expression;
+ExpressionList *expressionList;
 LValue *lvalue;
 }
 
@@ -37,11 +39,17 @@ LValue *lvalue;
 %type <int_val> NUMBER
 %type <char_val> CHARACTER
 %type <expression> Expression
+%type <expressionList> ExpressionList
 %type <lvalue> LValue
 
 %%
 
-Program: Expression { AST::main = std::make_unique<AST>($1); }
+Program: ExpressionList { AST::main = std::make_unique<AST>($1); }
+;
+
+ExpressionList: ExpressionList COMMA Expression { $$ = new ExpressionList($1, $3); }
+| Expression { $$ = new ExpressionList(nullptr, $1); }
+| { $$ = nullptr; }
 ;
 
 Expression: CHR OPEN_PAREN Expression CLOSE_PAREN { $$ = new ChrExpression($3); }

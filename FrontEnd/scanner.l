@@ -3,6 +3,7 @@
 
 #include "FrontEnd/AST/AST.hpp"
 #include "FrontEnd/AST/AllNodes.hpp"
+#include "FrontEnd/AST/ExpressionList.hpp"
 
 #include "parser.hpp"
 %}

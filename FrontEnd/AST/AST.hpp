@@ -2,15 +2,15 @@
 
 #include <memory>
 
-#include "Expression.hpp"
+#include "ExpressionList.hpp"
 #include "PrettyPrintVisitor.hpp"
 
 struct AST {
     static std::unique_ptr<AST> main;
 
-    std::unique_ptr<Expression> expr;
+    std::vector<std::unique_ptr<Expression>> exprs;
 
-    explicit AST(Expression *e);
+    explicit AST(ExpressionList *e);
 
     ~AST() = default;
 
