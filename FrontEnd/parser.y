@@ -13,6 +13,7 @@ void yyerror(const char*);
 %union
 {
 int int_val;
+char char_val;
 char *str_val;
 Expression *expression;
 LValue *lvalue;
@@ -34,6 +35,7 @@ LValue *lvalue;
 
 %type <str_val> ID
 %type <int_val> NUMBER
+%type <char_val> CHARACTER
 %type <expression> Expression
 %type <lvalue> LValue
 
@@ -48,6 +50,7 @@ Expression: CHR OPEN_PAREN Expression CLOSE_PAREN { $$ = new ChrExpression($3); 
 | SUCC OPEN_PAREN Expression CLOSE_PAREN { $$ = new SuccExpression($3); }
 | LValue { $$ = $1; }
 | NUMBER { $$ = new LiteralExpression($1); }
+| CHARACTER { $$ = new LiteralExpression(static_cast<char>($1)); }
 ;
 
 LValue: LValue DOT ID { $$ = new RecordAccessExpression($1, $3); }

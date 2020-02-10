@@ -1,7 +1,33 @@
 #include "PrettyPrintVisitor.hpp"
 
 void PrettyPrintVisitor::visit(LiteralExpression *literal) {
-    std::cout << literal->value;
+    if (std::holds_alternative<int>(literal->value)) {
+        std::cout << std::get<int>(literal->value);
+    } else {
+        std::cout << '\'';
+        char c = std::get<char>(literal->value);
+        switch (c) {
+            case '\n':
+                std::cout << "\\n";
+                break;
+            case '\r':
+                std::cout << "\\r";
+                break;
+            case '\b':
+                std::cout << "\\b";
+                break;
+            case '\t':
+                std::cout << "\\t";
+                break;
+            case '\f':
+                std::cout << "\\f";
+                break;
+            default:
+                std::cout << c;
+                break;
+        }
+        std::cout << '\'';
+    }
 }
 
 void PrettyPrintVisitor::visit(SuccExpression *succExpression) {
