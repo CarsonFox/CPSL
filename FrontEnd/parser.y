@@ -40,7 +40,8 @@ Expression *expression;
 Program: Expression { AST::main = std::make_unique<AST>($1); }
 ;
 
-Expression: SUCC OPEN_PAREN Expression CLOSE_PAREN { $$ = new SuccExpression($3); }
+Expression: PRED OPEN_PAREN Expression CLOSE_PAREN { $$ = new PredExpression($3); }
+| SUCC OPEN_PAREN Expression CLOSE_PAREN { $$ = new SuccExpression($3); }
 | NUMBER { $$ = new LiteralExpression($1); }
 ;
 

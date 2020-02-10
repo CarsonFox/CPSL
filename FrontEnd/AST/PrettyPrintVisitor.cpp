@@ -9,3 +9,9 @@ void PrettyPrintVisitor::visit(SuccExpression *succExpression) {
     succExpression->expr->accept(*this);
     std::cout << ")";
 }
+
+void PrettyPrintVisitor::visit(PredExpression *predExpression) {
+    std::cout << "pred(";
+    predExpression->expr->accept(*this);
+    std::cout << ")";
+}

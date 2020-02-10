@@ -2,9 +2,12 @@
 
 struct LiteralExpression;
 struct SuccExpression;
+struct PredExpression;
 
 struct Visitor {
     virtual void visit(LiteralExpression *) = 0;
 
     virtual void visit(SuccExpression *) = 0;
+
+    virtual void visit(PredExpression *) = 0;
 };
