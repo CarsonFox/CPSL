@@ -6,7 +6,8 @@
 #include "Expression.hpp"
 
 enum UnaryOp {
-    Neg
+    Neg,
+    Not
 };
 
 struct UnaryOpExpression : Expression {

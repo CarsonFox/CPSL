@@ -68,6 +68,7 @@ while|WHILE { return WHILE; }
 "%" { return MOD; }
 "=" { return EQUAL; }
 ":" { return COLON; }
+"~" { return NOT; }
 
 [0-9]+|0x[0-9]+ { char *end; yylval.int_val = strtol(yytext, &end, 0); return NUMBER; }
 

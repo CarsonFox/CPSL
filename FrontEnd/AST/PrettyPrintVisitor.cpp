@@ -80,17 +80,18 @@ void PrettyPrintVisitor::visit(FunctionCallExpression *functionCall) {
 
 void PrettyPrintVisitor::visit(BinaryOpExpression *binaryOpExpression) {
     binaryOpExpression->left->accept(*this);
-    std::cout << ' ' << binaryOpExpression->opChar << ' ';
+    switch (binaryOpExpression->type) {
+        case BinaryOp::Sub:
+            std::cout << " - ";
+    }
     binaryOpExpression->right->accept(*this);
 }
 
 void PrettyPrintVisitor::visit(UnaryOpExpression *unaryOpExpression) {
-    switch (unaryOpExpression->type) {
-        case UnaryOp::Neg:
-            std::cout << '-';
-            break;
-        default:
-            std::cout << '?';
+    if (unaryOpExpression->type == UnaryOp::Neg) {
+        std::cout << '-';
+    } else {
+        std::cout << '~';
     }
     unaryOpExpression->expr->accept(*this);
 }

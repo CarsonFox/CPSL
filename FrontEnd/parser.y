@@ -29,7 +29,7 @@ LValue *lvalue;
 
 %token PLUS NOT_EQUAL SEMICOLON MINUS LESS OPEN_PAREN MUL LESS_EQUAL
 %token CLOSE_PAREN DIV GREATER OPEN_BRACKET AND GREATER_EQUAL CLOSE_BRACKET
-%token OR DOT ASSIGN COMMA MOD EQUAL COLON
+%token OR DOT ASSIGN COMMA MOD EQUAL COLON NOT
 
 %token NUMBER
 %token CHARACTER
@@ -43,8 +43,13 @@ LValue *lvalue;
 %type <lvalue> LValue
 
 %left PLUS MINUS
-%left DIV MUL
-%right UNARYMINUS
+%left DIV MUL MOD
+
+%left AND OR
+
+%nonassoc NOT_EQUAL LESS GREATER LESS_EQUAL GREATER_EQUAL EQUAL
+
+%right UNARYMINUS NOT
 
 %%
 
@@ -56,7 +61,8 @@ ExpressionList: ExpressionList COMMA Expression { $$ = new ExpressionList($1, $3
 | { $$ = nullptr; }
 ;
 
-Expression: Expression MINUS Expression { $$ = BinaryOpExpression::Sub($1, $3); }
+Expression: Expression MINUS Expression { $$ = new BinaryOpExpression($1, $3, BinaryOp::Sub); }
+| NOT Expression { $$ = new UnaryOpExpression($2, UnaryOp::Not); }
 | MINUS Expression %prec UNARYMINUS { $$ = new UnaryOpExpression($2, UnaryOp::Neg); }
 | ID OPEN_PAREN ExpressionList CLOSE_PAREN { $$ = new FunctionCallExpression($1, $3); }
 | CHR OPEN_PAREN Expression CLOSE_PAREN { $$ = new ChrExpression($3); }
