@@ -8,6 +8,4 @@ BinaryOpExpression::BinaryOpExpression(Expression *l, Expression *r,
                                        std::function<int(int, int)> f, char c) : left(l),
                                                                                  right(r),
                                                                                  op(std::move(f)),
-                                                                                 opChar(c) {
-
-}
+                                                                                 opChar(c) {}

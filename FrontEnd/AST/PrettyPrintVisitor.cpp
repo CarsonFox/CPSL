@@ -83,3 +83,14 @@ void PrettyPrintVisitor::visit(BinaryOpExpression *binaryOpExpression) {
     std::cout << ' ' << binaryOpExpression->opChar << ' ';
     binaryOpExpression->right->accept(*this);
 }
+
+void PrettyPrintVisitor::visit(UnaryOpExpression *unaryOpExpression) {
+    switch (unaryOpExpression->type) {
+        case UnaryOp::Neg:
+            std::cout << '-';
+            break;
+        default:
+            std::cout << '?';
+    }
+    unaryOpExpression->expr->accept(*this);
+}

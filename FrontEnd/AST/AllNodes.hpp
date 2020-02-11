@@ -13,3 +13,4 @@
 #include "ArrayAccessExpression.hpp"
 #include "FunctionCallExpression.hpp"
 #include "BinaryOpExpression.hpp"
+#include "UnaryOpExpression.hpp"

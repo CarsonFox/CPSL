@@ -42,6 +42,10 @@ LValue *lvalue;
 %type <expressionList> ExpressionList
 %type <lvalue> LValue
 
+%left PLUS MINUS
+%left DIV MUL
+%right UNARYMINUS
+
 %%
 
 Program: ExpressionList { AST::main = std::make_unique<AST>($1); }
@@ -53,6 +57,7 @@ ExpressionList: ExpressionList COMMA Expression { $$ = new ExpressionList($1, $3
 ;
 
 Expression: Expression MINUS Expression { $$ = BinaryOpExpression::Sub($1, $3); }
+| MINUS Expression %prec UNARYMINUS { $$ = new UnaryOpExpression($2, UnaryOp::Neg); }
 | ID OPEN_PAREN ExpressionList CLOSE_PAREN { $$ = new FunctionCallExpression($1, $3); }
 | CHR OPEN_PAREN Expression CLOSE_PAREN { $$ = new ChrExpression($3); }
 | ORD OPEN_PAREN Expression CLOSE_PAREN { $$ = new OrdExpression($3); }

@@ -1,5 +1,9 @@
 #pragma once
 
+/*
+ * These forward declarations avoid stupid
+ * include cycle shenanigans.
+ */
 struct LiteralExpression;
 struct SuccExpression;
 struct PredExpression;
@@ -10,6 +14,7 @@ struct IdentifierExpression;
 struct ArrayAccessExpression;
 struct FunctionCallExpression;
 struct BinaryOpExpression;
+struct UnaryOpExpression;
 
 struct Visitor {
     virtual void visit(LiteralExpression *) = 0;
@@ -31,4 +36,6 @@ struct Visitor {
     virtual void visit(FunctionCallExpression *) = 0;
 
     virtual void visit(BinaryOpExpression *) = 0;
+
+    virtual void visit(UnaryOpExpression *) = 0;
 };
