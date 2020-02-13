@@ -1,8 +1,9 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
+#include <memory>
 
-#include "FrontEnd/AST/AllNodes.hpp"
 #include "FrontEnd/AST/Visitor.hpp"
 
 struct PrettyPrintVisitor : Visitor {
@@ -50,4 +51,6 @@ struct PrettyPrintVisitor : Visitor {
     void visit(ReadStatement *) override;
 
     void visit(ReturnStatement *) override;
+
+    void visit(StopStatement *) override;
 };

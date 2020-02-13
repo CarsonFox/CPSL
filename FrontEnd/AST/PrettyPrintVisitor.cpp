@@ -1,5 +1,7 @@
 #include "PrettyPrintVisitor.hpp"
 
+#include "FrontEnd/AST/AllNodes.hpp"
+
 void PrettyPrintVisitor::visit(LiteralExpression *literal) {
     if (std::holds_alternative<int>(literal->value)) {
         std::cout << std::get<int>(literal->value);
@@ -166,4 +168,8 @@ void PrettyPrintVisitor::visit(ReturnStatement *returnStatement) {
     if (returnStatement->expr) {
         returnStatement->expr->accept(*this);
     }
+}
+
+void PrettyPrintVisitor::visit(StopStatement *) {
+    std::cout << "stop";
 }
