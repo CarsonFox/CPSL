@@ -6,6 +6,17 @@
 #include "FrontEnd/AST/Visitor.hpp"
 
 struct PrettyPrintVisitor : Visitor {
+    template<typename T>
+    void printNodeList(std::vector<std::unique_ptr<T>> &list) {
+        if (!list.empty()) {
+            for (auto e = list.begin(); e != list.end() - 1; e++) {
+                (*e)->accept(*this);
+                std::cout << ", ";
+            }
+            list.back()->accept(*this);
+        }
+    }
+
     void visit(LiteralExpression *) override;
 
     void visit(SuccExpression *) override;
@@ -33,4 +44,6 @@ struct PrettyPrintVisitor : Visitor {
     void visit(ProcedureCallStatement *) override;
 
     void visit(WriteStatement *) override;
+
+    void visit(ReadStatement *) override;
 };

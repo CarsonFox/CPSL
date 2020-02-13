@@ -1,1 +1,1 @@
-WRITE(hello, human)
+READ(foo, bar[2], baz.l)

@@ -1,15 +1,5 @@
 #include "PrettyPrintVisitor.hpp"
 
-void printExprList(std::vector<std::unique_ptr<Expression>> &list, PrettyPrintVisitor &pp) {
-    if (!list.empty()) {
-        for (auto e = list.begin(); e != list.end() - 1; e++) {
-            (*e)->accept(pp);
-            std::cout << ", ";
-        }
-        list.back()->accept(pp);
-    }
-}
-
 void PrettyPrintVisitor::visit(LiteralExpression *literal) {
     if (std::holds_alternative<int>(literal->value)) {
         std::cout << std::get<int>(literal->value);
@@ -82,7 +72,7 @@ void PrettyPrintVisitor::visit(ArrayAccessExpression *arrayAccess) {
 
 void PrettyPrintVisitor::visit(FunctionCallExpression *functionCall) {
     std::cout << functionCall->id << '(';
-    printExprList(functionCall->args, *this);
+    printNodeList(functionCall->args);
     std::cout << ')';
 }
 
@@ -151,12 +141,18 @@ void PrettyPrintVisitor::visit(ParenthesisExpression *parenthesisExpression) {
 
 void PrettyPrintVisitor::visit(ProcedureCallStatement *procedureCall) {
     std::cout << procedureCall->id << '(';
-    printExprList(procedureCall->args, *this);
+    printNodeList(procedureCall->args);
     std::cout << ')';
 }
 
 void PrettyPrintVisitor::visit(WriteStatement *writeStatement) {
     std::cout << "write(";
-    printExprList(writeStatement->args, *this);
+    printNodeList(writeStatement->args);
+    std::cout << ')';
+}
+
+void PrettyPrintVisitor::visit(ReadStatement *readStatement) {
+    std::cout << "read(";
+    printNodeList(readStatement->lvals);
     std::cout << ')';
 }
