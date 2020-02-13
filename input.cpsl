@@ -1,1 +1,1 @@
-READ(foo, bar[2], baz.l)
+RETURN 2 + 2 = 4 - 1 = 3

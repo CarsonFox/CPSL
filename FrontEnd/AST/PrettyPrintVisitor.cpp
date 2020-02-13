@@ -156,3 +156,10 @@ void PrettyPrintVisitor::visit(ReadStatement *readStatement) {
     printNodeList(readStatement->lvals);
     std::cout << ')';
 }
+
+void PrettyPrintVisitor::visit(ReturnStatement *returnStatement) {
+    std::cout << "return ";
+    if (returnStatement->expr) {
+        returnStatement->expr->accept(*this);
+    }
+}

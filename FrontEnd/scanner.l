@@ -32,7 +32,7 @@ type|TYPE { return TYPE; }
 const|CONST { return CONST; }
 for|FOR { return FOR; }
 pred|PRED { return PRED; }
-return|return { return RETURN; }
+return|RETURN { return RETURN; }
 until|UNTIL { return UNTIL; }
 do|DO { return DO; }
 forward|FORWARD { return FORWARD; }

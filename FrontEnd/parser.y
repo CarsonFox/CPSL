@@ -61,7 +61,9 @@ Statement *statement;
 Program: Statement { AST::main = std::make_unique<AST>($1); }
 ;
 
-Statement: READ OPEN_PAREN LValueList CLOSE_PAREN { $$ = new ReadStatement($3); }
+Statement: RETURN Expression { $$ = new ReturnStatement($2); }
+| RETURN { $$ = new ReturnStatement(nullptr); }
+| READ OPEN_PAREN LValueList CLOSE_PAREN { $$ = new ReadStatement($3); }
 | WRITE OPEN_PAREN ExpressionList CLOSE_PAREN { $$ = new WriteStatement($3); }
 | ID OPEN_PAREN ExpressionList CLOSE_PAREN { $$ = new ProcedureCallStatement($1, $3); }
 | { $$ = new EmptyStatement(); }

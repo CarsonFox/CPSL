@@ -21,3 +21,4 @@
 #include "Statements/ProcedureCallStatement.hpp"
 #include "Statements/WriteStatement.hpp"
 #include "Statements/ReadStatement.hpp"
+#include "Statements/ReturnStatement.hpp"

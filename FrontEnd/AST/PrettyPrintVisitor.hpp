@@ -46,4 +46,6 @@ struct PrettyPrintVisitor : Visitor {
     void visit(WriteStatement *) override;
 
     void visit(ReadStatement *) override;
+
+    void visit(ReturnStatement *) override;
 };
