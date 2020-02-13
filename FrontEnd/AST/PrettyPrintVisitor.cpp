@@ -140,3 +140,9 @@ void PrettyPrintVisitor::visit(UnaryOpExpression *unaryOpExpression) {
     }
     unaryOpExpression->expr->accept(*this);
 }
+
+void PrettyPrintVisitor::visit(ParenthesisExpression *parenthesisExpression) {
+    std::cout << '(';
+    parenthesisExpression->expr->accept(*this);
+    std::cout << ')';
+}

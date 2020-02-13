@@ -15,6 +15,7 @@ struct ArrayAccessExpression;
 struct FunctionCallExpression;
 struct BinaryOpExpression;
 struct UnaryOpExpression;
+struct ParenthesisExpression;
 
 struct Visitor {
     virtual void visit(LiteralExpression *) = 0;
@@ -38,4 +39,6 @@ struct Visitor {
     virtual void visit(BinaryOpExpression *) = 0;
 
     virtual void visit(UnaryOpExpression *) = 0;
+
+    virtual void visit(ParenthesisExpression *) = 0;
 };

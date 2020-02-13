@@ -14,3 +14,4 @@
 #include "FrontEnd/AST/Expression/FunctionCallExpression.hpp"
 #include "FrontEnd/AST/Expression/BinaryOpExpression.hpp"
 #include "FrontEnd/AST/Expression/UnaryOpExpression.hpp"
+#include "Expression/ParenthesisExpression.hpp"

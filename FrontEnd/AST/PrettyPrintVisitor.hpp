@@ -27,4 +27,6 @@ struct PrettyPrintVisitor : Visitor {
     void visit(BinaryOpExpression *) override;
 
     void visit(UnaryOpExpression *) override;
+
+    void visit(ParenthesisExpression *) override;
 };
