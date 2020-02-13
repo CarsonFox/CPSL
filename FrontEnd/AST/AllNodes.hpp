@@ -18,3 +18,4 @@
 
 #include "Statements/Statement.hpp"
 #include "Statements/EmptyStatement.hpp"
+#include "Statements/ProcedureCallStatement.hpp"

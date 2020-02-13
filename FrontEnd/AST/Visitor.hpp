@@ -16,6 +16,7 @@ struct FunctionCallExpression;
 struct BinaryOpExpression;
 struct UnaryOpExpression;
 struct ParenthesisExpression;
+struct ProcedureCallStatement;
 
 struct Visitor {
     virtual void visit(LiteralExpression *) = 0;
@@ -41,4 +42,6 @@ struct Visitor {
     virtual void visit(UnaryOpExpression *) = 0;
 
     virtual void visit(ParenthesisExpression *) = 0;
+
+    virtual void visit(ProcedureCallStatement *) = 0;
 };

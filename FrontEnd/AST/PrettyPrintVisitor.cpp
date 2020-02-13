@@ -146,3 +146,17 @@ void PrettyPrintVisitor::visit(ParenthesisExpression *parenthesisExpression) {
     parenthesisExpression->expr->accept(*this);
     std::cout << ')';
 }
+
+void PrettyPrintVisitor::visit(ProcedureCallStatement *procedureCall) {
+    std::cout << procedureCall->id << '(';
+
+    if (!procedureCall->args.empty()) {
+        for (auto e = procedureCall->args.begin(); e != procedureCall->args.end() - 1; e++) {
+            (*e)->accept(*this);
+            std::cout << ", ";
+        }
+        procedureCall->args.back()->accept(*this);
+    }
+
+    std::cout << ')';
+}

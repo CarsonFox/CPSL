@@ -21,7 +21,7 @@ set(src ${src} FrontEnd/AST/Expressions/LiteralExpression.cpp FrontEnd/AST/AST.c
         FrontEnd/AST/Expressions/IdentifierExpression.cpp FrontEnd/AST/Expressions/IdentifierExpression.hpp
         FrontEnd/AST/Expressions/ArrayAccessExpression.cpp FrontEnd/AST/Expressions/ArrayAccessExpression.hpp
         FrontEnd/AST/Expressions/FunctionCallExpression.cpp FrontEnd/AST/Expressions/FunctionCallExpression.hpp FrontEnd/AST/Expressions/ExpressionList.cpp
-        FrontEnd/AST/Expressions/ExpressionList.hpp FrontEnd/AST/Expressions/BinaryOpExpression.cpp FrontEnd/AST/Expressions/UnaryOpExpression.cpp FrontEnd/AST/Expressions/UnaryOpExpression.hpp FrontEnd/AST/Expressions/ParenthesisExpression.cpp FrontEnd/AST/Expressions/ParenthesisExpression.hpp)
+        FrontEnd/AST/Expressions/ExpressionList.hpp FrontEnd/AST/Expressions/BinaryOpExpression.cpp FrontEnd/AST/Expressions/UnaryOpExpression.cpp FrontEnd/AST/Expressions/UnaryOpExpression.hpp FrontEnd/AST/Expressions/ParenthesisExpression.cpp FrontEnd/AST/Expressions/ParenthesisExpression.hpp FrontEnd/AST/Statements/ProcedureCallStatement.cpp FrontEnd/AST/Statements/ProcedureCallStatement.hpp)
 
 add_executable(cpsl cpsl.cpp ${src})
 target_link_libraries(cpsl ${FLEX_LIBRARIES} ${BISON_LIBRARIES})
