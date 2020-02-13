@@ -4,6 +4,7 @@
 #include "FrontEnd/AST/AST.hpp"
 #include "FrontEnd/AST/AllNodes.hpp"
 #include "FrontEnd/AST/Expressions/ExpressionList.hpp"
+#include "FrontEnd/AST/Expressions/LValueList.hpp"
 
 #include "parser.hpp"
 %}
