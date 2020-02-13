@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include "FrontEnd/AST/Expression/ExpressionList.hpp"
+#include "FrontEnd/AST/Expressions/ExpressionList.hpp"
 #include "PrettyPrintVisitor.hpp"
 
 struct AST {

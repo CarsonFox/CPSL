@@ -5,7 +5,7 @@
 
 #include "FrontEnd/AST/AST.hpp"
 #include "FrontEnd/AST/AllNodes.hpp"
-#include "FrontEnd/AST/Expression/ExpressionList.hpp"
+#include "FrontEnd/AST/Expressions/ExpressionList.hpp"
 
 extern int yylex();
 void yyerror(const char*);
@@ -55,7 +55,10 @@ LValue *lvalue;
 
 Program: ExpressionList { AST::main = std::make_unique<AST>($1); }
 ;
-
+/*
+Statement: { $$ = new EmptyStatement(); }
+;
+*/
 ExpressionList: ExpressionList COMMA Expression { $$ = new ExpressionList($1, $3); }
 | Expression { $$ = new ExpressionList(nullptr, $1); }
 | { $$ = new ExpressionList(nullptr, nullptr); }
