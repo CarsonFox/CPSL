@@ -52,7 +52,7 @@ while|WHILE { return WHILE; }
 "-" { return MINUS; }
 "<" { return LESS; }
 "(" { return OPEN_PAREN; }
-"∗" { return MUL; }
+"*" { return MUL; }
 "<=" { return LESS_EQUAL; }
 ")" { return CLOSE_PAREN; }
 "/" { return DIV; }
