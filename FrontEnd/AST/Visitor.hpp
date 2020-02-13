@@ -20,9 +20,12 @@ struct ProcedureCallStatement;
 struct WriteStatement;
 struct ReadStatement;
 struct ReturnStatement;
+struct StringExpression;
 
 struct Visitor {
     virtual void visit(LiteralExpression *) = 0;
+
+    virtual void visit(StringExpression *) = 0;
 
     virtual void visit(SuccExpression *) = 0;
 

@@ -48,6 +48,7 @@ Statement *statement;
 %right UNARYMINUS NOT
 
 %type <str_val> ID
+%type <str_val> STRING
 %type <int_val> NUMBER
 %type <char_val> CHARACTER
 %type <expression> Expression
@@ -103,6 +104,7 @@ Expression: Expression OR Expression { $$ = new BinaryOpExpression($1, $3, Binar
 | LValue { $$ = $1; }
 | NUMBER { $$ = new LiteralExpression($1); }
 | CHARACTER { $$ = new LiteralExpression($1); }
+| STRING { $$ = new StringExpression($1); }
 ;
 
 LValue: LValue DOT ID { $$ = new RecordAccessExpression($1, $3); }

@@ -81,7 +81,7 @@ while|WHILE { return WHILE; }
 '\\.' { yylval.char_val = yytext[2]; return CHARACTER; }
 '.'   { yylval.char_val = yytext[1]; return CHARACTER; }
 
-\"[\\\".]*\" { yylval.str_val = strdup(yytext); return STRING; }
+\"[a-zA-Z0-9 ]*\" { yylval.str_val = strdup(yytext); return STRING; }
 
 $.*\n {}
 

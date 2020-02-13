@@ -30,6 +30,10 @@ void PrettyPrintVisitor::visit(LiteralExpression *literal) {
     }
 }
 
+void PrettyPrintVisitor::visit(StringExpression *stringExpression) {
+    std::cout << '"' << stringExpression->value << '"';
+}
+
 void PrettyPrintVisitor::visit(SuccExpression *succExpression) {
     std::cout << "succ(";
     succExpression->expr->accept(*this);
