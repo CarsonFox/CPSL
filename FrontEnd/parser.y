@@ -6,6 +6,7 @@
 #include "FrontEnd/AST/AST.hpp"
 #include "FrontEnd/AST/AllNodes.hpp"
 #include "FrontEnd/AST/ExpressionList.hpp"
+#include "FrontEnd/AST/PrettyPrintVisitor.hpp"
 
 extern int yylex();
 void yyerror(const char*);
@@ -61,7 +62,19 @@ ExpressionList: ExpressionList COMMA Expression { $$ = new ExpressionList($1, $3
 | { $$ = nullptr; }
 ;
 
-Expression: Expression MINUS Expression { $$ = new BinaryOpExpression($1, $3, BinaryOp::Sub); }
+Expression: Expression OR Expression { $$ = new BinaryOpExpression($1, $3, BinaryOp::Or); }
+| Expression AND Expression { $$ = new BinaryOpExpression($1, $3, BinaryOp::And); }
+| Expression EQUAL Expression { $$ = new BinaryOpExpression($1, $3, BinaryOp::Equal); }
+| Expression NOT_EQUAL Expression { $$ = new BinaryOpExpression($1, $3, BinaryOp::NotEqual); }
+| Expression LESS Expression { $$ = new BinaryOpExpression($1, $3, BinaryOp::Less); }
+| Expression LESS_EQUAL Expression { $$ = new BinaryOpExpression($1, $3, BinaryOp::LessEqual); }
+| Expression GREATER Expression { $$ = new BinaryOpExpression($1, $3, BinaryOp::Greater); }
+| Expression GREATER_EQUAL Expression { $$ = new BinaryOpExpression($1, $3, BinaryOp::GreaterEqual); }
+| Expression PLUS Expression { $$ = new BinaryOpExpression($1, $3, BinaryOp::Add); }
+| Expression MINUS Expression { $$ = new BinaryOpExpression($1, $3, BinaryOp::Sub); }
+| Expression MUL Expression { $$ = new BinaryOpExpression($1, $3, BinaryOp::Mul); }
+| Expression DIV Expression { $$ = new BinaryOpExpression($1, $3, BinaryOp::Div); }
+| Expression MOD Expression { $$ = new BinaryOpExpression($1, $3, BinaryOp::Mod); }
 | NOT Expression { $$ = new UnaryOpExpression($2, UnaryOp::Not); }
 | MINUS Expression %prec UNARYMINUS { $$ = new UnaryOpExpression($2, UnaryOp::Neg); }
 | ID OPEN_PAREN ExpressionList CLOSE_PAREN { $$ = new FunctionCallExpression($1, $3); }

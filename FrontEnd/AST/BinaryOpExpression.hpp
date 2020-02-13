@@ -7,7 +7,8 @@
 #include "Expression.hpp"
 
 enum BinaryOp {
-    Sub,
+    Or, And, Equal, NotEqual, Less, LessEqual,
+    Greater, GreaterEqual, Add, Sub, Mul, Div, Mod,
 };
 
 struct BinaryOpExpression : Expression {

@@ -81,8 +81,47 @@ void PrettyPrintVisitor::visit(FunctionCallExpression *functionCall) {
 void PrettyPrintVisitor::visit(BinaryOpExpression *binaryOpExpression) {
     binaryOpExpression->left->accept(*this);
     switch (binaryOpExpression->type) {
+        case BinaryOp::Or:
+            std::cout << " | ";
+            break;
+        case BinaryOp::And:
+            std::cout << " & ";
+            break;
+        case BinaryOp::Equal:
+            std::cout << " = ";
+            break;
+        case BinaryOp::NotEqual:
+            std::cout << " <> ";
+            break;
+        case BinaryOp::Less:
+            std::cout << " < ";
+            break;
+        case BinaryOp::LessEqual:
+            std::cout << " <= ";
+            break;
+        case BinaryOp::Greater:
+            std::cout << " > ";
+            break;
+        case BinaryOp::GreaterEqual:
+            std::cout << " >= ";
+            break;
+        case BinaryOp::Add:
+            std::cout << " + ";
+            break;
         case BinaryOp::Sub:
             std::cout << " - ";
+            break;
+        case BinaryOp::Mul:
+            std::cout << " * ";
+            break;
+        case BinaryOp::Div:
+            std::cout << " / ";
+            break;
+        case BinaryOp::Mod:
+            std::cout << " % ";
+            break;
+        default:
+            std::cout << " ? ";
     }
     binaryOpExpression->right->accept(*this);
 }
