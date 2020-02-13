@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-#include "AllNodes.hpp"
-#include "Visitor.hpp"
+#include "FrontEnd/AST/AllNodes.hpp"
+#include "FrontEnd/AST/Visitor.hpp"
 
 struct PrettyPrintVisitor : Visitor {
     void visit(LiteralExpression *) override;

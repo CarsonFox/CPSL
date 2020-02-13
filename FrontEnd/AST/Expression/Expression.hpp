@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ASTNode.hpp"
+#include "FrontEnd/AST/ASTNode.hpp"
 
 struct Expression : ASTNode {
 };

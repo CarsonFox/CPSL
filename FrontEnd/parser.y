@@ -5,8 +5,7 @@
 
 #include "FrontEnd/AST/AST.hpp"
 #include "FrontEnd/AST/AllNodes.hpp"
-#include "FrontEnd/AST/ExpressionList.hpp"
-#include "FrontEnd/AST/PrettyPrintVisitor.hpp"
+#include "FrontEnd/AST/Expression/ExpressionList.hpp"
 
 extern int yylex();
 void yyerror(const char*);

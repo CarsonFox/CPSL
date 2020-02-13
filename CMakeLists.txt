@@ -14,14 +14,14 @@ add_flex_bison_dependency(Scanner Parser)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -O0 -g3 -std=c++17 -fsanitize=address")
 
 set(src ${BISON_Parser_OUTPUTS} ${FLEX_Scanner_OUTPUTS})
-set(src ${src} FrontEnd/AST/LiteralExpression.cpp FrontEnd/AST/AST.cpp FrontEnd/AST/PrettyPrintVisitor.cpp
-        FrontEnd/AST/SuccExpression.cpp FrontEnd/AST/SuccExpression.hpp FrontEnd/AST/PredExpression.cpp
-        FrontEnd/AST/PredExpression.hpp FrontEnd/AST/OrdExpression.cpp FrontEnd/AST/OrdExpression.hpp
-        FrontEnd/AST/ChrExpression.cpp FrontEnd/AST/ChrExpression.hpp FrontEnd/AST/RecordAccessExpression.cpp
-        FrontEnd/AST/IdentifierExpression.cpp FrontEnd/AST/IdentifierExpression.hpp
-        FrontEnd/AST/ArrayAccessExpression.cpp FrontEnd/AST/ArrayAccessExpression.hpp
-        FrontEnd/AST/FunctionCallExpression.cpp FrontEnd/AST/FunctionCallExpression.hpp FrontEnd/AST/ExpressionList.cpp
-        FrontEnd/AST/ExpressionList.hpp FrontEnd/AST/BinaryOpExpression.cpp FrontEnd/AST/UnaryOpExpression.cpp FrontEnd/AST/UnaryOpExpression.hpp)
+set(src ${src} FrontEnd/AST/Expression/LiteralExpression.cpp FrontEnd/AST/AST.cpp FrontEnd/AST/PrettyPrintVisitor.cpp
+        FrontEnd/AST/Expression/SuccExpression.cpp FrontEnd/AST/Expression/SuccExpression.hpp FrontEnd/AST/Expression/PredExpression.cpp
+        FrontEnd/AST/Expression/PredExpression.hpp FrontEnd/AST/Expression/OrdExpression.cpp FrontEnd/AST/Expression/OrdExpression.hpp
+        FrontEnd/AST/Expression/ChrExpression.cpp FrontEnd/AST/Expression/ChrExpression.hpp FrontEnd/AST/Expression/RecordAccessExpression.cpp
+        FrontEnd/AST/Expression/IdentifierExpression.cpp FrontEnd/AST/Expression/IdentifierExpression.hpp
+        FrontEnd/AST/Expression/ArrayAccessExpression.cpp FrontEnd/AST/Expression/ArrayAccessExpression.hpp
+        FrontEnd/AST/Expression/FunctionCallExpression.cpp FrontEnd/AST/Expression/FunctionCallExpression.hpp FrontEnd/AST/Expression/ExpressionList.cpp
+        FrontEnd/AST/Expression/ExpressionList.hpp FrontEnd/AST/Expression/BinaryOpExpression.cpp FrontEnd/AST/Expression/UnaryOpExpression.cpp FrontEnd/AST/Expression/UnaryOpExpression.hpp)
 
 add_executable(cpsl cpsl.cpp ${src})
 target_link_libraries(cpsl ${FLEX_LIBRARIES} ${BISON_LIBRARIES})
