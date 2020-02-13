@@ -1,1 +1,1 @@
-foo(2 + 2, 69, hello[bar.baz])
+WRITE(hello, human)

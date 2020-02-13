@@ -58,7 +58,8 @@ Statement *statement;
 Program: Statement { AST::main = std::make_unique<AST>($1); }
 ;
 
-Statement: ID OPEN_PAREN ExpressionList CLOSE_PAREN { $$ = new ProcedureCallStatement($1, $3); }
+Statement: WRITE OPEN_PAREN ExpressionList CLOSE_PAREN { $$ = new WriteStatement($3); }
+| ID OPEN_PAREN ExpressionList CLOSE_PAREN { $$ = new ProcedureCallStatement($1, $3); }
 | { $$ = new EmptyStatement(); }
 ;
 

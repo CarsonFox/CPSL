@@ -1,5 +1,15 @@
 #include "PrettyPrintVisitor.hpp"
 
+void printExprList(std::vector<std::unique_ptr<Expression>> &list, PrettyPrintVisitor &pp) {
+    if (!list.empty()) {
+        for (auto e = list.begin(); e != list.end() - 1; e++) {
+            (*e)->accept(pp);
+            std::cout << ", ";
+        }
+        list.back()->accept(pp);
+    }
+}
+
 void PrettyPrintVisitor::visit(LiteralExpression *literal) {
     if (std::holds_alternative<int>(literal->value)) {
         std::cout << std::get<int>(literal->value);
@@ -72,15 +82,7 @@ void PrettyPrintVisitor::visit(ArrayAccessExpression *arrayAccess) {
 
 void PrettyPrintVisitor::visit(FunctionCallExpression *functionCall) {
     std::cout << functionCall->id << '(';
-
-    if (!functionCall->args.empty()) {
-        for (auto e = functionCall->args.begin(); e != functionCall->args.end() - 1; e++) {
-            (*e)->accept(*this);
-            std::cout << ", ";
-        }
-        functionCall->args.back()->accept(*this);
-    }
-
+    printExprList(functionCall->args, *this);
     std::cout << ')';
 }
 
@@ -149,14 +151,12 @@ void PrettyPrintVisitor::visit(ParenthesisExpression *parenthesisExpression) {
 
 void PrettyPrintVisitor::visit(ProcedureCallStatement *procedureCall) {
     std::cout << procedureCall->id << '(';
+    printExprList(procedureCall->args, *this);
+    std::cout << ')';
+}
 
-    if (!procedureCall->args.empty()) {
-        for (auto e = procedureCall->args.begin(); e != procedureCall->args.end() - 1; e++) {
-            (*e)->accept(*this);
-            std::cout << ", ";
-        }
-        procedureCall->args.back()->accept(*this);
-    }
-
+void PrettyPrintVisitor::visit(WriteStatement *writeStatement) {
+    std::cout << "write(";
+    printExprList(writeStatement->args, *this);
     std::cout << ')';
 }
