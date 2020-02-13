@@ -15,3 +15,6 @@
 #include "FrontEnd/AST/Expressions/BinaryOpExpression.hpp"
 #include "FrontEnd/AST/Expressions/UnaryOpExpression.hpp"
 #include "Expressions/ParenthesisExpression.hpp"
+
+#include "Statements/Statement.hpp"
+#include "Statements/EmptyStatement.hpp"

@@ -19,6 +19,7 @@ char *str_val;
 Expression *expression;
 ExpressionList *expressionList;
 LValue *lvalue;
+Statement *statement;
 }
 
 %token ARRAY ELSE IF RECORD THEN WRITE BEGIN_BLOCK ELSEIF OF REF TO
@@ -35,13 +36,6 @@ LValue *lvalue;
 %token CHARACTER
 %token STRING
 
-%type <str_val> ID
-%type <int_val> NUMBER
-%type <char_val> CHARACTER
-%type <expression> Expression
-%type <expressionList> ExpressionList
-%type <lvalue> LValue
-
 %left PLUS MINUS
 %left DIV MUL MOD
 
@@ -51,14 +45,22 @@ LValue *lvalue;
 
 %right UNARYMINUS NOT
 
+%type <str_val> ID
+%type <int_val> NUMBER
+%type <char_val> CHARACTER
+%type <expression> Expression
+%type <expressionList> ExpressionList
+%type <lvalue> LValue
+%type <statement> Statement
+
 %%
 
-Program: ExpressionList { AST::main = std::make_unique<AST>($1); }
+Program: Statement { AST::main = std::make_unique<AST>($1); }
 ;
-/*
+
 Statement: { $$ = new EmptyStatement(); }
 ;
-*/
+
 ExpressionList: ExpressionList COMMA Expression { $$ = new ExpressionList($1, $3); }
 | Expression { $$ = new ExpressionList(nullptr, $1); }
 | { $$ = new ExpressionList(nullptr, nullptr); }

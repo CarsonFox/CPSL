@@ -2,15 +2,11 @@
 
 std::unique_ptr<AST> AST::main;
 
-AST::AST(ExpressionList *e) {
-    exprs = e->toVector();
-    delete e;
+AST::AST(Statement *s) {
+    stmt = std::unique_ptr<Statement>(s);
 }
 
 void AST::prettyPrint() {
     PrettyPrintVisitor pp;
-    for (auto &e : exprs) {
-        e->accept(pp);
-        std::cout << std::endl;
-    }
+    stmt->accept(pp);
 }
