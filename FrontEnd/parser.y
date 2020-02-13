@@ -59,7 +59,7 @@ Program: ExpressionList { AST::main = std::make_unique<AST>($1); }
 
 ExpressionList: ExpressionList COMMA Expression { $$ = new ExpressionList($1, $3); }
 | Expression { $$ = new ExpressionList(nullptr, $1); }
-| { $$ = nullptr; }
+| { $$ = new ExpressionList(nullptr, nullptr); }
 ;
 
 Expression: Expression OR Expression { $$ = new BinaryOpExpression($1, $3, BinaryOp::Or); }
