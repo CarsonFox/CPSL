@@ -24,3 +24,4 @@
 #include "Statements/ReadStatement.hpp"
 #include "Statements/ReturnStatement.hpp"
 #include "Statements/StopStatement.hpp"
+#include "Statements/ForStatement.hpp"

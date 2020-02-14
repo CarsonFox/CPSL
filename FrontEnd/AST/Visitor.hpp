@@ -22,6 +22,7 @@ struct ReadStatement;
 struct ReturnStatement;
 struct StringExpression;
 struct StopStatement;
+struct ForStatement;
 
 struct Visitor {
     virtual void visit(LiteralExpression *) = 0;
@@ -59,4 +60,6 @@ struct Visitor {
     virtual void visit(ReturnStatement *) = 0;
 
     virtual void visit(StopStatement *) = 0;
+
+    virtual void visit(ForStatement *) = 0;
 };

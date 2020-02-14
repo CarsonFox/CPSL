@@ -7,6 +7,7 @@
 #include "FrontEnd/AST/AllNodes.hpp"
 #include "FrontEnd/AST/Expressions/ExpressionList.hpp"
 #include "FrontEnd/AST/Expressions/LValueList.hpp"
+#include "FrontEnd/AST/Statements/StatementList.hpp"
 
 extern int yylex();
 void yyerror(const char*);
@@ -22,6 +23,7 @@ ExpressionList *expressionList;
 LValue *lvalue;
 LValueList *lvalueList;
 Statement *statement;
+StatementList *statementList;
 }
 
 %token ARRAY ELSE IF RECORD THEN WRITE BEGIN_BLOCK ELSEIF OF REF TO
@@ -56,13 +58,21 @@ Statement *statement;
 %type <lvalue> LValue
 %type <lvalueList> LValueList
 %type <statement> Statement
+%type <statementList> StatementList
 
 %%
 
 Program: Statement { AST::main = std::make_unique<AST>($1); }
 ;
 
-Statement: STOP { $$ = new StopStatement(); }
+StatementList: StatementList SEMICOLON Statement { $$ = new StatementList($1, $3); }
+| Statement { $$ = new StatementList(nullptr, $1); }
+| { $$ = new StatementList(nullptr, nullptr); }
+;
+
+Statement: FOR ID ASSIGN Expression TO Expression DO StatementList END { $$ = new ForStatement($2, $4, $6, $8, ForType::UP_TO); }
+| FOR ID ASSIGN Expression DOWNTO Expression DO StatementList END { $$ = new ForStatement($2, $4, $6, $8, ForType::DOWN_TO); }
+| STOP { $$ = new StopStatement(); }
 | RETURN Expression { $$ = new ReturnStatement($2); }
 | RETURN { $$ = new ReturnStatement(nullptr); }
 | READ OPEN_PAREN LValueList CLOSE_PAREN { $$ = new ReadStatement($3); }

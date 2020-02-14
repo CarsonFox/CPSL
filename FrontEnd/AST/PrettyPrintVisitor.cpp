@@ -148,19 +148,19 @@ void PrettyPrintVisitor::visit(ParenthesisExpression *parenthesisExpression) {
 void PrettyPrintVisitor::visit(ProcedureCallStatement *procedureCall) {
     std::cout << procedureCall->id << '(';
     printNodeList(procedureCall->args);
-    std::cout << ')';
+    std::cout << ");\n";
 }
 
 void PrettyPrintVisitor::visit(WriteStatement *writeStatement) {
     std::cout << "write(";
     printNodeList(writeStatement->args);
-    std::cout << ')';
+    std::cout << ");\n";
 }
 
 void PrettyPrintVisitor::visit(ReadStatement *readStatement) {
     std::cout << "read(";
     printNodeList(readStatement->lvals);
-    std::cout << ')';
+    std::cout << ");\n";
 }
 
 void PrettyPrintVisitor::visit(ReturnStatement *returnStatement) {
@@ -168,8 +168,26 @@ void PrettyPrintVisitor::visit(ReturnStatement *returnStatement) {
     if (returnStatement->expr) {
         returnStatement->expr->accept(*this);
     }
+    std::cout << ";\n";
 }
 
 void PrettyPrintVisitor::visit(StopStatement *) {
-    std::cout << "stop";
+    std::cout << "stop;\n";
+}
+
+void PrettyPrintVisitor::visit(ForStatement *forStatement) {
+    std::cout << "for " << forStatement->id << " := ";
+    forStatement->init->accept(*this);
+    std::cout << (forStatement->type == ForType::UP_TO ? " to " : " downto ");
+    forStatement->bound->accept(*this);
+    std::cout << " do\n";
+
+    for (auto &s : forStatement->statements) {
+        if (!dynamic_cast<EmptyStatement *>(s.get())) {
+            std::cout << '\t';
+            s->accept(*this);
+        }
+    }
+
+    std::cout << "end\n";
 }
