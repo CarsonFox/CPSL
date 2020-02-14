@@ -2,6 +2,8 @@
 
 #include "FrontEnd/AST/AllNodes.hpp"
 
+int indentLevel = 0;
+
 void PrettyPrintVisitor::visit(LiteralExpression *literal) {
     if (std::holds_alternative<int>(literal->value)) {
         std::cout << std::get<int>(literal->value);
@@ -182,12 +184,15 @@ void PrettyPrintVisitor::visit(ForStatement *forStatement) {
     forStatement->bound->accept(*this);
     std::cout << " do\n";
 
+    indentLevel++;
     for (auto &s : forStatement->statements) {
         if (!dynamic_cast<EmptyStatement *>(s.get())) {
-            std::cout << '\t';
+            for (int i = 0; i < indentLevel; i++) std::cout << '\t';
             s->accept(*this);
         }
     }
+    indentLevel--;
 
+    for (int i = 0; i < indentLevel; i++) std::cout << '\t';
     std::cout << "end\n";
 }
