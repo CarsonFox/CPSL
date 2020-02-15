@@ -64,4 +64,6 @@ public:
     void visit(ForStatement *) override;
 
     void visit(RepeatStatement *) override;
+
+    void visit(WhileStatement *) override;
 };

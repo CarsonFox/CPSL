@@ -26,3 +26,4 @@
 #include "Statements/StopStatement.hpp"
 #include "Statements/ForStatement.hpp"
 #include "Statements/RepeatStatement.hpp"
+#include "Statements/WhileStatement.hpp"

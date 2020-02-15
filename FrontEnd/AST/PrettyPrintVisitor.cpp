@@ -204,6 +204,17 @@ void PrettyPrintVisitor::visit(ForStatement *forStatement) {
 void PrettyPrintVisitor::visit(RepeatStatement *repeatStatement) {
     std::cout << "repeat\n";
     printStatementList(repeatStatement->stmts);
+    for (int i = 0; i < indentLevel; i++) std::cout << '\t';
     std::cout << "until ";
     repeatStatement->pred->accept(*this);
+    std::cout << std::endl;
+}
+
+void PrettyPrintVisitor::visit(WhileStatement *whileStatement) {
+    std::cout << "while ";
+    whileStatement->pred->accept(*this);
+    std::cout << " do\n";
+    printStatementList(whileStatement->stmts);
+    for (int i = 0; i < indentLevel; i++) std::cout << '\t';
+    std::cout << "end\n";
 }

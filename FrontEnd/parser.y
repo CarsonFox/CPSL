@@ -70,7 +70,8 @@ StatementList: StatementList SEMICOLON Statement { $$ = new StatementList($1, $3
 | { $$ = new StatementList(nullptr, nullptr); }
 ;
 
-Statement: REPEAT StatementList UNTIL Expression { $$ = new RepeatStatement($2, $4); }
+Statement: WHILE Expression DO StatementList END { $$ = new WhileStatement($2, $4); }
+| REPEAT StatementList UNTIL Expression { $$ = new RepeatStatement($2, $4); }
 | FOR ID ASSIGN Expression TO Expression DO StatementList END { $$ = new ForStatement($2, $4, $6, $8, ForType::UP_TO); }
 | FOR ID ASSIGN Expression DOWNTO Expression DO StatementList END { $$ = new ForStatement($2, $4, $6, $8, ForType::DOWN_TO); }
 | STOP { $$ = new StopStatement(); }

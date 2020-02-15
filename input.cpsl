@@ -1,5 +1,5 @@
 repeat
-    return 3;
-    return true;
-    return "hello";
-until 2 < 3
+    while true do
+        write("hello");
+        end
+until x < 3
