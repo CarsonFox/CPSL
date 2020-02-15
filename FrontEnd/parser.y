@@ -70,7 +70,8 @@ StatementList: StatementList SEMICOLON Statement { $$ = new StatementList($1, $3
 | { $$ = new StatementList(nullptr, nullptr); }
 ;
 
-Statement: WHILE Expression DO StatementList END { $$ = new WhileStatement($2, $4); }
+Statement: IfStatement { $$ = $1; }
+| WHILE Expression DO StatementList END { $$ = new WhileStatement($2, $4); }
 | REPEAT StatementList UNTIL Expression { $$ = new RepeatStatement($2, $4); }
 | FOR ID ASSIGN Expression TO Expression DO StatementList END { $$ = new ForStatement($2, $4, $6, $8, ForType::UP_TO); }
 | FOR ID ASSIGN Expression DOWNTO Expression DO StatementList END { $$ = new ForStatement($2, $4, $6, $8, ForType::DOWN_TO); }
@@ -82,6 +83,9 @@ Statement: WHILE Expression DO StatementList END { $$ = new WhileStatement($2, $
 | ID OPEN_PAREN ExpressionList CLOSE_PAREN { $$ = new ProcedureCallStatement($1, $3); }
 | { $$ = new EmptyStatement(); }
 ;
+
+IfStatement: IF Expression THEN StatementList {}
+| IfStatement ELSEIF Expression THEN StatementList {}
 
 LValueList: LValueList COMMA LValue { $$ = new LValueList($1, $3); }
 | LValue { $$ = new LValueList(nullptr, $1); }
