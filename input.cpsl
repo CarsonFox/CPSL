@@ -1,7 +1,5 @@
-for i := 1 to 10 do
-    for j := i downto 100 do
-    read(bar);
-    foo(bar);
-    return 2;
-    end
-end
+repeat
+    return 3;
+    return true;
+    return "hello";
+until 2 < 3

@@ -25,3 +25,4 @@
 #include "Statements/ReturnStatement.hpp"
 #include "Statements/StopStatement.hpp"
 #include "Statements/ForStatement.hpp"
+#include "Statements/RepeatStatement.hpp"

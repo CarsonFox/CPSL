@@ -4,9 +4,12 @@
 #include <vector>
 #include <memory>
 
+#include "FrontEnd/AST/Statements/Statement.hpp"
 #include "FrontEnd/AST/Visitor.hpp"
 
 struct PrettyPrintVisitor : Visitor {
+private:
+
     template<typename T>
     void printNodeList(std::vector<std::unique_ptr<T>> &list) {
         if (!list.empty()) {
@@ -17,6 +20,10 @@ struct PrettyPrintVisitor : Visitor {
             list.back()->accept(*this);
         }
     }
+
+    void printStatementList(std::vector<std::unique_ptr<Statement>> &stmts);
+
+public:
 
     void visit(LiteralExpression *) override;
 
@@ -55,4 +62,6 @@ struct PrettyPrintVisitor : Visitor {
     void visit(StopStatement *) override;
 
     void visit(ForStatement *) override;
+
+    void visit(RepeatStatement *) override;
 };

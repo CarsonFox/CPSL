@@ -4,6 +4,17 @@
 
 int indentLevel = 0;
 
+void PrettyPrintVisitor::printStatementList(std::vector<std::unique_ptr<Statement>> &stmts) {
+    indentLevel++;
+    for (auto &s : stmts) {
+        if (!dynamic_cast<EmptyStatement *>(s.get())) {
+            for (int i = 0; i < indentLevel; i++) std::cout << '\t';
+            s->accept(*this);
+        }
+    }
+    indentLevel--;
+}
+
 void PrettyPrintVisitor::visit(LiteralExpression *literal) {
     if (std::holds_alternative<int>(literal->value)) {
         std::cout << std::get<int>(literal->value);
@@ -184,15 +195,15 @@ void PrettyPrintVisitor::visit(ForStatement *forStatement) {
     forStatement->bound->accept(*this);
     std::cout << " do\n";
 
-    indentLevel++;
-    for (auto &s : forStatement->statements) {
-        if (!dynamic_cast<EmptyStatement *>(s.get())) {
-            for (int i = 0; i < indentLevel; i++) std::cout << '\t';
-            s->accept(*this);
-        }
-    }
-    indentLevel--;
+    printStatementList(forStatement->statements);
 
     for (int i = 0; i < indentLevel; i++) std::cout << '\t';
     std::cout << "end\n";
+}
+
+void PrettyPrintVisitor::visit(RepeatStatement *repeatStatement) {
+    std::cout << "repeat\n";
+    printStatementList(repeatStatement->stmts);
+    std::cout << "until ";
+    repeatStatement->pred->accept(*this);
 }
