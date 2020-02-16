@@ -67,11 +67,9 @@ Program: Statement { AST::main = std::make_unique<AST>($1); }
 
 StatementList: StatementList SEMICOLON Statement { $$ = new StatementList($1, $3); }
 | Statement { $$ = new StatementList(nullptr, $1); }
-| { $$ = new StatementList(nullptr, nullptr); }
 ;
 
-Statement: IfStatement { $$ = $1; }
-| WHILE Expression DO StatementList END { $$ = new WhileStatement($2, $4); }
+Statement: WHILE Expression DO StatementList END { $$ = new WhileStatement($2, $4); }
 | REPEAT StatementList UNTIL Expression { $$ = new RepeatStatement($2, $4); }
 | FOR ID ASSIGN Expression TO Expression DO StatementList END { $$ = new ForStatement($2, $4, $6, $8, ForType::UP_TO); }
 | FOR ID ASSIGN Expression DOWNTO Expression DO StatementList END { $$ = new ForStatement($2, $4, $6, $8, ForType::DOWN_TO); }
@@ -83,10 +81,11 @@ Statement: IfStatement { $$ = $1; }
 | ID OPEN_PAREN ExpressionList CLOSE_PAREN { $$ = new ProcedureCallStatement($1, $3); }
 | { $$ = new EmptyStatement(); }
 ;
-
+/*
 IfStatement: IF Expression THEN StatementList {}
 | IfStatement ELSEIF Expression THEN StatementList {}
-
+;
+*/
 LValueList: LValueList COMMA LValue { $$ = new LValueList($1, $3); }
 | LValue { $$ = new LValueList(nullptr, $1); }
 | { $$ = new LValueList(nullptr, nullptr); }
