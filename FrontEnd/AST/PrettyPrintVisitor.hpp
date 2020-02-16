@@ -66,4 +66,6 @@ public:
     void visit(RepeatStatement *) override;
 
     void visit(WhileStatement *) override;
+
+    void visit(IfStatement *) override;
 };

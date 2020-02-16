@@ -218,3 +218,27 @@ void PrettyPrintVisitor::visit(WhileStatement *whileStatement) {
     for (int i = 0; i < indentLevel; i++) std::cout << '\t';
     std::cout << "end\n";
 }
+
+void PrettyPrintVisitor::visit(IfStatement *ifStatement) {
+    std::cout << "if ";
+    ifStatement->pred->accept(*this);
+    std::cout << " then\n";
+    printStatementList(ifStatement->stmts);
+
+    for (auto &e: ifStatement->elseIfs) {
+        for (int i = 0; i < indentLevel; i++) std::cout << '\t';
+        std::cout << "elseif ";
+        std::get<0>(e)->accept(*this);
+        std::cout << " then\n";
+        printStatementList(std::get<1>(e));
+    }
+
+    if (!ifStatement->elseStmts.empty()) {
+        for (int i = 0; i < indentLevel; i++) std::cout << '\t';
+        std::cout << "else\n";
+        printStatementList(ifStatement->elseStmts);
+    }
+
+    for (int i = 0; i < indentLevel; i++) std::cout << '\t';
+    std::cout << "end\n";
+}

@@ -24,6 +24,7 @@ LValue *lvalue;
 LValueList *lvalueList;
 Statement *statement;
 StatementList *statementList;
+IfStatement *ifStatement;
 }
 
 %token ARRAY ELSE IF RECORD THEN WRITE BEGIN_BLOCK ELSEIF OF REF TO
@@ -59,6 +60,7 @@ StatementList *statementList;
 %type <lvalueList> LValueList
 %type <statement> Statement
 %type <statementList> StatementList
+%type <ifStatement> IfStatement
 
 %%
 
@@ -69,7 +71,8 @@ StatementList: StatementList SEMICOLON Statement { $$ = new StatementList($1, $3
 | Statement { $$ = new StatementList(nullptr, $1); }
 ;
 
-Statement: WHILE Expression DO StatementList END { $$ = new WhileStatement($2, $4); }
+Statement: IfStatement END { $$ = $1; }
+| WHILE Expression DO StatementList END { $$ = new WhileStatement($2, $4); }
 | REPEAT StatementList UNTIL Expression { $$ = new RepeatStatement($2, $4); }
 | FOR ID ASSIGN Expression TO Expression DO StatementList END { $$ = new ForStatement($2, $4, $6, $8, ForType::UP_TO); }
 | FOR ID ASSIGN Expression DOWNTO Expression DO StatementList END { $$ = new ForStatement($2, $4, $6, $8, ForType::DOWN_TO); }
@@ -81,11 +84,12 @@ Statement: WHILE Expression DO StatementList END { $$ = new WhileStatement($2, $
 | ID OPEN_PAREN ExpressionList CLOSE_PAREN { $$ = new ProcedureCallStatement($1, $3); }
 | { $$ = new EmptyStatement(); }
 ;
-/*
-IfStatement: IF Expression THEN StatementList {}
-| IfStatement ELSEIF Expression THEN StatementList {}
+
+IfStatement: IF Expression THEN StatementList { $$ = new IfStatement($2, $4); }
+| IfStatement ELSEIF Expression THEN StatementList { $1->addElseIf($3, $5); $$ = $1; }
+| IfStatement ELSE StatementList { $1->addElse($3); $$ = $1; }
 ;
-*/
+
 LValueList: LValueList COMMA LValue { $$ = new LValueList($1, $3); }
 | LValue { $$ = new LValueList(nullptr, $1); }
 | { $$ = new LValueList(nullptr, nullptr); }

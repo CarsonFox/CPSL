@@ -1,5 +1,9 @@
-repeat
-    while true do
-        write("hello");
-        end
-until x < 3
+if x < 3 then
+    write("hello");
+    return 2;
+elseif x > 3 then
+    write("foo");
+    return 1;
+else
+    return 0;
+end
