@@ -2,15 +2,15 @@
 
 #include <memory>
 
-#include "FrontEnd/AST/Statements/Statement.hpp"
+#include "FrontEnd/AST/Declarations/Type.hpp"
 #include "PrettyPrintVisitor.hpp"
 
 struct AST {
     static std::unique_ptr<AST> main;
 
-    std::unique_ptr<Statement> stmt;
+    std::unique_ptr<Type> type;
 
-    explicit AST(Statement *s);
+    explicit AST(Type *s);
 
     ~AST() = default;
 

@@ -71,10 +71,10 @@ Type *type;
 
 %%
 
-Program: Statement { AST::main = std::make_unique<AST>($1); }
+Program: Type { AST::main = std::make_unique<AST>($1); }
 ;
 
-Type: ID { $$ = new SimpleType }
+Type: ID { $$ = new SimpleType($1); }
 ;
 
 IdentifierList: ID { $$ = new IdentifierList($1); }

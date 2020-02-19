@@ -2,11 +2,11 @@
 
 std::unique_ptr<AST> AST::main;
 
-AST::AST(Statement *s) {
-    stmt = std::unique_ptr<Statement>(s);
+AST::AST(Type *t) {
+    type = std::unique_ptr<Type>(t);
 }
 
 void AST::prettyPrint() {
     PrettyPrintVisitor pp;
-    stmt->accept(pp);
+    type->accept(pp);
 }
