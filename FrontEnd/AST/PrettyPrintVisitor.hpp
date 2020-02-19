@@ -23,6 +23,8 @@ private:
 
     void printStatementList(std::vector<std::unique_ptr<Statement>> &stmts);
 
+    void printIdList(const std::vector<std::string> &);
+
 public:
 
     void visit(LiteralExpression *) override;
@@ -74,4 +76,6 @@ public:
     void visit(SimpleType *) override;
 
     void visit(ArrayType *) override;
+
+    void visit(RecordType *) override;
 };

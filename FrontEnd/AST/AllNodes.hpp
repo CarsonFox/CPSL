@@ -32,3 +32,4 @@
 
 #include "Declarations/SimpleType.hpp"
 #include "Declarations/ArrayType.hpp"
+#include "Declarations/RecordType.hpp"

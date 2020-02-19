@@ -1,1 +1,1 @@
-array [2: 5] of integer
+record i, j, k: int; first, last: string; end

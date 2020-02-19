@@ -30,6 +30,7 @@ StatementList *statementList;
 IfStatement *ifStatement;
 IdentifierList *identifierList;
 Type *type;
+RecordType *recordType;
 }
 
 %token ARRAY ELSE IF RECORD THEN WRITE BEGIN_BLOCK ELSEIF OF REF TO
@@ -68,6 +69,7 @@ Type *type;
 %type <ifStatement> IfStatement
 %type <identifierList> IdentifierList
 %type <type> Type;
+%type <recordType> RecordType;
 
 %%
 
@@ -76,10 +78,15 @@ Program: Type { AST::main = std::make_unique<AST>($1); }
 
 Type: ID { $$ = new SimpleType($1); }
 | ARRAY OPEN_BRACKET Expression COLON Expression CLOSE_BRACKET OF Type { $$ = new ArrayType($3, $5, $8); }
+| RecordType END { $$ = $1; }
+;
+
+RecordType: RECORD IdentifierList COLON Type SEMICOLON { $$ = new RecordType($2, $4); }
+| RecordType IdentifierList COLON Type SEMICOLON { $$ = new RecordType($1, $2, $4); }
 ;
 
 IdentifierList: ID { $$ = new IdentifierList($1); }
-| IdentifierList COMMA ID { $$ = new Identifier($1, $3); }
+| IdentifierList COMMA ID { $$ = new IdentifierList($1, $3); }
 ;
 
 StatementList: StatementList SEMICOLON Statement { $$ = new StatementList($1, $3); }

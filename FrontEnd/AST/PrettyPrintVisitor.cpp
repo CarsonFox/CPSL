@@ -263,4 +263,25 @@ void PrettyPrintVisitor::visit(ArrayType *arrayType) {
     arrayType->type->accept(*this);
 }
 
+void PrettyPrintVisitor::visit(RecordType *recordType) {
+    std::cout << "record\n";
+    for (auto &[ids, t] : recordType->members) {
+        std::cout << '\t';
+        printIdList(ids);
+        std::cout << ": ";
+        t->accept(*this);
+        std::cout << ";\n";
+    }
+    std::cout << "end\n";
+}
+
+void PrettyPrintVisitor::printIdList(const std::vector<std::string> &ids) {
+    if (!ids.empty()) {
+        for (auto it = ids.begin(); it < ids.end() - 1; it++) {
+            std::cout << *it << ", ";
+        }
+        std::cout << ids.back();
+    }
+}
+
 
