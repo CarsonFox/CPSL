@@ -8,6 +8,7 @@
 #include "FrontEnd/AST/Expressions/ExpressionList.hpp"
 #include "FrontEnd/AST/Expressions/LValueList.hpp"
 #include "FrontEnd/AST/Statements/StatementList.hpp"
+#include "FrontEnd/AST/IdentifierList.hpp"
 
 extern int yylex();
 void yyerror(const char*);
@@ -27,6 +28,7 @@ LValueList *lvalueList;
 Statement *statement;
 StatementList *statementList;
 IfStatement *ifStatement;
+IdentifierList *identifierList;
 }
 
 %token ARRAY ELSE IF RECORD THEN WRITE BEGIN_BLOCK ELSEIF OF REF TO
@@ -63,10 +65,15 @@ IfStatement *ifStatement;
 %type <statement> Statement
 %type <statementList> StatementList
 %type <ifStatement> IfStatement
+%type <identifierList> IdentifierList
 
 %%
 
 Program: Statement { AST::main = std::make_unique<AST>($1); }
+;
+
+IdentifierList: ID { $$ = new IdentifierList($1); }
+| IdentifierList COMMA ID { $$ = new Identifier($1, $3); }
 ;
 
 StatementList: StatementList SEMICOLON Statement { $$ = new StatementList($1, $3); }

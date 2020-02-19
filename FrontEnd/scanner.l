@@ -7,6 +7,7 @@
 #include "FrontEnd/AST/Expressions/ExpressionList.hpp"
 #include "FrontEnd/AST/Expressions/LValueList.hpp"
 #include "FrontEnd/AST/Statements/StatementList.hpp"
+#include "FrontEnd/AST/IdentifierList.hpp"
 
 #include "parser.hpp"
 
