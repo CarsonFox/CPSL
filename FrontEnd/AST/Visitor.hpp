@@ -26,6 +26,7 @@ struct ForStatement;
 struct RepeatStatement;
 struct WhileStatement;
 struct IfStatement;
+struct AssignStatement;
 
 struct Visitor {
     virtual void visit(LiteralExpression *) = 0;
@@ -71,4 +72,6 @@ struct Visitor {
     virtual void visit(WhileStatement *) = 0;
 
     virtual void visit(IfStatement *) = 0;
+
+    virtual void visit(AssignStatement *) = 0;
 };

@@ -71,7 +71,8 @@ StatementList: StatementList SEMICOLON Statement { $$ = new StatementList($1, $3
 | Statement { $$ = new StatementList(nullptr, $1); }
 ;
 
-Statement: IfStatement END { $$ = $1; }
+Statement: LValue ASSIGN Expression { $$ = new AssignStatement($1, $3); }
+| IfStatement END { $$ = $1; }
 | WHILE Expression DO StatementList END { $$ = new WhileStatement($2, $4); }
 | REPEAT StatementList UNTIL Expression { $$ = new RepeatStatement($2, $4); }
 | FOR ID ASSIGN Expression TO Expression DO StatementList END { $$ = new ForStatement($2, $4, $6, $8, ForType::UP_TO); }

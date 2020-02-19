@@ -68,4 +68,6 @@ public:
     void visit(WhileStatement *) override;
 
     void visit(IfStatement *) override;
+
+    void visit(AssignStatement *) override;
 };

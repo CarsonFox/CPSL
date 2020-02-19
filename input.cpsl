@@ -3,7 +3,7 @@ if x < 3 then
     return 2;
 elseif x > 3 then
     write("foo");
-    return 1;
+    x := 33;
 else
     return 0;
 end

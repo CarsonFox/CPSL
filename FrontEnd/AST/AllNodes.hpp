@@ -28,3 +28,4 @@
 #include "Statements/RepeatStatement.hpp"
 #include "Statements/WhileStatement.hpp"
 #include "Statements/IfStatement.hpp"
+#include "FrontEnd/AST/Statements/AssignStatement.hpp"

@@ -242,3 +242,12 @@ void PrettyPrintVisitor::visit(IfStatement *ifStatement) {
     for (int i = 0; i < indentLevel; i++) std::cout << '\t';
     std::cout << "end\n";
 }
+
+void PrettyPrintVisitor::visit(AssignStatement *assignStatement) {
+    assignStatement->lvalue->accept(*this);
+    std::cout << " := ";
+    assignStatement->expr->accept(*this);
+    std::cout << ";\n";
+}
+
+
