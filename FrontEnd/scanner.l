@@ -1,5 +1,6 @@
 %{
 #include <cstdlib>
+#include <iostream>
 
 #include "FrontEnd/AST/AST.hpp"
 #include "FrontEnd/AST/AllNodes.hpp"
@@ -8,6 +9,8 @@
 #include "FrontEnd/AST/Statements/StatementList.hpp"
 
 #include "parser.hpp"
+
+extern int lineNumber;
 %}
 
 %option nounput
@@ -86,5 +89,8 @@ while|WHILE { return WHILE; }
 
 $.*\n {}
 
-[ \b\t\n]* {}
+[ \b\t]* {}
+\n { ++lineNumber; }
 %%
+
+int lineNumber = 1;

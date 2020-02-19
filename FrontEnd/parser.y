@@ -11,6 +11,8 @@
 
 extern int yylex();
 void yyerror(const char*);
+
+extern int lineNumber;
 %}
 
 %union
@@ -137,5 +139,6 @@ LValue: LValue DOT ID { $$ = new RecordAccessExpression($1, $3); }
 
 void yyerror(const char* msg)
 {
-  std::cerr << msg << std::endl;
+  std::cerr << "Line " << lineNumber << ": " << msg << std::endl;
+  std::exit(EXIT_FAILURE);
 }

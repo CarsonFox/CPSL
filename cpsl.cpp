@@ -17,7 +17,6 @@ int main(int argc, char **argv) {
     }
 
     yyparse();
-
     AST::main->prettyPrint();
 
     return EXIT_SUCCESS;

@@ -1,9 +1,6 @@
-if x < 3 then
-    write("hello");
-    return 2;
-elseif x > 3 then
-    write("foo");
-    x := 33;
-else
-    return 0;
-end
+
+
+
+
+
+if
