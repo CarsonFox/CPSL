@@ -75,6 +75,7 @@ Program: Type { AST::main = std::make_unique<AST>($1); }
 ;
 
 Type: ID { $$ = new SimpleType($1); }
+| ARRAY OPEN_BRACKET Expression COLON Expression CLOSE_BRACKET OF Type { $$ = new ArrayType($3, $5, $8); }
 ;
 
 IdentifierList: ID { $$ = new IdentifierList($1); }

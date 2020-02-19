@@ -72,4 +72,6 @@ public:
     void visit(AssignStatement *) override;
 
     void visit(SimpleType *) override;
+
+    void visit(ArrayType *) override;
 };

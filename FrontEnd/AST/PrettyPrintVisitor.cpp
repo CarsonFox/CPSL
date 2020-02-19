@@ -254,4 +254,13 @@ void PrettyPrintVisitor::visit(SimpleType *simpleType) {
     std::cout << simpleType->id;
 }
 
+void PrettyPrintVisitor::visit(ArrayType *arrayType) {
+    std::cout << "array[";
+    arrayType->left->accept(*this);
+    std::cout << ":";
+    arrayType->right->accept(*this);
+    std::cout << "] of ";
+    arrayType->type->accept(*this);
+}
+
 

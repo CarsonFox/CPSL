@@ -28,6 +28,7 @@ struct WhileStatement;
 struct IfStatement;
 struct AssignStatement;
 struct SimpleType;
+struct ArrayType;
 
 struct Visitor {
     virtual void visit(LiteralExpression *) = 0;
@@ -77,4 +78,6 @@ struct Visitor {
     virtual void visit(AssignStatement *) = 0;
 
     virtual void visit(SimpleType *) = 0;
+
+    virtual void visit(ArrayType *) = 0;
 };

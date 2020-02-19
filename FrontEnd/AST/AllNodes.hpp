@@ -31,3 +31,4 @@
 #include "FrontEnd/AST/Statements/AssignStatement.hpp"
 
 #include "Declarations/SimpleType.hpp"
+#include "Declarations/ArrayType.hpp"
