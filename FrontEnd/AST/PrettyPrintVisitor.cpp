@@ -250,4 +250,8 @@ void PrettyPrintVisitor::visit(AssignStatement *assignStatement) {
     std::cout << ";\n";
 }
 
+void PrettyPrintVisitor::visit(SimpleType *simpleType) {
+    std::cout << simpleType->id;
+}
+
 

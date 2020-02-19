@@ -29,6 +29,7 @@ Statement *statement;
 StatementList *statementList;
 IfStatement *ifStatement;
 IdentifierList *identifierList;
+Type *type;
 }
 
 %token ARRAY ELSE IF RECORD THEN WRITE BEGIN_BLOCK ELSEIF OF REF TO
@@ -66,10 +67,14 @@ IdentifierList *identifierList;
 %type <statementList> StatementList
 %type <ifStatement> IfStatement
 %type <identifierList> IdentifierList
+%type <type> Type;
 
 %%
 
 Program: Statement { AST::main = std::make_unique<AST>($1); }
+;
+
+Type: ID { $$ = new SimpleType }
 ;
 
 IdentifierList: ID { $$ = new IdentifierList($1); }

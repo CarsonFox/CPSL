@@ -29,3 +29,5 @@
 #include "Statements/WhileStatement.hpp"
 #include "Statements/IfStatement.hpp"
 #include "FrontEnd/AST/Statements/AssignStatement.hpp"
+
+#include "Declarations/SimpleType.hpp"

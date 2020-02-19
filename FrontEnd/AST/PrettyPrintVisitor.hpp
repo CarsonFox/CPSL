@@ -70,4 +70,6 @@ public:
     void visit(IfStatement *) override;
 
     void visit(AssignStatement *) override;
+
+    void visit(SimpleType *) override;
 };
