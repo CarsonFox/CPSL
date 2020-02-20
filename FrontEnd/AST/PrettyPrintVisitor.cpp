@@ -296,8 +296,19 @@ void PrettyPrintVisitor::visit(TypeDeclaration *typeDeclaration) {
 
 void PrettyPrintVisitor::visit(ConstDeclaration *constDeclaration) {
     std::cout << "const ";
-    for (auto &[id, type] : constDeclaration->members) {
+    for (auto &[id, expr] : constDeclaration->members) {
         std::cout << id << " = ";
+        expr->accept(*this);
+        std::cout << "; ";
+    }
+    std::cout << std::endl;
+}
+
+void PrettyPrintVisitor::visit(VarDeclaration *varDeclaration) {
+    std::cout << "var ";
+    for (auto &[ids, type] : varDeclaration->members) {
+        printIdList(ids);
+        std::cout << ": ";
         type->accept(*this);
         std::cout << "; ";
     }

@@ -33,6 +33,7 @@ Type *type;
 RecordType *recordType;
 TypeDeclaration *typeDecl;
 ConstDeclaration *constDecl;
+VarDeclaration *varDecl;
 }
 
 %token ARRAY ELSE IF RECORD THEN WRITE BEGIN_BLOCK ELSEIF OF REF TO
@@ -74,14 +75,19 @@ ConstDeclaration *constDecl;
 %type <recordType> RecordType;
 %type <typeDecl> TypeDecl;
 %type <constDecl> ConstDecl;
+%type <varDecl> VarDecl;
 
 %%
 
-Program: ConstDecl { AST::main = std::make_unique<AST>($1); }
+Program: VarDecl { AST::main = std::make_unique<AST>($1); }
 ;
 
-ConstDecl: CONST ID EQUAL Type SEMICOLON { $$ = new ConstDeclaration($2, $4); }
-| ConstDecl ID EQUAL Type SEMICOLON { $$ = new ConstDeclaration($1, $2, $4); }
+VarDecl: VAR IdentifierList COLON Type SEMICOLON { $$ = new VarDeclaration($2, $4); }
+| VarDecl IdentifierList COLON Type SEMICOLON { $$ = new VarDeclaration($1, $2, $4); }
+;
+
+ConstDecl: CONST ID EQUAL Expression SEMICOLON { $$ = new ConstDeclaration($2, $4); }
+| ConstDecl ID EQUAL Expression SEMICOLON { $$ = new ConstDeclaration($1, $2, $4); }
 ;
 
 TypeDecl: TYPE ID EQUAL Type SEMICOLON { $$ = new TypeDeclaration($2, $4); }

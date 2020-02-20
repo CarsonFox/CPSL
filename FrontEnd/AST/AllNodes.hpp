@@ -35,3 +35,4 @@
 #include "Declarations/RecordType.hpp"
 #include "Declarations/TypeDeclaration.hpp"
 #include "Declarations/ConstDeclaration.hpp"
+#include "Declarations/VarDeclaration.hpp"

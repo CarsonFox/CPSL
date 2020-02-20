@@ -2,15 +2,15 @@
 
 #include <memory>
 
-#include "Declarations/ConstDeclaration.hpp"
+#include "Declarations/VarDeclaration.hpp"
 #include "PrettyPrintVisitor.hpp"
 
 struct AST {
     static std::unique_ptr<AST> main;
 
-    std::unique_ptr<ConstDeclaration> type;
+    std::unique_ptr<VarDeclaration> type;
 
-    explicit AST(ConstDeclaration *);
+    explicit AST(VarDeclaration *);
 
     ~AST() = default;
 

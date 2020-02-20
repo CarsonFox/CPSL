@@ -82,4 +82,6 @@ public:
     void visit(TypeDeclaration *) override;
 
     void visit(ConstDeclaration *) override;
+
+    void visit(VarDeclaration *) override;
 };
