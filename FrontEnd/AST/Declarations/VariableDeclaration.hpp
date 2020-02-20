@@ -9,15 +9,15 @@
 #include "FrontEnd/AST/IdentifierList.hpp"
 #include "Type.hpp"
 
-struct VarDeclaration : ASTNode {
+struct VariableDeclaration : ASTNode {
     using member = std::pair<std::vector<std::string>, std::unique_ptr<Type>>;
     std::vector<member> members;
 
-    VarDeclaration(IdentifierList *, Type *);
+    VariableDeclaration(IdentifierList *, Type *);
 
-    VarDeclaration(VarDeclaration *, IdentifierList *, Type *);
+    VariableDeclaration(VariableDeclaration *, IdentifierList *, Type *);
 
-    ~VarDeclaration() override = default;
+    ~VariableDeclaration() override = default;
 
     void accept(Visitor &) override;
 };

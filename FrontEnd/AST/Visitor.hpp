@@ -32,7 +32,7 @@ struct ArrayType;
 struct RecordType;
 struct TypeDeclaration;
 struct ConstDeclaration;
-struct VarDeclaration;
+struct VariableDeclaration;
 
 struct Visitor {
     virtual void visit(LiteralExpression *) = 0;
@@ -91,5 +91,5 @@ struct Visitor {
 
     virtual void visit(ConstDeclaration *) = 0;
 
-    virtual void visit(VarDeclaration *) = 0;
+    virtual void visit(VariableDeclaration *) = 0;
 };

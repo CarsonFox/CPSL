@@ -304,7 +304,7 @@ void PrettyPrintVisitor::visit(ConstDeclaration *constDeclaration) {
     std::cout << std::endl;
 }
 
-void PrettyPrintVisitor::visit(VarDeclaration *varDeclaration) {
+void PrettyPrintVisitor::visit(VariableDeclaration *varDeclaration) {
     std::cout << "var ";
     for (auto &[ids, type] : varDeclaration->members) {
         printIdList(ids);
