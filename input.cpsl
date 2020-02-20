@@ -1,4 +1,4 @@
-type string =
+const string =
     record
         s: charptr; length: int;
     end;

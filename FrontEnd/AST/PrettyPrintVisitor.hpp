@@ -80,4 +80,6 @@ public:
     void visit(RecordType *) override;
 
     void visit(TypeDeclaration *) override;
+
+    void visit(ConstDeclaration *) override;
 };

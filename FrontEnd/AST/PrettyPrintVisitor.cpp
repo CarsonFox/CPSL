@@ -294,4 +294,14 @@ void PrettyPrintVisitor::visit(TypeDeclaration *typeDeclaration) {
     std::cout << std::endl;
 }
 
+void PrettyPrintVisitor::visit(ConstDeclaration *constDeclaration) {
+    std::cout << "const ";
+    for (auto &[id, type] : constDeclaration->members) {
+        std::cout << id << " = ";
+        type->accept(*this);
+        std::cout << "; ";
+    }
+    std::cout << std::endl;
+}
+
 

@@ -34,3 +34,4 @@
 #include "Declarations/ArrayType.hpp"
 #include "Declarations/RecordType.hpp"
 #include "Declarations/TypeDeclaration.hpp"
+#include "Declarations/ConstDeclaration.hpp"

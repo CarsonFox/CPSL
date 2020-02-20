@@ -2,8 +2,8 @@
 
 std::unique_ptr<AST> AST::main;
 
-AST::AST(TypeDeclaration *t) {
-    type = std::unique_ptr<TypeDeclaration>(t);
+AST::AST(ConstDeclaration *t) {
+    type = std::unique_ptr<ConstDeclaration>(t);
 }
 
 void AST::prettyPrint() {
