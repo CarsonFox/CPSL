@@ -284,4 +284,14 @@ void PrettyPrintVisitor::printIdList(const std::vector<std::string> &ids) {
     }
 }
 
+void PrettyPrintVisitor::visit(TypeDeclaration *typeDeclaration) {
+    std::cout << "type ";
+    for (auto &[id, type] : typeDeclaration->members) {
+        std::cout << id << " = ";
+        type->accept(*this);
+        std::cout << "; ";
+    }
+    std::cout << std::endl;
+}
+
 

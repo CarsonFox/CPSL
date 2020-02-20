@@ -30,6 +30,7 @@ struct AssignStatement;
 struct SimpleType;
 struct ArrayType;
 struct RecordType;
+struct TypeDeclaration;
 
 struct Visitor {
     virtual void visit(LiteralExpression *) = 0;
@@ -83,4 +84,6 @@ struct Visitor {
     virtual void visit(ArrayType *) = 0;
 
     virtual void visit(RecordType *) = 0;
+
+    virtual void visit(TypeDeclaration *) = 0;
 };

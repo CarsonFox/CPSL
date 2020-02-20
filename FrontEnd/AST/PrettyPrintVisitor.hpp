@@ -78,4 +78,6 @@ public:
     void visit(ArrayType *) override;
 
     void visit(RecordType *) override;
+
+    void visit(TypeDeclaration *) override;
 };

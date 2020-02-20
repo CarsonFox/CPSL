@@ -1,1 +1,6 @@
-record i, j, k: int; first, last: string; end
+type string =
+    record
+        s: charptr; length: int;
+    end;
+    a = b;
+    hello = someType;

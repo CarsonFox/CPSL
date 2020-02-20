@@ -31,6 +31,7 @@ IfStatement *ifStatement;
 IdentifierList *identifierList;
 Type *type;
 RecordType *recordType;
+TypeDeclaration *typeDecl;
 }
 
 %token ARRAY ELSE IF RECORD THEN WRITE BEGIN_BLOCK ELSEIF OF REF TO
@@ -70,10 +71,15 @@ RecordType *recordType;
 %type <identifierList> IdentifierList
 %type <type> Type;
 %type <recordType> RecordType;
+%type <typeDecl> TypeDecl;
 
 %%
 
-Program: Type { AST::main = std::make_unique<AST>($1); }
+Program: TypeDecl { AST::main = std::make_unique<AST>($1); }
+;
+
+TypeDecl: TYPE ID EQUAL Type SEMICOLON { $$ = new TypeDeclaration($2, $4); }
+| TypeDecl ID EQUAL Type SEMICOLON { $$ = new TypeDeclaration($1, $2, $4); }
 ;
 
 Type: ID { $$ = new SimpleType($1); }
