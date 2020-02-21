@@ -37,4 +37,4 @@
 #include "Declarations/ConstDeclaration.hpp"
 #include "Declarations/VariableDeclaration.hpp"
 
-#include "Block.hpp"
+#include "FrontEnd/AST/Declarations/Block.hpp"

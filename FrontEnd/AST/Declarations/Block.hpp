@@ -3,8 +3,8 @@
 #include <vector>
 #include <memory>
 
-#include "Statements/StatementList.hpp"
-#include "Statements/Statement.hpp"
+#include "FrontEnd/AST/Statements/StatementList.hpp"
+#include "FrontEnd/AST/Statements/Statement.hpp"
 
 struct Block : ASTNode {
     std::vector<std::unique_ptr<Statement>> stmts;

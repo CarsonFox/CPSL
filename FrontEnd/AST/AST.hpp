@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include "FrontEnd/AST/Block.hpp"
+#include "FrontEnd/AST/Declarations/Block.hpp"
 #include "PrettyPrintVisitor.hpp"
 
 struct AST {
