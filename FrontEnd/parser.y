@@ -38,6 +38,7 @@ Block *block;
 Body *body;
 FormalParameters *formalParameters;
 Function *function;
+Procedure *procedure;
 }
 
 %token ARRAY ELSE IF RECORD THEN WRITE BEGIN_BLOCK ELSEIF OF REF TO
@@ -88,10 +89,15 @@ Function *function;
 %type <formalParameters> FormalParameters
 %type <formalParameters> FormalParameter
 %type <function> FunctionDecl
+%type <procedure> ProcedureDecl
 
 %%
 
-Program: FunctionDecl { AST::main = std::make_unique<AST>($1); }
+Program: ProcedureDecl { AST::main = std::make_unique<AST>($1); }
+;
+
+ProcedureDecl: PROCEDURE ID OPEN_PAREN FormalParameters CLOSE_PAREN SEMICOLON FORWARD SEMICOLON { $$ = new Procedure($2, $4); }
+| PROCEDURE ID OPEN_PAREN FormalParameters CLOSE_PAREN SEMICOLON Body SEMICOLON { $$ = new Procedure($2, $4, $7); }
 ;
 
 FunctionDecl: FUNCTION ID OPEN_PAREN FormalParameters CLOSE_PAREN COLON Type SEMICOLON FORWARD SEMICOLON { $$ = new Function($2, $4, $7); }

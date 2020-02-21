@@ -365,4 +365,19 @@ void PrettyPrintVisitor::visit(Function *function) {
     }
 }
 
+void PrettyPrintVisitor::visit(Procedure *function) {
+    std::cout << "function " << function->id << " (";
+    if (function->param)
+        function->param->accept(*this);
+    std::cout << ')';
+
+    if (function->isForward()) {
+        std::cout << "; forward;\n";
+    } else {
+        std::cout << ";\n";
+        function->body->accept(*this);
+        std::cout << ";\n";
+    }
+}
+
 

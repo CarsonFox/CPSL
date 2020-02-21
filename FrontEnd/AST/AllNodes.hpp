@@ -41,3 +41,4 @@
 #include "Declarations/Body.hpp"
 #include "Declarations/FormalParameters.hpp"
 #include "Declarations/Function.hpp"
+#include "Declarations/Procedure.hpp"

@@ -92,4 +92,6 @@ public:
     void visit(FormalParameters *) override;
 
     void visit(Function *) override;
+
+    void visit(Procedure *) override;
 };

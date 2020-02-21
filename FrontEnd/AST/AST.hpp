@@ -2,15 +2,15 @@
 
 #include <memory>
 
-#include "FrontEnd/AST/Declarations/Function.hpp"
+#include "FrontEnd/AST/Declarations/Procedure.hpp"
 #include "PrettyPrintVisitor.hpp"
 
 struct AST {
     static std::unique_ptr<AST> main;
 
-    std::unique_ptr<Function> type;
+    std::unique_ptr<Procedure> type;
 
-    explicit AST(Function *);
+    explicit AST(Procedure *);
 
     ~AST() = default;
 
