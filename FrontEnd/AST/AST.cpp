@@ -2,8 +2,8 @@
 
 std::unique_ptr<AST> AST::main;
 
-AST::AST(Block *x) {
-    type = std::unique_ptr<Block>(x);
+AST::AST(Body *x) {
+    type = std::unique_ptr<Body>(x);
 }
 
 void AST::prettyPrint() {

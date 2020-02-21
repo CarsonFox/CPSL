@@ -86,4 +86,6 @@ public:
     void visit(VariableDeclaration *) override;
 
     void visit(Block *) override;
+
+    void visit(Body *) override;
 };

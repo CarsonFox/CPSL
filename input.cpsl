@@ -1,5 +1,7 @@
+const i = sqrt(-1);
+type hello = record len: int; buf: array [0: 5] of char; end;
+var x, y, z: int; hello: string; f: func;
+
 begin
-    x := 3;
-    write(3 + 2);
-    return "hello";
+    return 2 + i + hello[-1];
 end

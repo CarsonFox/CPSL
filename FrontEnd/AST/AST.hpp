@@ -2,15 +2,15 @@
 
 #include <memory>
 
-#include "FrontEnd/AST/Declarations/Block.hpp"
+#include "FrontEnd/AST/Declarations/Body.hpp"
 #include "PrettyPrintVisitor.hpp"
 
 struct AST {
     static std::unique_ptr<AST> main;
 
-    std::unique_ptr<Block> type;
+    std::unique_ptr<Body> type;
 
-    explicit AST(Block *);
+    explicit AST(Body *);
 
     ~AST() = default;
 

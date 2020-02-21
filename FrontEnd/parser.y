@@ -35,6 +35,7 @@ TypeDeclaration *typeDecl;
 ConstDeclaration *constDecl;
 VariableDeclaration *varDecl;
 Block *block;
+Body *body;
 }
 
 %token ARRAY ELSE IF RECORD THEN WRITE BEGIN_BLOCK ELSEIF OF REF TO
@@ -78,25 +79,31 @@ Block *block;
 %type <constDecl> ConstDecl;
 %type <varDecl> VarDecl;
 %type <block> Block;
+%type <body> Body;
 
 %%
 
-Program: Block { AST::main = std::make_unique<AST>($1); }
+Program: Body { AST::main = std::make_unique<AST>($1); }
 ;
+
+Body: ConstDecl TypeDecl VarDecl Block { $$ = new Body($1, $2, $3, $4); }
 
 Block: BEGIN_BLOCK StatementList END { $$ = new Block($2); }
 ;
 
 VarDecl: VAR IdentifierList COLON Type SEMICOLON { $$ = new VariableDeclaration($2, $4); }
 | VarDecl IdentifierList COLON Type SEMICOLON { $$ = new VariableDeclaration($1, $2, $4); }
+| { $$ = nullptr; }
 ;
 
 ConstDecl: CONST ID EQUAL Expression SEMICOLON { $$ = new ConstDeclaration($2, $4); }
 | ConstDecl ID EQUAL Expression SEMICOLON { $$ = new ConstDeclaration($1, $2, $4); }
+| { $$ = nullptr; }
 ;
 
 TypeDecl: TYPE ID EQUAL Type SEMICOLON { $$ = new TypeDeclaration($2, $4); }
 | TypeDecl ID EQUAL Type SEMICOLON { $$ = new TypeDeclaration($1, $2, $4); }
+| { $$ = nullptr; }
 ;
 
 Type: ID { $$ = new SimpleType($1); }

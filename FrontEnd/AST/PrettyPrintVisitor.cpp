@@ -321,4 +321,11 @@ void PrettyPrintVisitor::visit(Block *b) {
     std::cout << "end\n";
 }
 
+void PrettyPrintVisitor::visit(Body *body) {
+    if (body->constDecl) body->constDecl->accept(*this);
+    if (body->typeDecl) body->typeDecl->accept(*this);
+    if (body->varDecl) body->varDecl->accept(*this);
+    body->block->accept(*this);
+}
+
 

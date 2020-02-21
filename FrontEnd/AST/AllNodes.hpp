@@ -38,3 +38,4 @@
 #include "Declarations/VariableDeclaration.hpp"
 
 #include "FrontEnd/AST/Declarations/Block.hpp"
+#include "Declarations/Body.hpp"
