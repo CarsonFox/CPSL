@@ -23,7 +23,7 @@ private:
 
     void printStatementList(std::vector<std::unique_ptr<Statement>> &stmts);
 
-    void printIdList(const std::vector<std::string> &);
+    static void printIdList(const std::vector<std::string> &);
 
 public:
 
@@ -84,4 +84,6 @@ public:
     void visit(ConstDeclaration *) override;
 
     void visit(VariableDeclaration *) override;
+
+    void visit(Block *) override;
 };

@@ -2,15 +2,15 @@
 
 #include <memory>
 
-#include "FrontEnd/AST/Declarations/VariableDeclaration.hpp"
+#include "FrontEnd/AST/Block.hpp"
 #include "PrettyPrintVisitor.hpp"
 
 struct AST {
     static std::unique_ptr<AST> main;
 
-    std::unique_ptr<VariableDeclaration> type;
+    std::unique_ptr<Block> type;
 
-    explicit AST(VariableDeclaration *);
+    explicit AST(Block *);
 
     ~AST() = default;
 

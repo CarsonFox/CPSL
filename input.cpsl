@@ -1,1 +1,5 @@
-var x, y, z: int; hello: string;
+begin
+    x := 3;
+    write(3 + 2);
+    return "hello";
+end

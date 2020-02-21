@@ -28,11 +28,13 @@
 #include "Statements/RepeatStatement.hpp"
 #include "Statements/WhileStatement.hpp"
 #include "Statements/IfStatement.hpp"
-#include "FrontEnd/AST/Statements/AssignStatement.hpp"
+#include "Statements/AssignStatement.hpp"
 
 #include "Declarations/SimpleType.hpp"
 #include "Declarations/ArrayType.hpp"
 #include "Declarations/RecordType.hpp"
 #include "Declarations/TypeDeclaration.hpp"
 #include "Declarations/ConstDeclaration.hpp"
-#include "FrontEnd/AST/Declarations/VariableDeclaration.hpp"
+#include "Declarations/VariableDeclaration.hpp"
+
+#include "Block.hpp"

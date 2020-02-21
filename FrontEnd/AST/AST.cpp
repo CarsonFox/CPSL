@@ -2,8 +2,8 @@
 
 std::unique_ptr<AST> AST::main;
 
-AST::AST(VariableDeclaration *x) {
-    type = std::unique_ptr<VariableDeclaration>(x);
+AST::AST(Block *x) {
+    type = std::unique_ptr<Block>(x);
 }
 
 void AST::prettyPrint() {

@@ -315,4 +315,10 @@ void PrettyPrintVisitor::visit(VariableDeclaration *varDeclaration) {
     std::cout << std::endl;
 }
 
+void PrettyPrintVisitor::visit(Block *b) {
+    std::cout << "begin\n";
+    printStatementList(b->stmts);
+    std::cout << "end\n";
+}
+
 

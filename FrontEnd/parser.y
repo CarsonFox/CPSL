@@ -34,6 +34,7 @@ RecordType *recordType;
 TypeDeclaration *typeDecl;
 ConstDeclaration *constDecl;
 VariableDeclaration *varDecl;
+Block *block;
 }
 
 %token ARRAY ELSE IF RECORD THEN WRITE BEGIN_BLOCK ELSEIF OF REF TO
@@ -76,10 +77,14 @@ VariableDeclaration *varDecl;
 %type <typeDecl> TypeDecl;
 %type <constDecl> ConstDecl;
 %type <varDecl> VarDecl;
+%type <block> Block;
 
 %%
 
-Program: VarDecl { AST::main = std::make_unique<AST>($1); }
+Program: Block { AST::main = std::make_unique<AST>($1); }
+;
+
+Block: BEGIN_BLOCK StatementList END { $$ = new Block($2); }
 ;
 
 VarDecl: VAR IdentifierList COLON Type SEMICOLON { $$ = new VariableDeclaration($2, $4); }

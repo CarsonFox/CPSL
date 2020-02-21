@@ -33,6 +33,7 @@ struct RecordType;
 struct TypeDeclaration;
 struct ConstDeclaration;
 struct VariableDeclaration;
+struct Block;
 
 struct Visitor {
     virtual void visit(LiteralExpression *) = 0;
@@ -92,4 +93,6 @@ struct Visitor {
     virtual void visit(ConstDeclaration *) = 0;
 
     virtual void visit(VariableDeclaration *) = 0;
+
+    virtual void visit(Block *) = 0;
 };
