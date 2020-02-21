@@ -78,6 +78,9 @@ Body *body;
 %type <typeDecl> TypeDecl;
 %type <constDecl> ConstDecl;
 %type <varDecl> VarDecl;
+%type <typeDecl> OptTypeDecl;
+%type <constDecl> OptConstDecl;
+%type <varDecl> OptVarDecl;
 %type <block> Block;
 %type <body> Body;
 
@@ -86,24 +89,33 @@ Body *body;
 Program: Body { AST::main = std::make_unique<AST>($1); }
 ;
 
-Body: ConstDecl TypeDecl VarDecl Block { $$ = new Body($1, $2, $3, $4); }
+Body: OptConstDecl OptTypeDecl OptVarDecl Block { $$ = new Body($1, $2, $3, $4); }
 
 Block: BEGIN_BLOCK StatementList END { $$ = new Block($2); }
 ;
 
+OptConstDecl: ConstDecl { $$ = $1; }
+| { $$ = nullptr; }
+;
+
+OptVarDecl: VarDecl { $$ = $1; }
+| { $$ = nullptr; }
+;
+
+OptTypeDecl: TypeDecl { $$ = $1; }
+| { $$ = nullptr; }
+;
+
 VarDecl: VAR IdentifierList COLON Type SEMICOLON { $$ = new VariableDeclaration($2, $4); }
 | VarDecl IdentifierList COLON Type SEMICOLON { $$ = new VariableDeclaration($1, $2, $4); }
-| { $$ = nullptr; }
 ;
 
 ConstDecl: CONST ID EQUAL Expression SEMICOLON { $$ = new ConstDeclaration($2, $4); }
 | ConstDecl ID EQUAL Expression SEMICOLON { $$ = new ConstDeclaration($1, $2, $4); }
-| { $$ = nullptr; }
 ;
 
 TypeDecl: TYPE ID EQUAL Type SEMICOLON { $$ = new TypeDeclaration($2, $4); }
 | TypeDecl ID EQUAL Type SEMICOLON { $$ = new TypeDeclaration($1, $2, $4); }
-| { $$ = nullptr; }
 ;
 
 Type: ID { $$ = new SimpleType($1); }
