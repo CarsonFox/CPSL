@@ -39,3 +39,4 @@
 
 #include "FrontEnd/AST/Declarations/Block.hpp"
 #include "Declarations/Body.hpp"
+#include "Declarations/FormalParameters.hpp"

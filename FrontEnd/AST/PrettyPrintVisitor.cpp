@@ -328,4 +328,25 @@ void PrettyPrintVisitor::visit(Body *body) {
     body->block->accept(*this);
 }
 
+void PrettyPrintVisitor::visit(FormalParameters *fp) {
+    static const auto printFP = [=](FormalParameters::member &f) {
+        auto &[pt, l, t] = f;
+        if (pt == ParType::REF_T)
+            std::cout << "ref ";
+        else if (pt == ParType::VAR_T)
+            std::cout << "var ";
+        printIdList(l);
+        std::cout << ": ";
+        t->accept(*this);
+    };
+
+    if (!fp->members.empty()) {
+        for (auto it = fp->members.begin(); it < fp->members.end() - 1; it++) {
+            printFP(*it);
+            std::cout << "; ";
+        }
+        printFP(fp->members.back());
+    }
+}
+
 

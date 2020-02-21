@@ -1,7 +1,1 @@
-const i = sqrt(-1);
-type hello = record len: int; buf: array [0: 5] of char; end;
-var x, y, z: int; hello: string; f: func;
-
-begin
-    return 2 + i + hello[-1];
-end
+var x, y, z: int; ref hello: string; i: double; foo: array [2:10] of char

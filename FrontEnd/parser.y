@@ -36,6 +36,7 @@ ConstDeclaration *constDecl;
 VariableDeclaration *varDecl;
 Block *block;
 Body *body;
+FormalParameters *formalParameters;
 }
 
 %token ARRAY ELSE IF RECORD THEN WRITE BEGIN_BLOCK ELSEIF OF REF TO
@@ -83,10 +84,22 @@ Body *body;
 %type <varDecl> OptVarDecl;
 %type <block> Block;
 %type <body> Body;
+%type <formalParameters> FormalParameters
+%type <formalParameters> FormalParameter
 
 %%
 
-Program: Body { AST::main = std::make_unique<AST>($1); }
+Program: FormalParameters { AST::main = std::make_unique<AST>($1); }
+;
+
+FormalParameters: { $$ = nullptr; }
+| FormalParameter { $$ = $1; }
+| FormalParameters SEMICOLON FormalParameter { $$ = new FormalParameters($1, $3); }
+;
+
+FormalParameter: VAR IdentifierList COLON Type { $$ = new FormalParameters(ParType::VAR_T, $2, $4); }
+| REF IdentifierList COLON Type { $$ = new FormalParameters(ParType::REF_T, $2, $4); }
+| IdentifierList COLON Type { $$ = new FormalParameters(ParType::NONE, $1, $3); }
 ;
 
 Body: OptConstDecl OptTypeDecl OptVarDecl Block { $$ = new Body($1, $2, $3, $4); }

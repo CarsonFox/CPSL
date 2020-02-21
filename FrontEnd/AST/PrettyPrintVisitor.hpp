@@ -88,4 +88,6 @@ public:
     void visit(Block *) override;
 
     void visit(Body *) override;
+
+    void visit(FormalParameters *) override;
 };
