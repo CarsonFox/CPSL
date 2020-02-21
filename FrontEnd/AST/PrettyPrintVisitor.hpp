@@ -90,4 +90,6 @@ public:
     void visit(Body *) override;
 
     void visit(FormalParameters *) override;
+
+    void visit(Function *) override;
 };

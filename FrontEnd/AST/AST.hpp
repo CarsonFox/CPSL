@@ -2,15 +2,15 @@
 
 #include <memory>
 
-#include "FrontEnd/AST/Declarations/FormalParameters.hpp"
+#include "FrontEnd/AST/Declarations/Function.hpp"
 #include "PrettyPrintVisitor.hpp"
 
 struct AST {
     static std::unique_ptr<AST> main;
 
-    std::unique_ptr<FormalParameters> type;
+    std::unique_ptr<Function> type;
 
-    explicit AST(FormalParameters *);
+    explicit AST(Function *);
 
     ~AST() = default;
 

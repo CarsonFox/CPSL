@@ -349,4 +349,20 @@ void PrettyPrintVisitor::visit(FormalParameters *fp) {
     }
 }
 
+void PrettyPrintVisitor::visit(Function *function) {
+    std::cout << "function " << function->id << " (";
+    if (function->param)
+        function->param->accept(*this);
+    std::cout << "): ";
+    function->type->accept(*this);
+
+    if (function->isForward()) {
+        std::cout << "; forward;\n";
+    } else {
+        std::cout << ";\n";
+        function->body->accept(*this);
+        std::cout << ";\n";
+    }
+}
+
 

@@ -36,6 +36,7 @@ struct VariableDeclaration;
 struct Block;
 struct Body;
 struct FormalParameters;
+struct Function;
 
 struct Visitor {
     virtual void visit(LiteralExpression *) = 0;
@@ -101,4 +102,6 @@ struct Visitor {
     virtual void visit(Body *) = 0;
 
     virtual void visit(FormalParameters *) = 0;
+
+    virtual void visit(Function *) = 0;
 };

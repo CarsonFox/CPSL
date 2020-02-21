@@ -37,6 +37,7 @@ VariableDeclaration *varDecl;
 Block *block;
 Body *body;
 FormalParameters *formalParameters;
+Function *function;
 }
 
 %token ARRAY ELSE IF RECORD THEN WRITE BEGIN_BLOCK ELSEIF OF REF TO
@@ -86,10 +87,15 @@ FormalParameters *formalParameters;
 %type <body> Body;
 %type <formalParameters> FormalParameters
 %type <formalParameters> FormalParameter
+%type <function> FunctionDecl
 
 %%
 
-Program: FormalParameters { AST::main = std::make_unique<AST>($1); }
+Program: FunctionDecl { AST::main = std::make_unique<AST>($1); }
+;
+
+FunctionDecl: FUNCTION ID OPEN_PAREN FormalParameters CLOSE_PAREN COLON Type SEMICOLON FORWARD SEMICOLON { $$ = new Function($2, $4, $7); }
+| FUNCTION ID OPEN_PAREN FormalParameters CLOSE_PAREN COLON Type SEMICOLON Body SEMICOLON { $$ = new Function($2, $4, $7, $9); }
 ;
 
 FormalParameters: { $$ = nullptr; }
