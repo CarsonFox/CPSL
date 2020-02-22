@@ -3,10 +3,11 @@
 #include <memory>
 #include <string>
 
+#include "Subroutine.hpp"
 #include "FormalParameters.hpp"
 #include "Body.hpp"
 
-struct Procedure : ASTNode {
+struct Procedure : Subroutine {
     std::string id;
     std::unique_ptr<FormalParameters> param;
     std::unique_ptr<Body> body;

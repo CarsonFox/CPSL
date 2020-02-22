@@ -3,7 +3,7 @@
 #include <vector>
 #include <memory>
 
-#include "FrontEnd/AST/AST.hpp"
+#include "FrontEnd/AST/Program.hpp"
 #include "FrontEnd/AST/AllNodes.hpp"
 #include "FrontEnd/AST/Expressions/ExpressionList.hpp"
 #include "FrontEnd/AST/Expressions/LValueList.hpp"
@@ -39,6 +39,7 @@ Body *body;
 FormalParameters *formalParameters;
 Function *function;
 Procedure *procedure;
+Program *program;
 }
 
 %token ARRAY ELSE IF RECORD THEN WRITE BEGIN_BLOCK ELSEIF OF REF TO
@@ -90,10 +91,20 @@ Procedure *procedure;
 %type <formalParameters> FormalParameter
 %type <function> FunctionDecl
 %type <procedure> ProcedureDecl
+%type <program> ProgramHead
+%type <program> ProgramBody
 
 %%
 
-Program: ProcedureDecl { AST::main = std::make_unique<AST>($1); }
+Program: ProgramHead ProgramBody Block DOT { Program::main = std::make_unique<Program>($1, $2, $3); }
+;
+
+ProgramHead: OptConstDecl OptTypeDecl OptVarDecl  { $$ = new Program($1, $2, $3); }
+;
+
+ProgramBody: ProgramBody ProcedureDecl { $$ = new Program($1, $2); }
+| ProgramBody FunctionDecl { $$ = new Program($1, $2); }
+| { $$ = new Program(); }
 ;
 
 ProcedureDecl: PROCEDURE ID OPEN_PAREN FormalParameters CLOSE_PAREN SEMICOLON FORWARD SEMICOLON { $$ = new Procedure($2, $4); }

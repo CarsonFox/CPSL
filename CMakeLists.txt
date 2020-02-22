@@ -14,7 +14,7 @@ add_flex_bison_dependency(Scanner Parser)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -O0 -g3 -std=c++17 -fsanitize=address")
 
 set(src ${BISON_Parser_OUTPUTS} ${FLEX_Scanner_OUTPUTS})
-set(src ${src} FrontEnd/AST/Expressions/LiteralExpression.cpp FrontEnd/AST/AST.cpp FrontEnd/AST/PrettyPrintVisitor.cpp
+set(src ${src} FrontEnd/AST/Expressions/LiteralExpression.cpp FrontEnd/AST/Program.cpp FrontEnd/AST/PrettyPrintVisitor.cpp
         FrontEnd/AST/Expressions/SuccExpression.cpp FrontEnd/AST/Expressions/SuccExpression.hpp FrontEnd/AST/Expressions/PredExpression.cpp
         FrontEnd/AST/Expressions/PredExpression.hpp FrontEnd/AST/Expressions/OrdExpression.cpp FrontEnd/AST/Expressions/OrdExpression.hpp
         FrontEnd/AST/Expressions/ChrExpression.cpp FrontEnd/AST/Expressions/ChrExpression.hpp FrontEnd/AST/Expressions/RecordAccessExpression.cpp

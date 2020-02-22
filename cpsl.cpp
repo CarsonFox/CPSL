@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdio>
 
-#include "FrontEnd/AST/AST.hpp"
+#include "FrontEnd/AST/Program.hpp"
 
 extern int yyparse();
 extern FILE *yyin;
@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
     }
 
     yyparse();
-    AST::main->prettyPrint();
+    Program::main->prettyPrint();
 
     return EXIT_SUCCESS;
 }
