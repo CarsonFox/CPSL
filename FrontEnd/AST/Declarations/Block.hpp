@@ -13,5 +13,5 @@ struct Block : ASTNode {
 
     ~Block() override = default;
 
-    void accept(Visitor &) override;
+    void print() const override;
 };

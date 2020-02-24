@@ -9,5 +9,7 @@ struct StringExpression : Expression {
 
     ~StringExpression() override = default;
 
-    void accept(Visitor &) override;
+    void print() const override;
+
+    bool isConst() const override;
 };

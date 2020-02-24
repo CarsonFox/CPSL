@@ -12,6 +12,11 @@ TypeDeclaration::TypeDeclaration(TypeDeclaration *left, char *s, Type *t) {
     free(s);
 }
 
-void TypeDeclaration::accept(Visitor &visitor) {
-    visitor.visit(this);
+void TypeDeclaration::print() const {
+    std::cout << "TYPE ";
+    for (const auto &[id, type]: members) {
+        std::cout << id << " = ";
+        type->print();
+        std::cout << "; ";
+    }
 }

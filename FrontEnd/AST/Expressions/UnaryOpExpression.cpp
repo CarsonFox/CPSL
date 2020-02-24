@@ -3,6 +3,14 @@
 UnaryOpExpression::UnaryOpExpression(Expression *e, UnaryOp t) : expr(e), type(t) {
 }
 
-void UnaryOpExpression::accept(Visitor &visitor) {
-    visitor.visit(this);
+void UnaryOpExpression::print() const {
+    if (type == UnaryOp::Neg)
+        std::cout << '-';
+    else
+        std::cout << '~';
+    expr->print();
+}
+
+bool UnaryOpExpression::isConst() const {
+    return expr->isConst();
 }

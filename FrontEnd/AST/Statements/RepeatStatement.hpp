@@ -3,7 +3,6 @@
 #include <memory>
 #include <vector>
 
-
 #include <FrontEnd/AST/Expressions/Expression.hpp>
 #include "Statement.hpp"
 #include "StatementList.hpp"
@@ -16,5 +15,5 @@ struct RepeatStatement : Statement {
 
     ~RepeatStatement() override = default;
 
-    void accept(Visitor &) override;
+    void print() const override;
 };

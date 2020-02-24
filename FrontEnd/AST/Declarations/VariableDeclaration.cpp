@@ -12,6 +12,13 @@ VariableDeclaration::VariableDeclaration(VariableDeclaration *left, IdentifierLi
     delete l;
 }
 
-void VariableDeclaration::accept(Visitor &visitor) {
-    visitor.visit(this);
+void VariableDeclaration::print() const {
+    std::cout << "VAR ";
+    for (const auto &[ids, type] : members) {
+        for (auto it = ids.begin(); it < ids.end() - 1; it++)
+            std::cout << *it << ", ";
+        std::cout << ids.back() << ": ";
+        type->print();
+        std::cout << ';';
+    }
 }

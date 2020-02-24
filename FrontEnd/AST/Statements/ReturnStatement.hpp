@@ -10,5 +10,5 @@ struct ReturnStatement : Statement {
 
     ~ReturnStatement() override = default;
 
-    void accept(Visitor &) override;
+    void print() const override;
 };

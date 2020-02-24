@@ -4,6 +4,11 @@ ArrayType::ArrayType(Expression *l, Expression *r, Type *t) : left(l), right(r),
 
 }
 
-void ArrayType::accept(Visitor &visitor) {
-    visitor.visit(this);
+void ArrayType::print() const {
+    std::cout << "ARRAY [";
+    left->print();
+    std::cout << " : ";
+    right->print();
+    std::cout << "] OF ";
+    type->print();
 }

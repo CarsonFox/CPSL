@@ -3,6 +3,8 @@
 ReturnStatement::ReturnStatement(Expression *e) : expr(e) {
 }
 
-void ReturnStatement::accept(Visitor &visitor) {
-    visitor.visit(this);
+void ReturnStatement::print() const {
+    std::cout << "RETURN ";
+    expr->print();
+    std::cout << ';';
 }

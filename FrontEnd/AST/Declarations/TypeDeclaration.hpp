@@ -18,5 +18,5 @@ struct TypeDeclaration : ASTNode {
 
     ~TypeDeclaration() override = default;
 
-    void accept(Visitor &) override;
+    void print() const override;
 };

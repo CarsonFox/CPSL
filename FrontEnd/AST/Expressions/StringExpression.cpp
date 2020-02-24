@@ -7,6 +7,10 @@ StringExpression::StringExpression(char *s) : value(s) {
     value = value.substr(1, value.size() - 2);
 }
 
-void StringExpression::accept(Visitor &visitor) {
-    visitor.visit(this);
+void StringExpression::print() const {
+    std::cout << '"' << value << '"';
+}
+
+bool StringExpression::isConst() const {
+    return true;
 }

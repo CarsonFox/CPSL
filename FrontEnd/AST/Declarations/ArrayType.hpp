@@ -13,5 +13,5 @@ struct ArrayType : Type {
 
     ~ArrayType() override = default;
 
-    void accept(Visitor &) override;
+    void print() const override;
 };

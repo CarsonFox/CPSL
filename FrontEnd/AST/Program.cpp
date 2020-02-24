@@ -1,24 +1,30 @@
 #include "Program.hpp"
 
-#include "PrettyPrintVisitor.hpp"
+#include "Util.hpp"
 
 std::unique_ptr<Program> Program::main;
 
 void Program::prettyPrint() {
-    PrettyPrintVisitor pp;
-    if (constDecl)
-        constDecl->accept(pp);
-    if (typeDecl)
-        typeDecl->accept(pp);
-    if (varDecl)
-        varDecl->accept(pp);
+    if (constDecl) {
+        constDecl->print();
+        newline();
+    }
+    if (typeDecl) {
+        typeDecl->print();
+        newline();
+    }
+    if (varDecl) {
+        varDecl->print();
+        newline();
+    }
 
-    for (auto &s: subroutines) {
-        s->accept(pp);
+    for (const auto &s: subroutines) {
+        s->print();
+        newline();
     }
 
     if (block)
-        block->accept(pp);
+        block->print();
     std::cout << ".\n";
 }
 

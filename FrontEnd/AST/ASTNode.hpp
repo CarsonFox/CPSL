@@ -1,9 +1,10 @@
 #pragma once
 
-#include "Visitor.hpp"
+//Every AST node prints itself
+#include <iostream>
 
 struct ASTNode {
     virtual ~ASTNode() = default;
 
-    virtual void accept(Visitor &) = 0;
+    virtual void print() const = 0;
 };

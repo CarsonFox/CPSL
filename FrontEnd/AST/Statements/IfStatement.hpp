@@ -23,5 +23,5 @@ struct IfStatement : Statement {
 
     void addElse(StatementList *);
 
-    void accept(Visitor &) override;
+    void print() const override;
 };

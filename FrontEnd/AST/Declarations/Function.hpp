@@ -18,7 +18,7 @@ struct Function : Subroutine {
 
     Function(char *, FormalParameters *, Type *, Body *);
 
-    void accept(Visitor &) override;
+    void print() const override;
 
-    bool isForward() const;
+    bool isForward() const override;
 };

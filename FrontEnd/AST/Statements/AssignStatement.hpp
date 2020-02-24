@@ -13,5 +13,5 @@ struct AssignStatement : Statement {
 
     ~AssignStatement() override = default;
 
-    void accept(Visitor &) override;
+    void print() const override;
 };

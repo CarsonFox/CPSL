@@ -1,6 +1,6 @@
 #include "IfStatement.hpp"
 
-#include <iostream>
+#include "FrontEnd/AST/Util.hpp"
 
 IfStatement::IfStatement(Expression *e, StatementList *l) : pred(e) {
     stmts = l->toVector();
@@ -27,6 +27,23 @@ void IfStatement::addElse(StatementList *l) {
     delete l;
 }
 
-void IfStatement::accept(Visitor &visitor) {
-    visitor.visit(this);
+void IfStatement::print() const {
+    std::cout << "IF ";
+    pred->print();
+    std::cout << " THEN\n";
+    indentStatementList(stmts);
+
+    for (const auto &[pred, stmts]: elseIfs) {
+        std::cout << "ELSEIF ";
+        pred->print();
+        std::cout << " THEN\n";
+        indentStatementList(stmts);
+    }
+
+    if (!elseStmts.empty()) {
+        std::cout << "ELSE\n";
+        indentStatementList(elseStmts);
+    }
+
+    std::cout << "END";
 }

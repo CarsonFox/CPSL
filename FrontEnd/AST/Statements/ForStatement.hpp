@@ -23,5 +23,5 @@ struct ForStatement : Statement {
 
     ~ForStatement() override = default;
 
-    void accept(Visitor &) override;
+    void print() const override;
 };

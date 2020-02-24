@@ -15,5 +15,5 @@ struct WhileStatement : Statement {
 
     ~WhileStatement() override = default;
 
-    void accept(Visitor &) override;
+    void print() const override;
 };

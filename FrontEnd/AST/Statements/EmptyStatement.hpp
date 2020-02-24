@@ -7,5 +7,5 @@ struct EmptyStatement : Statement {
 
     ~EmptyStatement() override = default;
 
-    void accept(Visitor &) override {}
+    void print() const override {}
 };

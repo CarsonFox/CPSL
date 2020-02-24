@@ -7,5 +7,7 @@ struct StopStatement : Statement {
 
     ~StopStatement() override = default;
 
-    void accept(Visitor &visitor) override { visitor.visit(this); }
+    void print() const override {
+        std::cout << "STOP";
+    }
 };

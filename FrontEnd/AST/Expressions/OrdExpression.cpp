@@ -1,11 +1,13 @@
-//
-// Created by fox on 2/9/20.
-//
-
 #include "OrdExpression.hpp"
 
 OrdExpression::OrdExpression(Expression *e) : expr(e) {}
 
-void OrdExpression::accept(Visitor &visitor) {
-    visitor.visit(this);
+void OrdExpression::print() const {
+    std::cout << "ORD(";
+    expr->print();
+    std::cout << ')';
+}
+
+bool OrdExpression::isConst() const {
+    return expr->isConst();
 }

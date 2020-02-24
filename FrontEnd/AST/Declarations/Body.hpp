@@ -18,5 +18,5 @@ struct Body : ASTNode {
 
     ~Body() override = default;
 
-    void accept(Visitor &) override;
+    void print() const override;
 };

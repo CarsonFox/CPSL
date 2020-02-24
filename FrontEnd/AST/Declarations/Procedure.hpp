@@ -16,7 +16,7 @@ struct Procedure : Subroutine {
 
     Procedure(char *, FormalParameters *, Body *);
 
-    void accept(Visitor &) override;
+    void print() const override;
 
-    bool isForward() const;
+    bool isForward() const override;
 };

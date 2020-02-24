@@ -12,5 +12,7 @@ struct ArrayAccessExpression : LValue {
 
     ~ArrayAccessExpression() override = default;
 
-    void accept(Visitor &);
+    void print() const override;
+
+    bool isConst() const override;
 };

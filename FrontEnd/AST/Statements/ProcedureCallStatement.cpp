@@ -1,5 +1,7 @@
 #include "ProcedureCallStatement.hpp"
 
+#include "FrontEnd/AST/Util.hpp"
+
 ProcedureCallStatement::ProcedureCallStatement(char *s, ExpressionList *list) : id(s) {
     args = list->toVector();
 
@@ -7,6 +9,8 @@ ProcedureCallStatement::ProcedureCallStatement(char *s, ExpressionList *list) : 
     delete list; //Alloc'd with new
 }
 
-void ProcedureCallStatement::accept(Visitor &visitor) {
-    visitor.visit(this);
+void ProcedureCallStatement::print() const {
+    std::cout << id << '(';
+    printExprList(args);
+    std::cout << ");";
 }
