@@ -11,7 +11,7 @@
  */
 
 struct ParenthesisExpression : Expression {
-    std::unique_ptr<Expression> expr;
+    std::shared_ptr<Expression> expr;
 
     explicit ParenthesisExpression(Expression *);
 

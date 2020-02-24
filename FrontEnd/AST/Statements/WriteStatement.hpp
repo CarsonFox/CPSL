@@ -7,7 +7,7 @@
 #include "FrontEnd/AST/Expressions/ExpressionList.hpp"
 
 struct WriteStatement : Statement {
-    std::vector<std::unique_ptr<Expression>> args;
+    std::vector<std::shared_ptr<Expression>> args;
 
     explicit WriteStatement(ExpressionList *);
 

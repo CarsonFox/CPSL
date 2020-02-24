@@ -12,4 +12,4 @@ register_class (Expression);
 register_class (LiteralExpression, Expression);
 register_class (BinaryOpExpression, Expression);
 
-//declare_method(std::unique_ptr<Expression>, fold, (virtual_<const Expression &>));
+//declare_method(std::shared_ptr<Expression>, fold, (virtual_<const Expression &>));

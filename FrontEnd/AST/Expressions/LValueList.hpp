@@ -19,5 +19,5 @@ public:
 
     ~LValueList();
 
-    std::vector<std::unique_ptr<LValue>> toVector();
+    std::vector<std::shared_ptr<LValue>> toVector();
 };

@@ -1,7 +1,7 @@
 #include "SuccExpression.hpp"
 
 SuccExpression::SuccExpression(Expression *e) {
-    expr = std::unique_ptr<Expression>(e);
+    expr = std::shared_ptr<Expression>(e);
 }
 
 void SuccExpression::print() const {

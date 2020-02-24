@@ -2,7 +2,7 @@
 
 #include "Util.hpp"
 
-std::unique_ptr<Program> Program::main;
+std::shared_ptr<Program> Program::main;
 
 void Program::prettyPrint() {
     if (constDecl) {

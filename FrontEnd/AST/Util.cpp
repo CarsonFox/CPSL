@@ -4,7 +4,7 @@
 
 int indentLevel = 0;
 
-void indentStatementList(const std::vector<std::unique_ptr<Statement>> &list) {
+void indentStatementList(const std::vector<std::shared_ptr<Statement>> &list) {
     indentLevel++;
     for (auto it = list.begin(); it < list.end() - 1; it++) {
         indent();

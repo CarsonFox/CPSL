@@ -11,7 +11,7 @@ enum UnaryOp {
 };
 
 struct UnaryOpExpression : Expression {
-    std::unique_ptr<Expression> expr;
+    std::shared_ptr<Expression> expr;
     UnaryOp type;
 
     UnaryOpExpression(Expression *, UnaryOp);

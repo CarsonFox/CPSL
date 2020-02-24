@@ -6,8 +6,8 @@
 #include "FrontEnd/AST/Expressions/LValue.hpp"
 
 struct AssignStatement : Statement {
-    std::unique_ptr<LValue> lvalue;
-    std::unique_ptr<Expression> expr;
+    std::shared_ptr<LValue> lvalue;
+    std::shared_ptr<Expression> expr;
 
     AssignStatement(LValue *, Expression *);
 

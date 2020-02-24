@@ -13,7 +13,7 @@ inline void newline() {
 }
 
 template<typename T>
-void printExprList(const std::vector<std::unique_ptr<T>> &list) {
+void printExprList(const std::vector<std::shared_ptr<T>> &list) {
     if (!list.empty()) {
         for (auto it = list.begin(); it < list.end() - 1; it++) {
             (*it)->print();
@@ -23,6 +23,6 @@ void printExprList(const std::vector<std::unique_ptr<T>> &list) {
     }
 }
 
-void indentStatementList(const std::vector<std::unique_ptr<Statement>> &);
+void indentStatementList(const std::vector<std::shared_ptr<Statement>> &);
 
 void indent();

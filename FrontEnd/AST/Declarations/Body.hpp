@@ -9,10 +9,10 @@
 #include "Block.hpp"
 
 struct Body : ASTNode {
-    std::unique_ptr<ConstDeclaration> constDecl;
-    std::unique_ptr<TypeDeclaration> typeDecl;
-    std::unique_ptr<VariableDeclaration> varDecl;
-    std::unique_ptr<Block> block;
+    std::shared_ptr<ConstDeclaration> constDecl;
+    std::shared_ptr<TypeDeclaration> typeDecl;
+    std::shared_ptr<VariableDeclaration> varDecl;
+    std::shared_ptr<Block> block;
 
     Body(ConstDeclaration *, TypeDeclaration *, VariableDeclaration *, Block *);
 

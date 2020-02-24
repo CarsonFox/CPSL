@@ -6,8 +6,8 @@
 #include "FrontEnd/AST/Expressions/Expression.hpp"
 
 struct ArrayType : Type {
-    std::unique_ptr<Expression> left, right;
-    std::unique_ptr<Type> type;
+    std::shared_ptr<Expression> left, right;
+    std::shared_ptr<Type> type;
 
     ArrayType(Expression *, Expression *, Type *);
 

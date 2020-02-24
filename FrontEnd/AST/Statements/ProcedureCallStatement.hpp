@@ -10,7 +10,7 @@
 
 struct ProcedureCallStatement : Statement {
     std::string id;
-    std::vector<std::unique_ptr<Expression>> args;
+    std::vector<std::shared_ptr<Expression>> args;
 
     ProcedureCallStatement(char *, ExpressionList *);
 

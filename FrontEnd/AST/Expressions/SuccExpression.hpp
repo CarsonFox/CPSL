@@ -5,7 +5,7 @@
 #include "Expression.hpp"
 
 struct SuccExpression : Expression {
-    std::unique_ptr<Expression> expr;
+    std::shared_ptr<Expression> expr;
 
     explicit SuccExpression(Expression *);
 

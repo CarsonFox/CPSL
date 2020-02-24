@@ -12,7 +12,7 @@ enum BinaryOp {
 };
 
 struct BinaryOpExpression : Expression {
-    std::unique_ptr<Expression> left, right;
+    std::shared_ptr<Expression> left, right;
     BinaryOp type;
 
     BinaryOpExpression(Expression *l, Expression *r, BinaryOp t);

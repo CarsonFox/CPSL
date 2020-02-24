@@ -14,7 +14,7 @@ enum ParType {
 };
 
 struct FormalParameters : ASTNode {
-    using member = std::tuple<ParType, std::vector<std::string>, std::unique_ptr<Type>>;
+    using member = std::tuple<ParType, std::vector<std::string>, std::shared_ptr<Type>>;
     std::vector<member> members;
 
     FormalParameters() = default;

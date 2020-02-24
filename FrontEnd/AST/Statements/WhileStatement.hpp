@@ -8,8 +8,8 @@
 #include "FrontEnd/AST/Expressions/Expression.hpp"
 
 struct WhileStatement : Statement {
-    std::unique_ptr<Expression> pred;
-    std::vector<std::unique_ptr<Statement>> stmts;
+    std::shared_ptr<Expression> pred;
+    std::vector<std::shared_ptr<Statement>> stmts;
 
     WhileStatement(Expression *, StatementList *);
 

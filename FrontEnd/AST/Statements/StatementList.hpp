@@ -13,5 +13,5 @@ struct StatementList {
 
     ~StatementList();
 
-    std::vector<std::unique_ptr<Statement>> toVector();
+    std::vector<std::shared_ptr<Statement>> toVector();
 };

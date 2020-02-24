@@ -7,7 +7,7 @@
 #include "FrontEnd/AST/Statements/Statement.hpp"
 
 struct Block : ASTNode {
-    std::vector<std::unique_ptr<Statement>> stmts;
+    std::vector<std::shared_ptr<Statement>> stmts;
 
     explicit Block(StatementList *);
 

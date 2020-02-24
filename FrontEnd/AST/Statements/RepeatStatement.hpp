@@ -8,8 +8,8 @@
 #include "StatementList.hpp"
 
 struct RepeatStatement : Statement {
-    std::vector<std::unique_ptr<Statement>> stmts;
-    std::unique_ptr<Expression> pred;
+    std::vector<std::shared_ptr<Statement>> stmts;
+    std::shared_ptr<Expression> pred;
 
     RepeatStatement(StatementList *, Expression *);
 

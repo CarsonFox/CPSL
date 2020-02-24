@@ -8,7 +8,7 @@ ExpressionList::~ExpressionList() {
     delete right;
 }
 
-std::vector<std::unique_ptr<Expression>> ExpressionList::toVector() {
+std::vector<std::shared_ptr<Expression>> ExpressionList::toVector() {
     if (left) {
         auto v = left->toVector();
 
@@ -20,7 +20,7 @@ std::vector<std::unique_ptr<Expression>> ExpressionList::toVector() {
         return v;
     }
 
-    std::vector<std::unique_ptr<Expression>> v;
+    std::vector<std::shared_ptr<Expression>> v;
 
     if (right) {
         v.emplace_back(right);

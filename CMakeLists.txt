@@ -23,5 +23,5 @@ set(src ${src} FrontEnd/AST/Expressions/LiteralExpression.cpp FrontEnd/AST/Progr
         FrontEnd/AST/Declarations/ConstDeclaration.cpp FrontEnd/AST/Declarations/VariableDeclaration.cpp FrontEnd/AST/Declarations/Block.cpp FrontEnd/AST/Declarations/Block.hpp FrontEnd/AST/Declarations/Body.cpp FrontEnd/AST/Declarations/Body.hpp FrontEnd/AST/Declarations/FormalParameters.cpp FrontEnd/AST/Declarations/FormalParameters.hpp FrontEnd/AST/Declarations/Function.cpp FrontEnd/AST/Declarations/Function.hpp FrontEnd/AST/Declarations/Procedure.cpp FrontEnd/AST/Declarations/Procedure.hpp FrontEnd/AST/Util.cpp FrontEnd/ConstantFolding.cpp)
 
 add_executable(cpsl cpsl.cpp ${src})
-target_link_libraries(cpsl ${FLEX_LIBRARIES} ${BISON_LIBRARIES})
+target_link_libraries(cpsl ${FLEX_LIBRARIES} ${BISON_LIBRARIES} yomm2)
 target_include_directories(cpsl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})

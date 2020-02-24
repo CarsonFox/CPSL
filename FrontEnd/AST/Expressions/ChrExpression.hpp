@@ -5,7 +5,7 @@
 #include "Expression.hpp"
 
 struct ChrExpression : Expression {
-    std::unique_ptr<Expression> expr;
+    std::shared_ptr<Expression> expr;
 
     explicit ChrExpression(Expression *);
 
