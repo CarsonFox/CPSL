@@ -1,34 +1,10 @@
-function retb() : boolean; forward;
+function add2(x: int): int;
 
-function i(a : integer) : integer;
-BEGIN
-  return a;
-END;
-
-function b(a : boolean) : boolean;
-BEGIN
-  return a;
-END;
-
-function c(a : char) : char;
-BEGIN
-  if a = 'c' then;
-    return chr(retb());
-  else
-    return a;
-  end
-END;
-
-function retb() : boolean;
-BEGIN
-   return true;
-END;
+begin
+    return x + 2;
+end;
 
 BEGIN
- write(i(4),'\n');
- write(c('a'),'\n');
- write(c('b'),'\n');
- write(c('c'),'\n');
- write(b(true),'\n');
- write(b(false),'\n');
+    x := 5;
+    y := add2(x % 3 - 2 * 6 & true | 3);
 END.
