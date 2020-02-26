@@ -1,9 +1,9 @@
 #include "LiteralExpression.hpp"
 
-LiteralExpression::LiteralExpression(int x) : value(x) {
+LiteralExpression::LiteralExpression(int x) : isChar(false), value(x) {
 }
 
-LiteralExpression::LiteralExpression(char c) : value(c) {
+LiteralExpression::LiteralExpression(char c) : isChar(true), value(c) {
 }
 
 std::string escape(char c) {
@@ -24,10 +24,10 @@ std::string escape(char c) {
 }
 
 void LiteralExpression::print() const {
-    if (std::holds_alternative<int>(value)) {
-        std::cout << std::get<int>(value);
+    if (isChar) {
+        std::cout << escape(static_cast<char>(value));
     } else {
-        std::cout << escape(std::get<char>(value));
+        std::cout << value;
     }
 }
 

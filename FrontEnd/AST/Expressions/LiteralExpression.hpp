@@ -5,7 +5,8 @@
 #include "Expression.hpp"
 
 struct LiteralExpression : Expression {
-    std::variant<int, char> value;
+    bool isChar;
+    int value;
 
     explicit LiteralExpression(int);
 
