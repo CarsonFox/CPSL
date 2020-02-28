@@ -25,6 +25,21 @@ FormalParameters::FormalParameters(FormalParameters *left, FormalParameters *rig
     delete right;
 }
 
-void FormalParameters::accept(Visitor &visitor) {
-    visitor.visit(this);
+void FormalParameters::print() const {
+    if (!members.empty()) {
+        for (auto it = members.begin(); it < members.end() - 1; it++) {
+            const auto &[partype, ids, type] = *it;
+
+            if (partype == ParType::REF_T)
+                std::cout << "REF ";
+            else if (partype == ParType::VAR_T)
+                std::cout << "VAR ";
+
+            for (auto s_it = ids.begin(); s_it < ids.end() - 1; s_it++)
+                std::cout << *s_it << ", ";
+
+            std::cout << ids.back() << ": ";
+            type->print();
+        }
+    }
 }

@@ -9,14 +9,14 @@
 
 struct Procedure : Subroutine {
     std::string id;
-    std::unique_ptr<FormalParameters> param;
-    std::unique_ptr<Body> body;
+    std::shared_ptr<FormalParameters> param;
+    std::shared_ptr<Body> body;
 
     Procedure(char *, FormalParameters *);
 
     Procedure(char *, FormalParameters *, Body *);
 
-    void accept(Visitor &) override;
+    void print() const override;
 
-    bool isForward() const;
+    bool isForward() const override;
 };

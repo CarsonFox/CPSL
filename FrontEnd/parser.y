@@ -115,7 +115,7 @@ FunctionDecl: FUNCTION ID OPEN_PAREN FormalParameters CLOSE_PAREN COLON Type SEM
 | FUNCTION ID OPEN_PAREN FormalParameters CLOSE_PAREN COLON Type SEMICOLON Body SEMICOLON { $$ = new Function($2, $4, $7, $9); }
 ;
 
-FormalParameters: { $$ = nullptr; }
+FormalParameters: { $$ = new FormalParameters; }
 | FormalParameter { $$ = $1; }
 | FormalParameters SEMICOLON FormalParameter { $$ = new FormalParameters($1, $3); }
 ;

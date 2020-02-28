@@ -1,6 +1,6 @@
 #include "WriteStatement.hpp"
 
-#include <iostream>
+#include "FrontEnd/AST/Util.hpp"
 
 WriteStatement::WriteStatement(ExpressionList *list) {
     args = list->toVector();
@@ -13,6 +13,8 @@ WriteStatement::WriteStatement(ExpressionList *list) {
     delete list;
 }
 
-void WriteStatement::accept(Visitor &visitor) {
-    visitor.visit(this);
+void WriteStatement::print() const {
+    std::cout << "WRITE(";
+    printExprList(args);
+    std::cout << ");";
 }

@@ -19,5 +19,5 @@ public:
 
     ~ExpressionList();
 
-    std::vector<std::unique_ptr<Expression>> toVector();
+    std::vector<std::shared_ptr<Expression>> toVector();
 };

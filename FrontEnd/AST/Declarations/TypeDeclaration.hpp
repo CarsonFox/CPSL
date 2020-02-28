@@ -9,7 +9,7 @@
 #include "Type.hpp"
 
 struct TypeDeclaration : ASTNode {
-    using member = std::pair<std::string, std::unique_ptr<Type>>;
+    using member = std::pair<std::string, std::shared_ptr<Type>>;
     std::vector<member> members;
 
     TypeDeclaration(char *, Type *);
@@ -18,5 +18,5 @@ struct TypeDeclaration : ASTNode {
 
     ~TypeDeclaration() override = default;
 
-    void accept(Visitor &) override;
+    void print() const override;
 };

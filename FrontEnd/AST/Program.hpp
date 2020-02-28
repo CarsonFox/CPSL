@@ -11,13 +11,13 @@
 #include "Declarations/Block.hpp"
 
 struct Program {
-    static std::unique_ptr<Program> main;
+    static std::shared_ptr<Program> main;
 
-    std::unique_ptr<ConstDeclaration> constDecl;
-    std::unique_ptr<TypeDeclaration> typeDecl;
-    std::unique_ptr<VariableDeclaration> varDecl;
-    std::vector<std::unique_ptr<ASTNode>> subroutines;
-    std::unique_ptr<Block> block;
+    std::shared_ptr<ConstDeclaration> constDecl;
+    std::shared_ptr<TypeDeclaration> typeDecl;
+    std::shared_ptr<VariableDeclaration> varDecl;
+    std::vector<std::shared_ptr<ASTNode>> subroutines;
+    std::shared_ptr<Block> block;
 
     Program() = default;
 

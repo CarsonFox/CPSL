@@ -13,7 +13,7 @@ StatementList::~StatementList() {
     delete right;
 }
 
-std::vector<std::unique_ptr<Statement>> StatementList::toVector() {
+std::vector<std::shared_ptr<Statement>> StatementList::toVector() {
     if (left) {
         auto v = left->toVector();
 
@@ -25,7 +25,7 @@ std::vector<std::unique_ptr<Statement>> StatementList::toVector() {
         return v;
     }
 
-    std::vector<std::unique_ptr<Statement>> v;
+    std::vector<std::shared_ptr<Statement>> v;
 
     if (right) {
         v.emplace_back(right);

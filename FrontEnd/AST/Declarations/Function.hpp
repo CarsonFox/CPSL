@@ -10,15 +10,15 @@
 
 struct Function : Subroutine {
     std::string id;
-    std::unique_ptr<FormalParameters> param;
-    std::unique_ptr<Type> type;
-    std::unique_ptr<Body> body;
+    std::shared_ptr<FormalParameters> param;
+    std::shared_ptr<Type> type;
+    std::shared_ptr<Body> body;
 
     Function(char *, FormalParameters *, Type *);
 
     Function(char *, FormalParameters *, Type *, Body *);
 
-    void accept(Visitor &) override;
+    void print() const override;
 
-    bool isForward() const;
+    bool isForward() const override;
 };

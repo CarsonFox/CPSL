@@ -1,6 +1,6 @@
-#include <iostream>
-
 #include "ReadStatement.hpp"
+
+#include "FrontEnd/AST/Util.hpp"
 
 ReadStatement::ReadStatement(LValueList *list) {
     lvals = list->toVector();
@@ -12,6 +12,8 @@ ReadStatement::ReadStatement(LValueList *list) {
     }
 }
 
-void ReadStatement::accept(Visitor &visitor) {
-    visitor.visit(this);
+void ReadStatement::print() const {
+    std::cout << "READ(";
+    printExprList(lvals);
+    std::cout << ");";
 }

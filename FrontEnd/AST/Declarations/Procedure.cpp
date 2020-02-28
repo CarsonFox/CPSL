@@ -8,10 +8,18 @@ Procedure::Procedure(char *s, FormalParameters *fp, Body *b) : id(s), param(fp),
     free(s);
 }
 
-void Procedure::accept(Visitor &visitor) {
-    visitor.visit(this);
-}
-
 bool Procedure::isForward() const {
     return !body;
+}
+
+void Procedure::print() const {
+    std::cout << "PROCEDURE " << id << '(';
+    param->print();
+    if (this->isForward())
+        std::cout << "); FORWARD;";
+    else {
+        std::cout << ");\n";
+        body->print();
+        std::cout << ';';
+    }
 }

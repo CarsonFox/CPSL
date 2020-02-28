@@ -5,6 +5,6 @@ SimpleType::SimpleType(char *s) : id(s) {
     free(s);
 }
 
-void SimpleType::accept(Visitor &visitor) {
-    visitor.visit(this);
+void SimpleType::print() const {
+    std::cout << id;
 }

@@ -14,8 +14,10 @@ enum ParType {
 };
 
 struct FormalParameters : ASTNode {
-    using member = std::tuple<ParType, std::vector<std::string>, std::unique_ptr<Type>>;
+    using member = std::tuple<ParType, std::vector<std::string>, std::shared_ptr<Type>>;
     std::vector<member> members;
+
+    FormalParameters() = default;
 
     FormalParameters(ParType, IdentifierList *, Type *);
 
@@ -23,5 +25,5 @@ struct FormalParameters : ASTNode {
 
     ~FormalParameters() override = default;
 
-    void accept(Visitor &) override;
+    void print() const override;
 };

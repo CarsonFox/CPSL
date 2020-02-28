@@ -5,11 +5,13 @@
 #include "Expression.hpp"
 
 struct SuccExpression : Expression {
-    std::unique_ptr<Expression> expr;
+    std::shared_ptr<Expression> expr;
 
     explicit SuccExpression(Expression *);
 
     ~SuccExpression() override = default;
 
-    void accept(Visitor &) override;
+    void print() const override;
+
+    bool isConst() const override;
 };

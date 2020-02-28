@@ -7,11 +7,11 @@
 #include "FrontEnd/AST/Expressions/LValueList.hpp"
 
 struct ReadStatement : Statement {
-    std::vector<std::unique_ptr<LValue>> lvals;
+    std::vector<std::shared_ptr<LValue>> lvals;
 
     explicit ReadStatement(LValueList *);
 
     ~ReadStatement() override = default;
 
-    void accept(Visitor &) override;
+    void print() const override;
 };

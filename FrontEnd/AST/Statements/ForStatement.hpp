@@ -15,13 +15,13 @@ enum ForType {
 
 struct ForStatement : Statement {
     std::string id;
-    std::unique_ptr<Expression> init, bound;
-    std::vector<std::unique_ptr<Statement>> statements;
+    std::shared_ptr<Expression> init, bound;
+    std::vector<std::shared_ptr<Statement>> statements;
     ForType type;
 
     ForStatement(char *, Expression *, Expression *, StatementList *, ForType);
 
     ~ForStatement() override = default;
 
-    void accept(Visitor &) override;
+    void print() const override;
 };

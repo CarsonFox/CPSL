@@ -7,9 +7,9 @@
 struct SimpleType : Type {
     std::string id;
 
-    SimpleType(char *);
+    explicit SimpleType(char *);
 
     ~SimpleType() override = default;
 
-    void accept(Visitor &) override;
+    void print() const override;
 };

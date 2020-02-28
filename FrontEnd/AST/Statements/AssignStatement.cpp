@@ -2,6 +2,9 @@
 
 AssignStatement::AssignStatement(LValue *l, Expression *e) : lvalue(l), expr(e) {}
 
-void AssignStatement::accept(Visitor &visitor) {
-    visitor.visit(this);
+void AssignStatement::print() const {
+    lvalue->print();
+    std::cout << " := ";
+    expr->print();
+    std::cout << ';';
 }

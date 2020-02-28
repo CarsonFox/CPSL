@@ -11,12 +11,14 @@ enum UnaryOp {
 };
 
 struct UnaryOpExpression : Expression {
-    std::unique_ptr<Expression> expr;
+    std::shared_ptr<Expression> expr;
     UnaryOp type;
 
     UnaryOpExpression(Expression *, UnaryOp);
 
     ~UnaryOpExpression() override = default;
 
-    void accept(Visitor &) override;
+    void print() const override;
+
+    bool isConst() const override;
 };

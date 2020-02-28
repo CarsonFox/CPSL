@@ -9,7 +9,7 @@
 #include "FrontEnd/AST/Expressions/Expression.hpp"
 
 struct ConstDeclaration : ASTNode {
-    using member = std::pair<std::string, std::unique_ptr<Expression>>;
+    using member = std::pair<std::string, std::shared_ptr<Expression>>;
     std::vector<member> members;
 
     ConstDeclaration(char *, Expression *);
@@ -18,5 +18,5 @@ struct ConstDeclaration : ASTNode {
 
     ~ConstDeclaration() override = default;
 
-    void accept(Visitor &) override;
+    void print() const override;
 };

@@ -10,7 +10,7 @@
 #include "Type.hpp"
 
 struct VariableDeclaration : ASTNode {
-    using member = std::pair<std::vector<std::string>, std::unique_ptr<Type>>;
+    using member = std::pair<std::vector<std::string>, std::shared_ptr<Type>>;
     std::vector<member> members;
 
     VariableDeclaration(IdentifierList *, Type *);
@@ -19,5 +19,5 @@ struct VariableDeclaration : ASTNode {
 
     ~VariableDeclaration() override = default;
 
-    void accept(Visitor &) override;
+    void print() const override;
 };

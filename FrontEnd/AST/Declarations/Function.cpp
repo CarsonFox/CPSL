@@ -8,10 +8,23 @@ Function::Function(char *s, FormalParameters *fp, Type *t, Body *b) : id(s), par
     free(s);
 }
 
-void Function::accept(Visitor &visitor) {
-    visitor.visit(this);
-}
-
 bool Function::isForward() const {
     return !body;
+}
+
+void Function::print() const {
+    std::cout << "FUNCTION " << id << '(';
+    param->print();
+
+    std::cout << ") : ";
+    type->print();
+    std::cout << "; ";
+
+    if (this->isForward())
+        std::cout << "FORWARD;";
+    else {
+        std::cout << '\n';
+        body->print();
+        std::cout << ';';
+    }
 }

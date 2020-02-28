@@ -4,6 +4,11 @@ RecordAccessExpression::RecordAccessExpression(LValue *l, char *r) : left(l), ri
     free(r);
 }
 
-void RecordAccessExpression::accept(Visitor &visitor) {
-    visitor.visit(this);
+void RecordAccessExpression::print() const {
+    left->print();
+    std::cout << '.' << right;
+}
+
+bool RecordAccessExpression::isConst() const {
+    return false;
 }

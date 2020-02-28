@@ -9,7 +9,7 @@ LValueList::~LValueList() {
     delete right;
 }
 
-std::vector<std::unique_ptr<LValue>> LValueList::toVector() {
+std::vector<std::shared_ptr<LValue>> LValueList::toVector() {
     if (left) {
         auto v = left->toVector();
 
@@ -21,7 +21,7 @@ std::vector<std::unique_ptr<LValue>> LValueList::toVector() {
         return v;
     }
 
-    std::vector<std::unique_ptr<LValue>> v;
+    std::vector<std::shared_ptr<LValue>> v;
 
     if (right) {
         v.emplace_back(right);

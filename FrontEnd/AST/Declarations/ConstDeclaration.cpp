@@ -12,6 +12,11 @@ ConstDeclaration::ConstDeclaration(ConstDeclaration *left, char *s, Expression *
     free(s);
 }
 
-void ConstDeclaration::accept(Visitor &visitor) {
-    visitor.visit(this);
+void ConstDeclaration::print() const {
+    std::cout << "CONST ";
+    for (const auto &[id, expr] : members) {
+        std::cout << id << " = ";
+        expr->print();
+        std::cout << "; ";
+    }
 }
