@@ -27,7 +27,7 @@ FormalParameters::FormalParameters(FormalParameters *left, FormalParameters *rig
 
 void FormalParameters::print() const {
     if (!members.empty()) {
-        for (auto it = members.begin(); it < members.end() - 1; it++) {
+        for (auto it = members.begin(); it < members.end(); it++) {
             const auto &[partype, ids, type] = *it;
 
             if (partype == ParType::REF_T)

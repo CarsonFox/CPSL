@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ArrayAccessExpression.hpp"
-#include "BinaryOpExpression.hpp"
 #include "ChrExpression.hpp"
 #include "FunctionCallExpression.hpp"
 #include "IdentifierExpression.hpp"
@@ -13,3 +12,17 @@
 #include "StringExpression.hpp"
 #include "SuccExpression.hpp"
 #include "UnaryOpExpression.hpp"
+
+#include "BinaryOperators/AndExpression.hpp"
+#include "BinaryOperators/OrExpression.hpp"
+#include "BinaryOperators/EqualExpression.hpp"
+#include "BinaryOperators/NotEqualExpression.hpp"
+#include "BinaryOperators/LessExpression.hpp"
+#include "BinaryOperators/LessEqualExpression.hpp"
+#include "BinaryOperators/GreaterExpression.hpp"
+#include "BinaryOperators/GreaterEqualExpression.hpp"
+#include "BinaryOperators/AddExpression.hpp"
+#include "BinaryOperators/SubExpression.hpp"
+#include "BinaryOperators/MulExpression.hpp"
+#include "BinaryOperators/DivExpression.hpp"
+#include "BinaryOperators/ModExpression.hpp"
