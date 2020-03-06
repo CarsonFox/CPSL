@@ -14,3 +14,14 @@ BOOST_AUTO_TEST_CASE(fold_neg) {
     BOOST_CHECK(neg_10.has_value());
     BOOST_CHECK_EQUAL(*neg_10, -10);
 }
+
+BOOST_AUTO_TEST_CASE(fold_not) {
+    auto f = NotExpression(new LiteralExpression(true)).try_fold();
+    auto t = NotExpression(new LiteralExpression(false)).try_fold();
+
+    BOOST_CHECK(f.has_value());
+    BOOST_CHECK_EQUAL(*f, false);
+
+    BOOST_CHECK(t.has_value());
+    BOOST_CHECK_EQUAL(*t, true);
+}
