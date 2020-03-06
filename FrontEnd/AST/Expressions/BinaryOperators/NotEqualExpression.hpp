@@ -8,4 +8,6 @@ struct NotEqualExpression : BinaryOpExpression {
     ~NotEqualExpression() override = default;
 
     void print() const override;
+
+    std::optional<int> try_fold() override;
 };

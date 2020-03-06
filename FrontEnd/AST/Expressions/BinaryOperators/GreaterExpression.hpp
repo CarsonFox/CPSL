@@ -8,4 +8,6 @@ struct GreaterExpression : BinaryOpExpression {
     ~GreaterExpression() override = default;
 
     void print() const override;
+
+    std::optional<int> try_fold() override;
 };

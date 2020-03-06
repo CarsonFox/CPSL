@@ -8,4 +8,6 @@ struct LessExpression : BinaryOpExpression {
     ~LessExpression() override = default;
 
     void print() const override;
+
+    std::optional<int> try_fold() override;
 };

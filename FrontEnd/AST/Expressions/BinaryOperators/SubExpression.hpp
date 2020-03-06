@@ -8,4 +8,6 @@ struct SubExpression : BinaryOpExpression {
     ~SubExpression() override = default;
 
     void print() const override;
+
+    std::optional<int> try_fold() override;
 };
