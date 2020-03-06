@@ -7,7 +7,7 @@ void NegExpression::print() const {
     expr->print();
 }
 
-std::optional<int> NegExpression::try_fold() const {
+std::optional<int> NegExpression::try_fold() {
     const auto f = expr->try_fold();
     if (f)
         return -*f;

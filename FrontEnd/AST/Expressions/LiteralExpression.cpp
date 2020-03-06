@@ -35,6 +35,6 @@ bool LiteralExpression::isConst() const {
     return true;
 }
 
-std::optional<int> LiteralExpression::try_fold() const {
+std::optional<int> LiteralExpression::try_fold() {
     return {value};
 }

@@ -9,6 +9,8 @@ struct IdentifierExpression : LValue {
 
     explicit IdentifierExpression(char *);
 
+    explicit IdentifierExpression(std::string);
+
     ~IdentifierExpression() override = default;
 
     void print() const override;

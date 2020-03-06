@@ -1,7 +1,12 @@
 #include "IdentifierExpression.hpp"
 
+#include <utility>
+
 IdentifierExpression::IdentifierExpression(char *s) : id(s) {
     free(s);
+}
+
+IdentifierExpression::IdentifierExpression(std::string s) : id(std::move(s)) {
 }
 
 void IdentifierExpression::print() const {

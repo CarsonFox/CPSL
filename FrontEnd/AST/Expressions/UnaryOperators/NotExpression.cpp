@@ -7,7 +7,7 @@ void NotExpression::print() const {
     expr->print();
 }
 
-std::optional<int> NotExpression::try_fold() const {
+std::optional<int> NotExpression::try_fold() {
     const auto f = expr->try_fold();
     if (f)
         return !*f;

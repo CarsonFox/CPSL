@@ -16,5 +16,5 @@ struct LiteralExpression : Expression {
 
     bool isConst() const override;
 
-    std::optional<int> try_fold() const override;
+    std::optional<int> try_fold() override;
 };
