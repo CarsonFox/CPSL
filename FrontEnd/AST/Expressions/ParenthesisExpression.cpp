@@ -5,7 +5,7 @@ ParenthesisExpression::ParenthesisExpression(Expression *e) : expr(e) {}
 void ParenthesisExpression::print() const {
     std::cout << '(';
     expr->print();
-    std::cout << '(';
+    std::cout << ')';
 }
 
 bool ParenthesisExpression::isConst() const {

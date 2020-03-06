@@ -1,7 +1,7 @@
 function add2(x: int): int;
 
 begin
-    return x + 2;
+    return x + (-2);
 end;
 
 BEGIN

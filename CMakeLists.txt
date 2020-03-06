@@ -23,7 +23,7 @@ set(src ${src} FrontEnd/AST/Expressions/LiteralExpression.cpp FrontEnd/AST/Progr
         FrontEnd/AST/Expressions/IdentifierExpression.cpp FrontEnd/AST/Expressions/IdentifierExpression.hpp
         FrontEnd/AST/Expressions/ArrayAccessExpression.cpp FrontEnd/AST/Expressions/ArrayAccessExpression.hpp
         FrontEnd/AST/Expressions/FunctionCallExpression.cpp FrontEnd/AST/Expressions/ExpressionList.cpp
-        FrontEnd/AST/Expressions/BinaryOperators/BinaryOpExpression.cpp FrontEnd/AST/Expressions/UnaryOpExpression.cpp
+        FrontEnd/AST/Expressions/BinaryOperators/BinaryOpExpression.cpp FrontEnd/AST/Expressions/UnaryOperators/UnaryOpExpression.cpp
         FrontEnd/AST/Expressions/ParenthesisExpression.cpp FrontEnd/AST/Statements/ProcedureCallStatement.cpp
         FrontEnd/AST/Statements/WriteStatement.cpp FrontEnd/AST/Expressions/LValueList.cpp FrontEnd/AST/Statements/ReadStatement.cpp
         FrontEnd/AST/Statements/ReturnStatement.cpp FrontEnd/AST/Expressions/StringExpression.cpp
@@ -42,7 +42,8 @@ set(src ${src} FrontEnd/AST/Expressions/LiteralExpression.cpp FrontEnd/AST/Progr
         FrontEnd/AST/Expressions/BinaryOperators/GreaterEqualExpression.cpp FrontEnd/AST/Expressions/BinaryOperators/AddExpression.cpp
         FrontEnd/AST/Expressions/BinaryOperators/SubExpression.cpp FrontEnd/AST/Expressions/BinaryOperators/MulExpression.cpp
         FrontEnd/AST/Expressions/BinaryOperators/DivExpression.cpp FrontEnd/AST/Expressions/BinaryOperators/ModExpression.cpp
-        FrontEnd/AST/Expressions/BinaryOperators/ModExpression.hpp)
+        FrontEnd/AST/Expressions/BinaryOperators/ModExpression.hpp FrontEnd/AST/Expressions/UnaryOperators/NegExpression.cpp
+        FrontEnd/AST/Expressions/UnaryOperators/NotExpression.cpp)
 
 add_executable(cpsl cpsl.cpp ${src})
 target_include_directories(cpsl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <variant>
-
 #include "Expression.hpp"
 
 struct LiteralExpression : Expression {
@@ -17,4 +15,6 @@ struct LiteralExpression : Expression {
     void print() const override;
 
     bool isConst() const override;
+
+    std::optional<int> try_fold() const override;
 };

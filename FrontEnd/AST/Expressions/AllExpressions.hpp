@@ -11,7 +11,9 @@
 #include "RecordAccessExpression.hpp"
 #include "StringExpression.hpp"
 #include "SuccExpression.hpp"
-#include "UnaryOpExpression.hpp"
+
+#include "UnaryOperators/NegExpression.hpp"
+#include "UnaryOperators/NotExpression.hpp"
 
 #include "BinaryOperators/AndExpression.hpp"
 #include "BinaryOperators/OrExpression.hpp"
