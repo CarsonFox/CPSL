@@ -1,3 +1,4 @@
+#include <FrontEnd/AST/Expressions/LiteralExpression.hpp>
 #include "ForStatement.hpp"
 
 #include "FrontEnd/AST/Util.hpp"
@@ -20,4 +21,17 @@ void ForStatement::print() const {
     std::cout << " DO\n";
     indentStatementList(statements);
     std::cout << "END";
+}
+
+void ForStatement::fold_constants() {
+    const auto i = init->try_fold();
+    if (i)
+        init = std::shared_ptr<Expression>(new LiteralExpression(*i));
+
+    const auto b = bound->try_fold();
+    if (b)
+        bound = std::shared_ptr<Expression>(new LiteralExpression(*b));
+
+    for (auto &stmt: statements)
+        stmt->fold_constants();
 }

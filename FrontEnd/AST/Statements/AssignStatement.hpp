@@ -14,4 +14,6 @@ struct AssignStatement : Statement {
     ~AssignStatement() override = default;
 
     void print() const override;
+
+    void fold_constants() override;
 };

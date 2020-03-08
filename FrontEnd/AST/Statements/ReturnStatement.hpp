@@ -11,4 +11,6 @@ struct ReturnStatement : Statement {
     ~ReturnStatement() override = default;
 
     void print() const override;
+
+    void fold_constants() override;
 };
