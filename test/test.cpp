@@ -193,3 +193,11 @@ BOOST_AUTO_TEST_CASE(fold_not_equal) {
     auto f = NotEqualExpression(new LiteralExpression(2), new LiteralExpression(2)).try_fold();
     BOOST_CHECK(f.has_value() && !*f);
 }
+
+BOOST_AUTO_TEST_CASE(fold_paren) {
+    auto four = new AddExpression(new LiteralExpression(2), new LiteralExpression(2));
+    auto four_paren = ParenthesisExpression(four).try_fold();
+
+    BOOST_CHECK(four_paren.has_value());
+    BOOST_CHECK_EQUAL(*four_paren, 4);
+}

@@ -11,3 +11,10 @@ void ParenthesisExpression::print() const {
 bool ParenthesisExpression::isConst() const {
     return expr->isConst();
 }
+
+std::optional<int> ParenthesisExpression::try_fold() {
+    const auto folded = expr->try_fold();
+    if (folded)
+        return *folded;
+    return {};
+}
