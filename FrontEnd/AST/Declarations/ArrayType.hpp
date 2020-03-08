@@ -14,4 +14,6 @@ struct ArrayType : Type {
     ~ArrayType() override = default;
 
     void print() const override;
+
+    void fold_constants() override;
 };

@@ -1,3 +1,4 @@
+#include <FrontEnd/AST/Expressions/LiteralExpression.hpp>
 #include "ConstDeclaration.hpp"
 
 ConstDeclaration::ConstDeclaration(char *s, Expression *e) {
@@ -18,5 +19,13 @@ void ConstDeclaration::print() const {
         std::cout << id << " = ";
         expr->print();
         std::cout << "; ";
+    }
+}
+
+void ConstDeclaration::fold_constants() {
+    for (auto &[id, expr]: members) {
+        const auto folded = expr->try_fold();
+        if (folded)
+            expr = std::shared_ptr<Expression>(new LiteralExpression(*folded));
     }
 }

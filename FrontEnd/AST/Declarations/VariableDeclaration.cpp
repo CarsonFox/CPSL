@@ -22,3 +22,8 @@ void VariableDeclaration::print() const {
         std::cout << ';';
     }
 }
+
+void VariableDeclaration::fold_constants() {
+    for (auto &[ids, type]: members)
+        type->fold_constants();
+}

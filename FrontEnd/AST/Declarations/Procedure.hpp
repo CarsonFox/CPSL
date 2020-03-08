@@ -16,7 +16,11 @@ struct Procedure : Subroutine {
 
     Procedure(char *, FormalParameters *, Body *);
 
+    ~Procedure() override = default;
+
     void print() const override;
 
     bool isForward() const override;
+
+    void fold_constants() override;
 };

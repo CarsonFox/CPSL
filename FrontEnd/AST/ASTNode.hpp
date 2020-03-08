@@ -7,4 +7,6 @@ struct ASTNode {
     virtual ~ASTNode() = default;
 
     virtual void print() const = 0;
+
+    virtual void fold_constants() {}
 };

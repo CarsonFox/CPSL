@@ -43,3 +43,8 @@ void FormalParameters::print() const {
         }
     }
 }
+
+void FormalParameters::fold_constants() {
+    for (auto &[t, ids, type]: members)
+        type->fold_constants();
+}

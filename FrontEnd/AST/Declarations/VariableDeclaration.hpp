@@ -20,4 +20,6 @@ struct VariableDeclaration : ASTNode {
     ~VariableDeclaration() override = default;
 
     void print() const override;
+
+    void fold_constants() override;
 };

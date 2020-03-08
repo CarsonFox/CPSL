@@ -19,4 +19,6 @@ struct Body : ASTNode {
     ~Body() override = default;
 
     void print() const override;
+
+    void fold_constants() override;
 };

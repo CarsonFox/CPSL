@@ -18,4 +18,6 @@ struct RecordType : Type {
     ~RecordType() override = default;
 
     void print() const override;
+
+    void fold_constants() override;
 };

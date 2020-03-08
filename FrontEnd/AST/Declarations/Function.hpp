@@ -18,7 +18,11 @@ struct Function : Subroutine {
 
     Function(char *, FormalParameters *, Type *, Body *);
 
+    ~Function() override = default;
+
     void print() const override;
 
     bool isForward() const override;
+
+    void fold_constants() override;
 };

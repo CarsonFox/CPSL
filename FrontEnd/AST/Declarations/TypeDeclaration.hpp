@@ -19,4 +19,6 @@ struct TypeDeclaration : ASTNode {
     ~TypeDeclaration() override = default;
 
     void print() const override;
+
+    void fold_constants() override;
 };

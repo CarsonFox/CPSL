@@ -20,3 +20,8 @@ void TypeDeclaration::print() const {
         std::cout << "; ";
     }
 }
+
+void TypeDeclaration::fold_constants() {
+    for (auto &[ids, type]: members)
+        type->fold_constants();
+}

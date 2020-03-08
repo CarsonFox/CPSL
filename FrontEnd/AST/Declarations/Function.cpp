@@ -28,3 +28,10 @@ void Function::print() const {
         std::cout << ';';
     }
 }
+
+void Function::fold_constants() {
+    param->fold_constants();
+    type->fold_constants();
+    if (body)
+        body->fold_constants();
+}

@@ -28,3 +28,8 @@ void RecordType::print() const {
     indentLevel--;
     std::cout << "END";
 }
+
+void RecordType::fold_constants() {
+    for (auto &[ids, type]: members)
+        type->fold_constants();
+}

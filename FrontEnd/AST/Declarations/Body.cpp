@@ -13,3 +13,10 @@ void Body::print() const {
 
     block->print();
 }
+
+void Body::fold_constants() {
+    constDecl->fold_constants();
+    typeDecl->fold_constants();
+    varDecl->fold_constants();
+    block->fold_constants();
+}

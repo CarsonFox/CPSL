@@ -26,4 +26,6 @@ struct FormalParameters : ASTNode {
     ~FormalParameters() override = default;
 
     void print() const override;
+
+    void fold_constants() override;
 };

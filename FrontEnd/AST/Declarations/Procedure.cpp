@@ -23,3 +23,9 @@ void Procedure::print() const {
         std::cout << ';';
     }
 }
+
+void Procedure::fold_constants() {
+    param->fold_constants();
+    if (body)
+        body->fold_constants();
+}

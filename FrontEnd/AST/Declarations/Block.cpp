@@ -12,3 +12,8 @@ void Block::print() const {
     indentStatementList(stmts);
     std::cout << "END";
 }
+
+void Block::fold_constants() {
+    for (auto &stmt: stmts)
+        stmt->fold_constants();
+}
