@@ -13,3 +13,8 @@ void SuccExpression::print() const {
 bool SuccExpression::isConst() const {
     return expr->isConst();
 }
+
+std::optional<int> SuccExpression::try_fold() {
+    expr->try_fold();
+    return {};
+}

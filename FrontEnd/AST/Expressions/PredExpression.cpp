@@ -11,3 +11,8 @@ void PredExpression::print() const {
 bool PredExpression::isConst() const {
     return expr->isConst();
 }
+
+std::optional<int> PredExpression::try_fold() {
+    expr->try_fold();
+    return {};
+}

@@ -11,3 +11,8 @@ void OrdExpression::print() const {
 bool OrdExpression::isConst() const {
     return expr->isConst();
 }
+
+std::optional<int> OrdExpression::try_fold() {
+    expr->try_fold();
+    return {};
+}

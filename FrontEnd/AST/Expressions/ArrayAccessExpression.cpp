@@ -12,3 +12,8 @@ void ArrayAccessExpression::print() const {
 bool ArrayAccessExpression::isConst() const {
     return false;
 }
+
+std::optional<int> ArrayAccessExpression::try_fold() {
+    right->try_fold();
+    return {};
+}

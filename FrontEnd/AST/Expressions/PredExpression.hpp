@@ -14,4 +14,6 @@ struct PredExpression : Expression {
     void print() const override;
 
     bool isConst() const override;
+
+    std::optional<int> try_fold() override;
 };

@@ -17,3 +17,10 @@ void FunctionCallExpression::print() const {
 bool FunctionCallExpression::isConst() const {
     return false;
 }
+
+std::optional<int> FunctionCallExpression::try_fold() {
+    for (auto &arg: args) {
+        arg->try_fold();
+    }
+    return {};
+}
