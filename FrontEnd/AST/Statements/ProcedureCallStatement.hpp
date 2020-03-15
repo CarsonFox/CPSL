@@ -17,4 +17,6 @@ struct ProcedureCallStatement : Statement {
     ~ProcedureCallStatement() override = default;
 
     void print() const override;
+
+    void fold_constants() override;
 };

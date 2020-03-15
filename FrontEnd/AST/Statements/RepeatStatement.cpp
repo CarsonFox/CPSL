@@ -1,9 +1,9 @@
+#include <FrontEnd/AST/Expressions/LiteralExpression.hpp>
 #include "RepeatStatement.hpp"
 
 #include "FrontEnd/AST/Util.hpp"
 
-RepeatStatement::RepeatStatement(StatementList *l, Expression *e) : pred(e) {
-    stmts = l->toVector();
+RepeatStatement::RepeatStatement(StatementList *l, Expression *e) : stmts(l->toVector()), pred(e) {
     delete l;
 }
 
@@ -12,4 +12,13 @@ void RepeatStatement::print() const {
     indentStatementList(stmts);
     std::cout << "UNTIL ";
     pred->print();
+}
+
+void RepeatStatement::fold_constants() {
+    const auto f_pred = pred->try_fold();
+    if (f_pred)
+        pred = std::shared_ptr<Expression>(new LiteralExpression(*f_pred));
+
+    for (auto &stmt: stmts)
+        stmt->fold_constants();
 }

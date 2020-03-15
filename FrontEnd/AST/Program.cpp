@@ -46,3 +46,18 @@ Program::Program(Program *head, Program *body, Block *b) : block(b) {
     delete head;
     delete body;
 }
+
+void Program::fold_constants() {
+    if (constDecl)
+        constDecl->fold_constants();
+    if (typeDecl)
+        typeDecl->fold_constants();
+    if (varDecl)
+        varDecl->fold_constants();
+
+    for (auto &sub: subroutines)
+        sub->fold_constants();
+
+    if (block)
+        block->fold_constants();
+}

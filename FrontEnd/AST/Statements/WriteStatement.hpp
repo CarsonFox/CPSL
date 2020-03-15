@@ -14,4 +14,6 @@ struct WriteStatement : Statement {
     ~WriteStatement() override = default;
 
     void print() const override;
+
+    void fold_constants() override;
 };

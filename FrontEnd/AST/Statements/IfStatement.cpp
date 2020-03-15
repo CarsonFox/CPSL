@@ -1,3 +1,4 @@
+#include <FrontEnd/AST/Expressions/LiteralExpression.hpp>
 #include "IfStatement.hpp"
 
 #include "FrontEnd/AST/Util.hpp"
@@ -46,4 +47,25 @@ void IfStatement::print() const {
     }
 
     std::cout << "END";
+}
+
+void IfStatement::fold_constants() {
+    const auto f_pred = pred->try_fold();
+    if (f_pred)
+        pred = std::shared_ptr<Expression>(new LiteralExpression(*f_pred));
+
+    for (auto &stmt: stmts)
+        stmt->fold_constants();
+
+    for (auto &[pred, stmts]: elseIfs) {
+        const auto f = pred->try_fold();
+        if (f)
+            pred = std::shared_ptr<Expression>(new LiteralExpression(*f));
+
+        for (auto &stmt: stmts)
+            stmt->fold_constants();
+    }
+
+    for (auto &stmt: elseStmts)
+        stmt->fold_constants();
 }

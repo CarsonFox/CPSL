@@ -30,4 +30,6 @@ struct Program {
     ~Program() = default;
 
     void prettyPrint();
+
+    void fold_constants();
 };

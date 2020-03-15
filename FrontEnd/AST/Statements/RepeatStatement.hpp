@@ -16,4 +16,6 @@ struct RepeatStatement : Statement {
     ~RepeatStatement() override = default;
 
     void print() const override;
+
+    void fold_constants() override;
 };

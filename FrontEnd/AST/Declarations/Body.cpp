@@ -15,8 +15,12 @@ void Body::print() const {
 }
 
 void Body::fold_constants() {
-    constDecl->fold_constants();
-    typeDecl->fold_constants();
-    varDecl->fold_constants();
-    block->fold_constants();
+    if (constDecl)
+        constDecl->fold_constants();
+    if (typeDecl)
+        typeDecl->fold_constants();
+    if (varDecl)
+        varDecl->fold_constants();
+    if (block)
+        block->fold_constants();
 }

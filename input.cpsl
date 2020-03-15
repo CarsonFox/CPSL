@@ -1,10 +1,10 @@
-function add2(x: int): int;
-
-begin
-    return x + (-2);
-end;
-
 BEGIN
-    x := 5;
-    y := add2(x % 3 - 2 * 6 & true | 3);
+    if 2 & 2 + 2 then
+        foo(11 % 10);
+        x := succ(2 + 2+ x);
+    elseif ~(2 & 2) then
+        stop;
+    else
+        return 1/100;
+    end
 END.

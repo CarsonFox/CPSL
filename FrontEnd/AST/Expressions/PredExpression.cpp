@@ -13,6 +13,8 @@ bool PredExpression::isConst() const {
 }
 
 std::optional<int> PredExpression::try_fold() {
-    expr->try_fold();
+    const auto f = expr->try_fold();
+    if (f)
+        return *f - 1;
     return {};
 }

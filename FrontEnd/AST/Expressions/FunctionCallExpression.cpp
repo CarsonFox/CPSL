@@ -1,5 +1,6 @@
 #include "FunctionCallExpression.hpp"
 #include "FrontEnd/AST/Util.hpp"
+#include "LiteralExpression.hpp"
 
 FunctionCallExpression::FunctionCallExpression(char *s, ExpressionList *list) : id(s) {
     args = list->toVector();
@@ -20,7 +21,9 @@ bool FunctionCallExpression::isConst() const {
 
 std::optional<int> FunctionCallExpression::try_fold() {
     for (auto &arg: args) {
-        arg->try_fold();
+        const auto f_arg = arg->try_fold();
+        if (f_arg)
+            arg = std::shared_ptr<Expression>(new LiteralExpression(*f_arg));
     }
     return {};
 }

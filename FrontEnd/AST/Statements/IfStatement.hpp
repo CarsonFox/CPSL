@@ -24,4 +24,6 @@ struct IfStatement : Statement {
     void addElse(StatementList *);
 
     void print() const override;
+
+    void fold_constants() override;
 };

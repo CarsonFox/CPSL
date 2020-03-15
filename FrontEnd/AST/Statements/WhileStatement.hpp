@@ -16,4 +16,6 @@ struct WhileStatement : Statement {
     ~WhileStatement() override = default;
 
     void print() const override;
+
+    void fold_constants() override;
 };

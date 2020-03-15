@@ -20,5 +20,10 @@ int main(int argc, char **argv) {
     yyparse();
     Program::main->prettyPrint();
 
+    std::cout << std::endl << "--------------- FOLDING ---------------" << std::endl;
+
+    Program::main->fold_constants();
+    Program::main->prettyPrint();
+
     return EXIT_SUCCESS;
 }
