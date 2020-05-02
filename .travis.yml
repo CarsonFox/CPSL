@@ -6,7 +6,7 @@ compiler:
 os:
   - linux
 before_install:
-  - echo BEFORE INSTALL
+  - sudo apt-get -y install libboost-test-dev flex bison
 script:
   - cmake .
   - make all
