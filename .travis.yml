@@ -1,0 +1,14 @@
+language: cpp
+dist: bionic
+compiler:
+  - gcc
+  - clang
+os:
+  - linux
+before_install:
+  - echo BEFORE INSTALL
+script:
+  - cmake .
+  - make all
+after_success:
+  - echo AFTER SUCCESS
