@@ -11,4 +11,4 @@ script:
   - cmake .
   - make all
 after_success:
-  - echo AFTER SUCCESS
+  - ./test_exe
