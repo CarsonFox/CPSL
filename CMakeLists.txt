@@ -47,9 +47,8 @@ set(src ${src} FrontEnd/AST/Expressions/LiteralExpression.cpp FrontEnd/AST/Progr
 
 add_executable(cpsl cpsl.cpp ${src})
 target_include_directories(cpsl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_link_libraries(cpsl ${FLEX_LIBRARIES} ${BISON_LIBRARIES})
 
 add_executable(test_exe test/test.cpp ${src})
 target_include_directories(test_exe PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${Boost_INCLUDE_DIRS})
 target_compile_definitions(test_exe PRIVATE "BOOST_TEST_DYN_LINK=1")
-target_link_libraries(test_exe ${FLEX_LIBRARIES} ${BISON_LIBRARIES} ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+target_link_libraries(test_exe ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})

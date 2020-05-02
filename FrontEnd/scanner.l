@@ -15,6 +15,7 @@ extern int lineNumber;
 %}
 
 %option nounput
+%option noyywrap
 
 %%
 
