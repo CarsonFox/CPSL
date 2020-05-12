@@ -4,10 +4,6 @@
 
 #include "FrontEnd/AST/AllNodes.hpp"
 
-BOOST_AUTO_TEST_CASE(fail) {
-    BOOST_CHECK(false);
-}
-
 BOOST_AUTO_TEST_CASE(fold_neg) {
     auto neg_10 = NegExpression(new LiteralExpression(10)).try_fold();
 
