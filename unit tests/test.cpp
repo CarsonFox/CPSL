@@ -4,8 +4,8 @@
 
 #include "FrontEnd/AST/AllNodes.hpp"
 
-BOOST_AUTO_TEST_CASE(trivial) {
-    BOOST_CHECK(true);
+BOOST_AUTO_TEST_CASE(fail) {
+    BOOST_CHECK(false);
 }
 
 BOOST_AUTO_TEST_CASE(fold_neg) {
