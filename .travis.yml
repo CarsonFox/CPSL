@@ -10,5 +10,4 @@ before_install:
 script:
   - cmake .
   - make all
-after_success:
   - ./test_exe
