@@ -45,7 +45,7 @@ set(src ${src} FrontEnd/AST/Expressions/LiteralExpression.cpp FrontEnd/AST/Progr
         FrontEnd/AST/Expressions/BinaryOperators/ModExpression.hpp FrontEnd/AST/Expressions/UnaryOperators/NegExpression.cpp
         FrontEnd/AST/Expressions/UnaryOperators/NotExpression.cpp FrontEnd/SymbolTable.cpp)
 
-add_executable(cpsl cpsl.cpp ${src} FrontEnd/SymbolTable.cpp)
+add_executable(cpsl cpsl.cpp ${src} FrontEnd/SymbolTable.cpp FrontEnd/Variable.cpp FrontEnd/Variable.hpp)
 target_include_directories(cpsl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_executable(test_exe "unit tests/test.cpp" ${src} FrontEnd/SymbolTable.cpp)

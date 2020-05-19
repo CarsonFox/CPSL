@@ -12,7 +12,7 @@ TESTDIR=TestFiles/ #test files directory (where all test.cpsl files are)
 RESULTS=Result/ #results folder (where to store cpsl run results for comparison)
 BASE=Base/ #base folder name (contains results to compare against)
 
-CPSLDIR=../Reference/build/ #where cpsl compiler binary lives
+CPSLDIR=../cmake-build-debug/ #where cpsl compiler binary lives
 BINARY=cpsl #binary name
 ASM=asm/ #tmp directory for asm files for mars to run
 

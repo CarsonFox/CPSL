@@ -63,5 +63,9 @@ void Program::fold_constants() {
 }
 
 void Program::emit() {
-    constDecl->emit();
+//    if (varDecl) {
+//        varDecl->emit();
+//    }
+
+    std::cout << ".text" << std::endl;
 }
