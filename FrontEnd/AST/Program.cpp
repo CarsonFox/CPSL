@@ -61,3 +61,7 @@ void Program::fold_constants() {
     if (block)
         block->fold_constants();
 }
+
+void Program::emit() {
+    constDecl->emit();
+}

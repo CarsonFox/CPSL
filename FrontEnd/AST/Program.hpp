@@ -32,4 +32,6 @@ struct Program {
     void prettyPrint();
 
     void fold_constants();
+
+    void emit();
 };

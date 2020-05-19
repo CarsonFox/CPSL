@@ -1,10 +1,4 @@
+CONST pi = 3;
+
 BEGIN
-    if 2 & 2 + 2 then
-        foo(11 % 10);
-        x := succ(2 + 2+ x);
-    elseif ~(2 & 2) then
-        stop;
-    else
-        return 1/100;
-    end
 END.
