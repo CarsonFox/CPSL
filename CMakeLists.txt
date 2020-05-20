@@ -43,7 +43,7 @@ set(src ${src} src/AST/Expressions/LiteralExpression.cpp src/AST/Program.cpp
         src/AST/Expressions/BinaryOperators/SubExpression.cpp src/AST/Expressions/BinaryOperators/MulExpression.cpp
         src/AST/Expressions/BinaryOperators/DivExpression.cpp src/AST/Expressions/BinaryOperators/ModExpression.cpp
         src/AST/Expressions/BinaryOperators/ModExpression.hpp src/AST/Expressions/UnaryOperators/NegExpression.cpp
-        src/AST/Expressions/UnaryOperators/NotExpression.cpp)
+        src/AST/Expressions/UnaryOperators/NotExpression.cpp src/SymbolTable/SymbolTable.cpp)
 
 add_executable(cpsl src/cpsl.cpp ${src})
 target_include_directories(cpsl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})

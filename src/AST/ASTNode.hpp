@@ -3,6 +3,8 @@
 //Every AST node prints itself
 #include <iostream>
 
+#include "src/SymbolTable/SymbolTable.hpp"
+
 struct ASTNode {
     virtual ~ASTNode() = default;
 
@@ -10,7 +12,7 @@ struct ASTNode {
 
     virtual void fold_constants() {}
 
-    virtual void emit() {
+    virtual void emit(SymbolTable &) {
         std::cerr << "Emit unimplemented for " << typeid(*this).name() << std::endl;
         std::exit(1);
     }

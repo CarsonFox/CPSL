@@ -63,5 +63,13 @@ void Program::fold_constants() {
 }
 
 void Program::emit() {
-    std::cout << ".text" << std::endl;
+    SymbolTable symbolTable;
+
+    std::cout << ".text\n\n";
+
+    if (varDecl) {
+        varDecl->emit(symbolTable);
+    }
+
+    std::cout << "li $v0, 10\n" << "syscall\n";
 }
