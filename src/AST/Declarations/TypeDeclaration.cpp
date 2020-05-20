@@ -25,3 +25,9 @@ void TypeDeclaration::fold_constants() {
     for (auto &[ids, type]: members)
         type->fold_constants();
 }
+
+void TypeDeclaration::emit(SymbolTable &table) {
+    for (const auto &[id, type]: members) {
+        table.addType(id, type);
+    }
+}

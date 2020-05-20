@@ -13,6 +13,7 @@ struct Type;
 class SymbolTable {
     struct Scope {
         std::unordered_map<std::string, Variable> variables;
+        std::unordered_map<std::string, SymbolTableType> types;
 
         Scope() = default;
 
@@ -25,4 +26,6 @@ public:
     SymbolTable();
 
     void addVariable(std::string, std::shared_ptr<Type>);
+
+    void addType(std::string, std::shared_ptr<Type>);
 };
