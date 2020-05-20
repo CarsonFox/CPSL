@@ -1,5 +1,7 @@
 #include "SymbolTable.hpp"
 
+#include <iostream>
+
 SymbolTable::SymbolTable() {
     //Initialize global scope
     scopes.emplace_back();
@@ -22,3 +24,21 @@ void SymbolTable::Scope::addVariable(std::string id, std::shared_ptr<Type> type,
 void SymbolTable::addType(std::string id, std::shared_ptr<Type> type) {
 
 }
+
+const Variable &SymbolTable::lookupVariable(const std::string &id) {
+    if (scopes.size() > 1) {
+        auto var = scopes[1].variables.find(id);
+        if (var != scopes[1].variables.end()) {
+            return scopes[1].variables[id];
+        }
+    }
+
+    auto var = scopes[0].variables.find(id);
+    if (var != scopes[0].variables.end()) {
+        return scopes[0].variables[id];
+    } else {
+        std::cerr << "Variable " << id << " has not been declared\n";
+        std::exit(4);
+    }
+}
+

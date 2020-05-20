@@ -24,3 +24,7 @@ void Body::fold_constants() {
     if (block)
         block->fold_constants();
 }
+
+void Body::emit(SymbolTable &table, RegisterPool &pool) {
+    block->emit(table, pool);
+}

@@ -15,3 +15,13 @@ void AssignStatement::fold_constants() {
     if (folded)
         expr = std::shared_ptr<Expression>(new LiteralExpression(*folded));
 }
+
+void AssignStatement::emit(SymbolTable &table, RegisterPool &pool) {
+    const auto reg = expr->emitToRegister(table, pool);
+
+    //What if the expression doesn't fit in a word?
+    //Is assignment to records supported?
+    std::cout << "sw " << reg << ", " << lvalue->getLocation(table) << std::endl;
+
+    pool.freeRegister(reg);
+}

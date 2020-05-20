@@ -28,4 +28,6 @@ public:
     void addVariable(std::string, std::shared_ptr<Type>);
 
     void addType(std::string, std::shared_ptr<Type>);
+
+    const Variable &lookupVariable(const std::string &);
 };

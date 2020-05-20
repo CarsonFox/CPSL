@@ -8,4 +8,6 @@ struct EmptyStatement : Statement {
     ~EmptyStatement() override = default;
 
     void print() const override {}
+
+    void emit(SymbolTable &, RegisterPool &) override {}
 };

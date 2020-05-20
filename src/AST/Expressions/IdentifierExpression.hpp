@@ -16,4 +16,6 @@ struct IdentifierExpression : LValue {
     void print() const override;
 
     bool isConst() const override;
+
+    std::string getLocation(SymbolTable &table) override;
 };

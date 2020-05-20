@@ -17,3 +17,9 @@ void Block::fold_constants() {
     for (auto &stmt: stmts)
         stmt->fold_constants();
 }
+
+void Block::emit(SymbolTable &table, RegisterPool &pool) {
+    for (auto &stmt: stmts) {
+        stmt->emit(table, pool);
+    }
+}
