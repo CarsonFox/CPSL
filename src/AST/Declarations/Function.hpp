@@ -5,7 +5,7 @@
 
 #include "Subroutine.hpp"
 #include "FormalParameters.hpp"
-#include "Type.hpp"
+#include "src/AST/Types/Type.hpp"
 #include "Body.hpp"
 
 struct Function : Subroutine {

@@ -5,7 +5,7 @@
 #include <string>
 
 #include "src/AST/IdentifierList.hpp"
-#include "Type.hpp"
+#include "src/AST/Types/Type.hpp"
 
 enum ParType {
     NONE,

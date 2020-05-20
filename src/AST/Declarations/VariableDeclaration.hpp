@@ -7,7 +7,7 @@
 
 #include "src/AST/ASTNode.hpp"
 #include "src/AST/IdentifierList.hpp"
-#include "Type.hpp"
+#include "src/AST/Types/Type.hpp"
 
 struct VariableDeclaration : ASTNode {
     using member = std::pair<std::vector<std::string>, std::shared_ptr<Type>>;

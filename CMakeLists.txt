@@ -29,8 +29,8 @@ set(src ${src} src/AST/Expressions/LiteralExpression.cpp src/AST/Program.cpp
         src/AST/Statements/ReturnStatement.cpp src/AST/Expressions/StringExpression.cpp
         src/AST/Statements/StatementList.cpp src/AST/Statements/ForStatement.cpp src/AST/Statements/RepeatStatement.cpp
         src/AST/Statements/WhileStatement.cpp src/AST/Statements/IfStatement.cpp src/AST/Statements/AssignStatement.cpp
-        src/AST/IdentifierList.cpp src/AST/Declarations/SimpleType.cpp src/AST/Declarations/ArrayType.cpp
-        src/AST/Declarations/RecordType.cpp src/AST/Declarations/TypeDeclaration.cpp
+        src/AST/IdentifierList.cpp src/AST/Types/SimpleType.cpp src/AST/Types/ArrayType.cpp
+        src/AST/Types/RecordType.cpp src/AST/Declarations/TypeDeclaration.cpp
         src/AST/Declarations/TypeDeclaration.hpp
         src/AST/Declarations/ConstDeclaration.cpp src/AST/Declarations/VariableDeclaration.cpp
         src/AST/Declarations/Block.cpp src/AST/Declarations/Body.cpp src/AST/Declarations/FormalParameters.cpp

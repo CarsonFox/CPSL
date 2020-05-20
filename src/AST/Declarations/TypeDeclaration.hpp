@@ -6,7 +6,7 @@
 #include <memory>
 
 #include "src/AST/ASTNode.hpp"
-#include "Type.hpp"
+#include "src/AST/Types/Type.hpp"
 
 struct TypeDeclaration : ASTNode {
     using member = std::pair<std::string, std::shared_ptr<Type>>;

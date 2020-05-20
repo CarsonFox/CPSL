@@ -15,9 +15,9 @@
 #include "Statements/IfStatement.hpp"
 #include "Statements/AssignStatement.hpp"
 
-#include "Declarations/SimpleType.hpp"
-#include "Declarations/ArrayType.hpp"
-#include "Declarations/RecordType.hpp"
+#include "Types/SimpleType.hpp"
+#include "Types/ArrayType.hpp"
+#include "Types/RecordType.hpp"
 #include "Declarations/TypeDeclaration.hpp"
 #include "Declarations/ConstDeclaration.hpp"
 #include "Declarations/VariableDeclaration.hpp"
