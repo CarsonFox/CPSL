@@ -22,4 +22,6 @@ struct VariableDeclaration : ASTNode {
     void print() const override;
 
     void fold_constants() override;
+
+    void emit(SymbolTable &table) override;
 };

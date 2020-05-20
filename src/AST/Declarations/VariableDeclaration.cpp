@@ -27,3 +27,11 @@ void VariableDeclaration::fold_constants() {
     for (auto &[ids, type]: members)
         type->fold_constants();
 }
+
+void VariableDeclaration::emit(SymbolTable &table) {
+    for (const auto &[ids, type] : members) {
+        for (const auto &id: ids) {
+            table.addVariable(id, type);
+        }
+    }
+}
