@@ -1,6 +1,4 @@
 VAR x: integer;
 
 BEGIN
-    x := 3;
-    write(x);
 END.
