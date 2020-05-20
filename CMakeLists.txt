@@ -13,7 +13,7 @@ bison_target(Parser src/parser.y ${CMAKE_CURRENT_BINARY_DIR}/parser.cpp)
 flex_target(Scanner src/scanner.l ${CMAKE_CURRENT_BINARY_DIR}/scanner.cpp)
 add_flex_bison_dependency(Scanner Parser)
 
-set(CMAKE_CXX_FLAGS "-Wall -Wextra -O0 -g3 -std=c++17 -fsanitize=address")
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-unused-variable -O0 -g3 -std=c++17 -fsanitize=address")
 
 set(src ${BISON_Parser_OUTPUTS} ${FLEX_Scanner_OUTPUTS})
 set(src ${src} src/AST/Expressions/LiteralExpression.cpp src/AST/Program.cpp
