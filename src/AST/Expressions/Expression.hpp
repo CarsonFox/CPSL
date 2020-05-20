@@ -10,4 +10,9 @@ struct Expression : ASTNode {
     virtual std::optional<int> try_fold() {
         return {};
     }
+
+    virtual std::string emitToRegister(SymbolTable &, RegisterPool &) {
+        std::cerr << "Emit to register unimplemented for " << typeid(*this).name() << std::endl;
+        std::exit(1);
+    }
 };

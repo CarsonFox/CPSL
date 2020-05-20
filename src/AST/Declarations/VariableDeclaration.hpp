@@ -23,5 +23,5 @@ struct VariableDeclaration : ASTNode {
 
     void fold_constants() override;
 
-    void emit(SymbolTable &table) override;
+    void emit(SymbolTable &table, RegisterPool &pool) override;
 };

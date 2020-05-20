@@ -1,6 +1,8 @@
 #include "Program.hpp"
 
 #include "Util.hpp"
+#include "src/SymbolTable/SymbolTable.hpp"
+#include "src/RegisterPool.hpp"
 
 std::shared_ptr<Program> Program::main;
 
@@ -64,11 +66,12 @@ void Program::fold_constants() {
 
 void Program::emit() {
     SymbolTable symbolTable;
+    RegisterPool registerPool;
 
     std::cout << ".text\n\n";
 
     if (varDecl) {
-        varDecl->emit(symbolTable);
+        varDecl->emit(symbolTable, registerPool);
     }
 
     std::cout << "li $v0, 10\n" << "syscall\n";

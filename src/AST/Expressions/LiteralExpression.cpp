@@ -38,3 +38,9 @@ bool LiteralExpression::isConst() const {
 std::optional<int> LiteralExpression::try_fold() {
     return {value};
 }
+
+std::string LiteralExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
+    auto reg = pool.getRegister();
+    std::cout << "li " << reg << " " << value << std::endl;
+    return reg;
+}

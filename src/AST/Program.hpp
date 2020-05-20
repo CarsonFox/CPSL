@@ -9,7 +9,6 @@
 #include "Declarations/TypeDeclaration.hpp"
 #include "Declarations/VariableDeclaration.hpp"
 #include "Declarations/Block.hpp"
-#include "src/SymbolTable/SymbolTable.hpp"
 
 struct Program {
     static std::shared_ptr<Program> main;
