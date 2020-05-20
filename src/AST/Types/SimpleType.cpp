@@ -1,4 +1,3 @@
-
 #include "SimpleType.hpp"
 
 SimpleType::SimpleType(char *s) : id(s) {
