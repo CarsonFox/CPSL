@@ -18,7 +18,7 @@ int main(int argc, char **argv) {
     }
 
     yyparse();
-
+    Program::main->fold_constants();
     Program::main->emit();
 
     return EXIT_SUCCESS;
