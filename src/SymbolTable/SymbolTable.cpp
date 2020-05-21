@@ -18,7 +18,8 @@ void SymbolTable::addVariable(std::string id, std::shared_ptr<Type> type) {
 }
 
 void SymbolTable::Scope::addVariable(std::string id, std::shared_ptr<Type> type, std::string base) {
-    variables[id] = Variable(id, type, base);
+    variables[id] = Variable(id, type, base, varSize);
+    varSize += 4;//TODO: support for other sizes
 }
 
 void SymbolTable::addType(std::string id, std::shared_ptr<Type> type) {

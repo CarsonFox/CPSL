@@ -13,7 +13,7 @@ class Variable {
 public:
     Variable() = default;
 
-    Variable(std::string, std::shared_ptr<Type>, std::string);
+    Variable(std::string, std::shared_ptr<Type>, std::string, int);
 
     std::string getLocation() const;
 };

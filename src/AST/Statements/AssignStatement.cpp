@@ -21,7 +21,9 @@ void AssignStatement::emit(SymbolTable &table, RegisterPool &pool) {
 
     //What if the expression doesn't fit in a word?
     //Is assignment to records supported?
-    std::cout << "sw " << reg << ", " << lvalue->getLocation(table) << std::endl;
+    std::cout << "sw " << reg << ", " << lvalue->getLocation(table) << " #";
+    this->print();
+    std::cout << "\n\n";
 
     pool.freeRegister(reg);
 }

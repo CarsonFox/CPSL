@@ -1,4 +1,5 @@
-VAR x: integer;
+VAR x: integer; y: integer;
 BEGIN
     x := 3;
+    y:= 4;
 END.

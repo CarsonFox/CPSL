@@ -15,6 +15,8 @@ class SymbolTable {
         std::unordered_map<std::string, Variable> variables;
         std::unordered_map<std::string, SymbolTableType> types;
 
+        int varSize = 0;
+
         Scope() = default;
 
         void addVariable(std::string, std::shared_ptr<Type>, std::string);
