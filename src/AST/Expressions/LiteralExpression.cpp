@@ -41,7 +41,8 @@ std::optional<int> LiteralExpression::try_fold() {
 
 std::string LiteralExpression::emitToRegister(SymbolTable &, RegisterPool &pool) {
     auto reg = pool.getRegister();
-    std::cout << "li " << reg << ", " << value
-              << " #Load literal " << value << std::endl;
+    std::cout << "li " << reg << ", " << value << " #Load literal ";
+    this->print();
+    std::cout << '\n';
     return reg;
 }
