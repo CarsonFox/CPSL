@@ -18,11 +18,19 @@ void SymbolTable::addVariable(std::string id, std::shared_ptr<Type> type) {
 }
 
 void SymbolTable::Scope::addVariable(std::string id, std::shared_ptr<Type> type, std::string base) {
-    variables[id] = Variable();
+    variables[id] = Variable(id, type, base);
 }
 
 void SymbolTable::addType(std::string id, std::shared_ptr<Type> type) {
+    SymbolTableType s_type(type);
 
+    if (scopes.size() == 1) {
+        //Global variable
+        scopes[0].types[id] = s_type;
+    } else {
+        //Local variable
+        scopes[1].types[id] = s_type;
+    }
 }
 
 const Variable &SymbolTable::lookupVariable(const std::string &id) {

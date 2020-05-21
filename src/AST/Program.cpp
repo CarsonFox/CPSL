@@ -70,9 +70,9 @@ void Program::emit() {
 
     std::cout << ".text\n\n";
 
-//    if (varDecl) {
-//        varDecl->emit(symbolTable, registerPool);
-//    }
+    if (varDecl) {
+        varDecl->emit(symbolTable, registerPool);
+    }
 
     if (block) {
         block->emit(symbolTable, registerPool);
