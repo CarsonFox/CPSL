@@ -1,6 +1,8 @@
-#include <src/AST/Expressions/LiteralExpression.hpp>
 #include "WriteStatement.hpp"
 
+#include <memory>
+
+#include "src/AST/Expressions/LiteralExpression.hpp"
 #include "src/AST/Util.hpp"
 
 WriteStatement::WriteStatement(ExpressionList *list) {
@@ -25,5 +27,21 @@ void WriteStatement::fold_constants() {
         const auto folded = expr->try_fold();
         if (folded)
             expr = std::shared_ptr<Expression>(new LiteralExpression(*folded));
+    }
+}
+
+void WriteStatement::emit(SymbolTable &table, RegisterPool &pool) {
+    for (auto &expr: args) {
+        if (std::dynamic_pointer_cast<LiteralExpression>(expr)) {
+            const auto reg = expr->emitToRegister(table, pool);
+            std::cout << "li $v0, "
+                      << (std::dynamic_pointer_cast<LiteralExpression>(expr)->isChar ? "11" : "1")
+                      << " #Print "
+                      << (std::dynamic_pointer_cast<LiteralExpression>(expr)->isChar ? "character" : "integer")
+                      << " syscall\n";
+            std::cout << "move $a0, " << reg << " #";
+            this->print();
+            std::cout << "\nsyscall\n\n";
+        }
     }
 }

@@ -1,5 +1,3 @@
-VAR x: integer; y: integer;
 BEGIN
-    x := 3;
-    y:= '\t';
+    write(3, '\n', 4, '\n', 5);
 END.
