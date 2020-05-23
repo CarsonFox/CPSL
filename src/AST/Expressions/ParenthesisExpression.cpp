@@ -18,3 +18,7 @@ std::optional<int> ParenthesisExpression::try_fold() {
         return *folded;
     return {};
 }
+
+std::string ParenthesisExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
+    return expr->emitToRegister(table, pool);
+}

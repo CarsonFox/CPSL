@@ -13,3 +13,7 @@ void ChrExpression::print() const {
 bool ChrExpression::isConst() const {
     return expr->isConst();
 }
+
+std::string ChrExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
+    return expr->emitToRegister(table, pool);
+}

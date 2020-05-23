@@ -17,3 +17,14 @@ std::optional<int> NotExpression::try_fold() {
 bool NotExpression::isConst() const {
     return expr->isConst();
 }
+
+//TODO this does not give the expected output because it's bitwise - need to make sure ~True == False
+std::string NotExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
+    auto reg = expr->emitToRegister(table, pool);
+
+    std::cout << "not " << reg << ", " << reg << " #";
+    this->print();
+    std::cout << std::endl;
+
+    return reg;
+}

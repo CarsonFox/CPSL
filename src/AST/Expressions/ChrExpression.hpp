@@ -14,4 +14,6 @@ struct ChrExpression : Expression {
     void print() const override;
 
     bool isConst() const override;
+
+    std::string emitToRegister(SymbolTable &table, RegisterPool &pool) override;
 };
