@@ -19,6 +19,10 @@ bool NotExpression::isConst() const {
 }
 
 //TODO this does not give the expected output because it's bitwise - need to make sure ~True == False
+/*
+ * If this is meant to work like c/c++, this can be accomplished by using sne $r, $zero.
+ */
+
 std::string NotExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
     auto reg = expr->emitToRegister(table, pool);
 

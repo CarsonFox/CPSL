@@ -24,3 +24,15 @@ std::optional<int> AndExpression::try_fold() {
 
     return {};
 }
+
+std::string AndExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
+    auto reg1 = left->emitToRegister(table, pool);
+    const auto reg2 = right->emitToRegister(table, pool);
+
+    std::cout << "and " << reg1 << ", " << reg1 << ", " << reg2 << " #";
+    this->print();
+    std::cout << std::endl;
+
+    pool.freeRegister(reg2);
+    return reg1;
+}

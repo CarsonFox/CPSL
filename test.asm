@@ -1,10 +1,12 @@
 .text
 
-li $s0, 1 #Load literal 1
-addi $s1, $s0, 1 #SUCC(1)
-sub $s1, $zero, $s1 #-SUCC(1)
+li $s0, 9 #Load literal 9
+li $s1, 3 #Load literal 3
+seq $s0, $s0, $s1 #9 = 3
+not $s0, $s0 #~(9 = 3)
+not $s0, $s0 #~~(9 = 3)
 li $v0, 1 #Print integer syscall
-move $a0, $s1 #WRITE(-SUCC(1));
+move $a0, $s0 #WRITE(~~(9 = 3));
 syscall
 
 li $v0, 10

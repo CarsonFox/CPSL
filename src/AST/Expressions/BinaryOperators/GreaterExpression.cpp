@@ -24,3 +24,15 @@ std::optional<int> GreaterExpression::try_fold() {
 
     return {};
 }
+
+std::string GreaterExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
+    auto reg1 = left->emitToRegister(table, pool);
+    const auto reg2 = right->emitToRegister(table, pool);
+
+    std::cout << "sgt " << reg1 << ", " << reg1 << ", " << reg2 << " #";
+    this->print();
+    std::cout << std::endl;
+
+    pool.freeRegister(reg2);
+    return reg1;
+}

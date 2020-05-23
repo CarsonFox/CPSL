@@ -24,3 +24,21 @@ std::optional<int> DivExpression::try_fold() {
 
     return {};
 }
+
+std::string DivExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
+    auto reg1 = left->emitToRegister(table, pool);
+    const auto reg2 = right->emitToRegister(table, pool);
+
+    //Perform division
+    std::cout << "div " << reg1 << ", " << reg2 << " #";
+    this->print();
+    std::cout << std::endl;
+
+    //Get result of division
+    std::cout << "mflo " << reg1 << " #";
+    this->print();
+    std::cout << std::endl;
+
+    pool.freeRegister(reg2);
+    return reg1;
+}
