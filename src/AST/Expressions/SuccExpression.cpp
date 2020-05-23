@@ -20,3 +20,15 @@ std::optional<int> SuccExpression::try_fold() {
         return *f + 1;
     return {};
 }
+
+std::string SuccExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
+    const auto exprReg = expr->emitToRegister(table, pool);
+    auto destReg = pool.getRegister();
+
+    std::cout << "addi " << destReg << ", " << exprReg << ", " << "1 #";
+    this->print();
+    std::cout << std::endl;
+
+    pool.freeRegister(exprReg);
+    return destReg;
+}

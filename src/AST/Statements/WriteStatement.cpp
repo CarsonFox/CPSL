@@ -32,16 +32,25 @@ void WriteStatement::fold_constants() {
 
 void WriteStatement::emit(SymbolTable &table, RegisterPool &pool) {
     for (auto &expr: args) {
-        if (std::dynamic_pointer_cast<LiteralExpression>(expr)) {
-            const auto reg = expr->emitToRegister(table, pool);
-            std::cout << "li $v0, "
-                      << (std::dynamic_pointer_cast<LiteralExpression>(expr)->isChar ? "11" : "1")
-                      << " #Print "
-                      << (std::dynamic_pointer_cast<LiteralExpression>(expr)->isChar ? "character" : "integer")
-                      << " syscall\n";
-            std::cout << "move $a0, " << reg << " #";
-            this->print();
-            std::cout << "\nsyscall\n\n";
-        }
+        //TODO detect type of integral expressions
+//        if (std::dynamic_pointer_cast<LiteralExpression>(expr)) {
+//            const auto reg = expr->emitToRegister(table, pool);
+//            std::cout << "li $v0, "
+//                      << (std::dynamic_pointer_cast<LiteralExpression>(expr)->isChar ? "11" : "1")
+//                      << " #Print "
+//                      << (std::dynamic_pointer_cast<LiteralExpression>(expr)->isChar ? "character" : "integer")
+//                      << " syscall\n";
+//            std::cout << "move $a0, " << reg << " #";
+//            this->print();
+//            std::cout << "\nsyscall\n\n";
+//            pool.freeRegister(reg);
+//        }
+
+        const auto reg = expr->emitToRegister(table, pool);
+        std::cout << "li $v0, 1 #Print integer syscall\n";
+        std::cout << "move $a0, " << reg << " #";
+        this->print();
+        std::cout << "\nsyscall\n\n";
+        pool.freeRegister(reg);
     }
 }

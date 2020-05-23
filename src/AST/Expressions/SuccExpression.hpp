@@ -16,4 +16,6 @@ struct SuccExpression : Expression {
     bool isConst() const override;
 
     std::optional<int> try_fold() override;
+
+    std::string emitToRegister(SymbolTable &table, RegisterPool &pool) override;
 };
