@@ -21,8 +21,7 @@ bool NegExpression::isConst() const {
 std::string NegExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
     auto reg = expr->emitToRegister(table, pool);
 
-    //0 - x == -x
-    std::cout << "sub " << reg << ", $zero, " << reg << " #";
+    std::cout << "neg " << reg << ", " << reg << " #";
     this->print();
     std::cout << std::endl;
 
