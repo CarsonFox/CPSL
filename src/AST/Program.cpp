@@ -74,6 +74,10 @@ void Program::emit() {
         varDecl->emit(symbolTable, registerPool);
     }
 
+    if (constDecl) {
+        constDecl->emit(symbolTable, registerPool);
+    }
+
     if (block) {
         block->emit(symbolTable, registerPool);
     }

@@ -18,4 +18,6 @@ struct IdentifierExpression : LValue {
     bool isConst() const override;
 
     std::string getLocation(SymbolTable &table) override;
+
+    std::string emitToRegister(SymbolTable &table, RegisterPool &pool) override;
 };

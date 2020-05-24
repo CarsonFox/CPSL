@@ -29,3 +29,9 @@ void ConstDeclaration::fold_constants() {
             expr = std::shared_ptr<Expression>(new LiteralExpression(*folded));
     }
 }
+
+void ConstDeclaration::emit(SymbolTable &table, RegisterPool &) {
+    for (const auto &[id, expr] : members) {
+        table.addConstant(id, expr);
+    }
+}

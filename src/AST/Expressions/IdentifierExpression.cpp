@@ -22,3 +22,18 @@ std::string IdentifierExpression::getLocation(SymbolTable &table) {
     const auto &var = table.lookupVariable(id);
     return var.getLocation();
 }
+
+std::string IdentifierExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
+    if (table.isVariable(this->id)) {
+        auto reg = pool.getRegister();
+        const auto loc = this->getLocation(table);
+
+        std::cout << "lw " << reg << ", " << loc << " #Load " << this->id << std::endl;
+
+        return reg;
+    } else if (table.isConstant(this->id)) {
+        return table.lookupConstant(this->id)->emitToRegister(table, pool);
+    }
+    std::cerr << this->id << " is not a variable or constant\n";
+    std::exit(5);
+}
