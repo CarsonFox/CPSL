@@ -26,7 +26,7 @@ void TypeDeclaration::fold_constants() {
         type->fold_constants();
 }
 
-void TypeDeclaration::emit(SymbolTable &table, RegisterPool &pool) {
+void TypeDeclaration::emit(SymbolTable &table, RegisterPool &) {
     for (const auto &[id, type]: members) {
         table.addType(id, type);
     }

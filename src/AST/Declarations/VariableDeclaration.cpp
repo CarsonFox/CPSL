@@ -28,7 +28,7 @@ void VariableDeclaration::fold_constants() {
         type->fold_constants();
 }
 
-void VariableDeclaration::emit(SymbolTable &table, RegisterPool &pool) {
+void VariableDeclaration::emit(SymbolTable &table, RegisterPool &) {
     for (const auto &[ids, type] : members) {
         for (const auto &id: ids) {
             table.addVariable(id, type);

@@ -1,8 +1,6 @@
 #include "Program.hpp"
 
 #include "Util.hpp"
-#include "src/SymbolTable/SymbolTable.hpp"
-#include "src/RegisterPool.hpp"
 
 std::shared_ptr<Program> Program::main;
 
