@@ -1,6 +1,7 @@
 #include "Program.hpp"
 
 #include "Util.hpp"
+#include "src/Labels.hpp"
 
 std::shared_ptr<Program> Program::main;
 
@@ -80,5 +81,8 @@ void Program::emit() {
         block->emit(symbolTable, registerPool);
     }
 
-    std::cout << "li $v0, 10\n" << "syscall\n";
+    std::cout << "li $v0, 10\n" << "syscall\n\n";
+
+    std::cout << ".data\n";
+    Labels::emitStrings();
 }

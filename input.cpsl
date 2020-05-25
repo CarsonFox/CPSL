@@ -1,5 +1,3 @@
-const x = 4;
-
 BEGIN
-    write(x <= 1);
+    write("Hello!\n");
 END.
