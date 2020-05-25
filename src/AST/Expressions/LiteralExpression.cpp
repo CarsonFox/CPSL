@@ -46,3 +46,7 @@ std::string LiteralExpression::emitToRegister(SymbolTable &, RegisterPool &pool)
     std::cout << '\n';
     return reg;
 }
+
+Expression::type LiteralExpression::getType(SymbolTable &) {
+    return this->isChar ? character : integral;
+}

@@ -18,4 +18,11 @@ struct WriteStatement : Statement {
     void fold_constants() override;
 
     void emit(SymbolTable &table, RegisterPool &pool) override;
+
+private:
+    void printIntegral(SymbolTable &table, RegisterPool &pool, const std::shared_ptr<Expression> &expr);
+
+    void printCharacter(SymbolTable &table, RegisterPool &pool, const std::shared_ptr<Expression> &expr);
+
+    void printString(SymbolTable &table, RegisterPool &pool, const std::shared_ptr<Expression> &expr);
 };

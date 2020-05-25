@@ -17,3 +17,7 @@ bool ChrExpression::isConst() const {
 std::string ChrExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
     return expr->emitToRegister(table, pool);
 }
+
+Expression::type ChrExpression::getType(SymbolTable &) {
+    return character;
+}

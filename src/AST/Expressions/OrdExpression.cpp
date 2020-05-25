@@ -20,3 +20,7 @@ std::optional<int> OrdExpression::try_fold() {
 std::string OrdExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
     return expr->emitToRegister(table, pool);
 }
+
+Expression::type OrdExpression::getType(SymbolTable &) {
+    return integral;
+}

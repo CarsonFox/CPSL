@@ -22,3 +22,7 @@ std::optional<int> ParenthesisExpression::try_fold() {
 std::string ParenthesisExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
     return expr->emitToRegister(table, pool);
 }
+
+Expression::type ParenthesisExpression::getType(SymbolTable &table) {
+    return expr->getType(table);
+}

@@ -4,6 +4,9 @@
 
 #include "Expression.hpp"
 
+//TODO: Pred and succ have different behavior for booleans.
+//This requires a boolean type
+
 struct PredExpression : Expression {
     std::shared_ptr<Expression> expr;
 

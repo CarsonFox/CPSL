@@ -14,4 +14,6 @@ struct StringExpression : Expression {
     bool isConst() const override;
 
     std::string emitToRegister(SymbolTable &table, RegisterPool &pool) override;
+
+    type getType(SymbolTable &table) override;
 };

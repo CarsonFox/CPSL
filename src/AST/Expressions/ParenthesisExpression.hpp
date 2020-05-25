@@ -24,4 +24,6 @@ struct ParenthesisExpression : Expression {
     std::optional<int> try_fold() override;
 
     std::string emitToRegister(SymbolTable &table, RegisterPool &pool) override;
+
+    type getType(SymbolTable &table) override;
 };

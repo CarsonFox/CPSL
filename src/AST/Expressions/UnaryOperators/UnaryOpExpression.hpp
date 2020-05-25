@@ -12,4 +12,7 @@ struct UnaryOpExpression : Expression {
 
 protected:
     UnaryOpExpression(Expression *);
+
+public:
+    type getType(SymbolTable &table) override;
 };

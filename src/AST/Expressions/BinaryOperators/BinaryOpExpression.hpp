@@ -12,4 +12,6 @@ struct BinaryOpExpression : Expression {
     ~BinaryOpExpression() override = default;
 
     bool isConst() const override;
+
+    type getType(SymbolTable &table) override;
 };

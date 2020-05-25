@@ -22,3 +22,7 @@ std::string StringExpression::emitToRegister(SymbolTable &, RegisterPool &pool) 
 
     return reg;
 }
+
+Expression::type StringExpression::getType(SymbolTable &) {
+    return string;
+}

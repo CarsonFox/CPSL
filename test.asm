@@ -1,7 +1,7 @@
 .text
 
 la $s0, string_0 #Load string "Hello!\n"
-li $v0, 1 #Print integer syscall
+li $v0, 4 #Print string syscall
 move $a0, $s0 #WRITE("Hello!\n");
 syscall
 

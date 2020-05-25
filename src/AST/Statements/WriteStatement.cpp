@@ -32,25 +32,51 @@ void WriteStatement::fold_constants() {
 
 void WriteStatement::emit(SymbolTable &table, RegisterPool &pool) {
     for (auto &expr: args) {
-        //TODO detect type of integral expressions
-//        if (std::dynamic_pointer_cast<LiteralExpression>(expr)) {
-//            const auto reg = expr->emitToRegister(table, pool);
-//            std::cout << "li $v0, "
-//                      << (std::dynamic_pointer_cast<LiteralExpression>(expr)->isChar ? "11" : "1")
-//                      << " #Print "
-//                      << (std::dynamic_pointer_cast<LiteralExpression>(expr)->isChar ? "character" : "integer")
-//                      << " syscall\n";
-//            std::cout << "move $a0, " << reg << " #";
-//            this->print();
-//            std::cout << "\nsyscall\n\n";
-//            pool.freeRegister(reg);
-//        }
+        switch (expr->getType(table)) {
+            case Expression::integral:
+                printIntegral(table, pool, expr);
+                continue;
 
-        const auto reg = expr->emitToRegister(table, pool);
-        std::cout << "li $v0, 1 #Print integer syscall\n";
-        std::cout << "move $a0, " << reg << " #";
-        this->print();
-        std::cout << "\nsyscall\n\n";
-        pool.freeRegister(reg);
+            case Expression::character:
+                printCharacter(table, pool, expr);
+                continue;
+
+            case Expression::string:
+                printString(table, pool, expr);
+                continue;
+
+            case Expression::userDefined:
+                std::cout << "Cannot print user-defined type: ";
+                expr->print();
+                std::cout << std::endl;
+                std::exit(6);
+        }
     }
+}
+
+void WriteStatement::printIntegral(SymbolTable &table, RegisterPool &pool, const std::shared_ptr<Expression> &expr) {
+    const auto reg = expr->emitToRegister(table, pool);
+    std::cout << "li $v0, 1 #Print integer syscall\n";
+    std::cout << "move $a0, " << reg << " #";
+    this->print();
+    std::cout << "\nsyscall\n\n";
+    pool.freeRegister(reg);
+}
+
+void WriteStatement::printCharacter(SymbolTable &table, RegisterPool &pool, const std::shared_ptr<Expression> &expr) {
+    const auto reg = expr->emitToRegister(table, pool);
+    std::cout << "li $v0, 11 #Print character syscall\n";
+    std::cout << "move $a0, " << reg << " #";
+    this->print();
+    std::cout << "\nsyscall\n\n";
+    pool.freeRegister(reg);
+}
+
+void WriteStatement::printString(SymbolTable &table, RegisterPool &pool, const std::shared_ptr<Expression> &expr) {
+    const auto reg = expr->emitToRegister(table, pool);
+    std::cout << "li $v0, 4 #Print string syscall\n";
+    std::cout << "move $a0, " << reg << " #";
+    this->print();
+    std::cout << "\nsyscall\n\n";
+    pool.freeRegister(reg);
 }
