@@ -16,4 +16,8 @@ public:
     Variable(std::string, std::shared_ptr<Type>, std::string, int);
 
     std::string getLocation() const;
+
+    std::string getBase() const;
+
+    int getOffset() const;
 };

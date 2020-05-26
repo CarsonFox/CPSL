@@ -14,3 +14,11 @@ Variable::Variable(std::string id, std::shared_ptr<Type> type, std::string base,
           base(std::move(base)),
           offset(offset) {
 }
+
+std::string Variable::getBase() const {
+    return base;
+}
+
+int Variable::getOffset() const {
+    return offset;
+}
