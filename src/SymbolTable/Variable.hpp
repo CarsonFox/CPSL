@@ -1,8 +1,9 @@
 #pragma once
 
 #include <string>
+#include <memory>
 
-#include "SymbolTableType.hpp"
+struct Type;
 
 class Variable {
     std::string id;
