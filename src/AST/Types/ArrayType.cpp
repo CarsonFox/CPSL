@@ -5,6 +5,9 @@
 ArrayType::ArrayType(Expression *l, Expression *r, Type *t) : type(t) {
     const auto leftFold = l->try_fold(), rightFold = r->try_fold();
 
+    delete l;
+    delete r;
+
     if (leftFold && rightFold) {
         left = *leftFold;
         right = *rightFold;
