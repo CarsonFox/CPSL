@@ -37,3 +37,19 @@ std::string IdentifierExpression::emitToRegister(SymbolTable &table, RegisterPoo
     std::cerr << this->id << " is not a variable or constant\n";
     std::exit(5);
 }
+
+std::string IdentifierExpression::emitLocationToRegister(SymbolTable &table, RegisterPool &pool) {
+    if (!table.isVariable(id)) {
+        std::cerr << "Constants do not have a memory location!\n";
+        std::exit(9);
+    }
+
+    auto reg = pool.getRegister();
+    const auto var = table.lookupVariable(id);
+    const auto base = var.getBase();
+    const int offset = var.getOffset();
+
+    std::cout << "addi " << reg << ", " << base << ", " << offset << " #Load location of " << id << std::endl;
+
+    return reg;
+}

@@ -1,30 +1,22 @@
 .text
 
-li $s0, 3 #Load literal 3
-sw $s0, 16($gp) #x := 3;
+li $s0, 1 #Load literal 1
+addi $s1, $gp, 0 #Load location of tuple
+li $s2, 0 #Load literal 0
+li $s3, 4 #Get array element size
+mul $s2, $s2, $s3 #Compute offset
+add $s1, $s1, $s2 #Compute array access for tuple[0]
+sw $s0, ($s1) # tuple[0] := 1;
 
-li $s0, 4 #Load literal 4
-sw $s0, 20($gp) #y := 4;
-
-la $s0, string_0 #Load string "x + y = "
-li $v0, 4 #Print string syscall
-move $a0, $s0 #WRITE("x + y = ", x + y, \n);
-syscall
-
-lw $s0, 16($gp) #Load x
-lw $s1, 20($gp) #Load y
-add $s0, $s0, $s1 #x + y
-li $v0, 1 #Print integer syscall
-move $a0, $s0 #WRITE("x + y = ", x + y, \n);
-syscall
-
-li $s0, 10 #Load literal \n
-li $v0, 11 #Print character syscall
-move $a0, $s0 #WRITE("x + y = ", x + y, \n);
-syscall
+li $s0, 2 #Load literal 2
+addi $s1, $gp, 0 #Load location of tuple
+li $s2, 1 #Load literal 1
+li $s3, 4 #Get array element size
+mul $s2, $s2, $s3 #Compute offset
+add $s1, $s1, $s2 #Compute array access for tuple[1]
+sw $s0, ($s1) # tuple[1] := 2;
 
 li $v0, 10
 syscall
 
 .data
-string_0: .asciiz "x + y = "

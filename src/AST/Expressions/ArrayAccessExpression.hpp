@@ -17,4 +17,6 @@ struct ArrayAccessExpression : LValue {
     bool isConst() const override;
 
     std::optional<int> try_fold() override;
+
+    std::string emitLocationToRegister(SymbolTable &table, RegisterPool &pool) override;
 };

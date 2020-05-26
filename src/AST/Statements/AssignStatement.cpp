@@ -1,5 +1,7 @@
-#include <src/AST/Expressions/LiteralExpression.hpp>
 #include "AssignStatement.hpp"
+
+#include "src/AST/Expressions/LiteralExpression.hpp"
+#include "src/AST/Expressions/IdentifierExpression.hpp"
 
 AssignStatement::AssignStatement(LValue *l, Expression *e) : lvalue(l), expr(e) {}
 
@@ -17,13 +19,23 @@ void AssignStatement::fold_constants() {
 }
 
 void AssignStatement::emit(SymbolTable &table, RegisterPool &pool) {
-    const auto reg = expr->emitToRegister(table, pool);
+    if (std::dynamic_pointer_cast<IdentifierExpression>(lvalue)) {
+        const auto reg = expr->emitToRegister(table, pool);
 
-    //What if the expression doesn't fit in a word?
-    //Is assignment to records supported?
-    std::cout << "sw " << reg << ", " << lvalue->getLocation(table) << " #";
-    this->print();
-    std::cout << "\n\n";
+        std::cout << "sw " << reg << ", " << lvalue->getLocation(table) << " #";
+        this->print();
+        std::cout << "\n\n";
 
-    pool.freeRegister(reg);
+        pool.freeRegister(reg);
+    } else {
+        const auto exprReg = expr->emitToRegister(table, pool);
+        const auto locReg = lvalue->emitLocationToRegister(table, pool);
+
+        std::cout << "sw " << exprReg << ", (" << locReg << ") # ";
+        this->print();
+        std::cout << "\n\n";
+
+        pool.freeRegister(exprReg);
+        pool.freeRegister(locReg);
+    }
 }

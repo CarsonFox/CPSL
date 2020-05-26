@@ -1,7 +1,6 @@
-var arr: record x: array [1: 2] of string; y: string; end; x, y: integer;
+var tuple: array [0:1] of integer;
 
 BEGIN
-    x := 3;
-    y := 4;
-    write("x + y = ", x+y, '\n');
+    tuple[0] := 1;
+    tuple[1] := 2;
 END.
