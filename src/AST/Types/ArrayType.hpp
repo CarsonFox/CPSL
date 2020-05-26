@@ -3,10 +3,11 @@
 #include <memory>
 
 #include "Type.hpp"
-#include "src/AST/Expressions/Expression.hpp"
+
+struct Expression;
 
 struct ArrayType : Type {
-    std::shared_ptr<Expression> left, right;
+    int left, right;
     std::shared_ptr<Type> type;
 
     ArrayType(Expression *, Expression *, Type *);

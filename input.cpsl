@@ -1,3 +1,7 @@
+var x, y: integer;
+
 BEGIN
-    write("Hello!\n");
+    x := 3;
+    y := 4;
+    write("x + y = ", x+y, '\n');
 END.

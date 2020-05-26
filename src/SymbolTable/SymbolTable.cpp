@@ -32,14 +32,12 @@ void SymbolTable::Scope::addConstant(const std::string &id, std::shared_ptr<Expr
 }
 
 void SymbolTable::addType(const std::string &id, std::shared_ptr<Type> type) {
-    SymbolTableType s_type(std::move(type));
-
     if (scopes.size() == 1) {
         //Global variable
-        scopes[0].types[id] = s_type;
+        scopes[0].types[id] = std::move(type);
     } else {
         //Local variable
-        scopes[1].types[id] = s_type;
+        scopes[1].types[id] = std::move(type);
     }
 }
 

@@ -6,9 +6,9 @@
 
 class Variable {
     std::string id;
-    SymbolTableType type;
+    std::shared_ptr<Type> type;
     std::string base; //Either $sp or $gp, depending on the scope of the variable
-    int offset;
+    int offset = 0;
 
 public:
     Variable() = default;

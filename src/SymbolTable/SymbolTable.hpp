@@ -14,7 +14,7 @@ struct Expression;
 class SymbolTable {
     struct Scope {
         std::unordered_map<std::string, Variable> variables;
-        std::unordered_map<std::string, SymbolTableType> types;
+        std::unordered_map<std::string, std::shared_ptr<Type>> types;
         std::unordered_map<std::string, std::shared_ptr<Expression>> constants;
 
         int varSize = 0;
