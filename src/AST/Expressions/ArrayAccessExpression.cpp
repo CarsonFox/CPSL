@@ -37,3 +37,13 @@ std::string ArrayAccessExpression::emitLocationToRegister(SymbolTable &table, Re
 
     return baseLocReg;
 }
+
+std::string ArrayAccessExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
+    auto reg = this->emitLocationToRegister(table, pool);
+
+    std::cout << "lw " << reg << ", (" << reg << ") #";
+    this->print();
+    std::cout << std::endl;
+
+    return reg;
+}
