@@ -1,26 +1,48 @@
 #include "SymbolTable.hpp"
 
 #include <iostream>
-#include <utility>
+
+#include "src/AST/Types/BuiltinType.hpp"
+#include "src/AST/Expressions/LiteralExpression.hpp"
 
 SymbolTable::SymbolTable() {
     //Initialize global scope
     scopes.emplace_back();
+
+    //Initialize builtin types
+    std::shared_ptr<Type> builtin(new BuiltinType());
+    addType("integer", builtin);
+    addType("INTEGER", builtin);
+    addType("char", builtin);
+    addType("CHAR", builtin);
+    addType("boolean", builtin);
+    addType("BOOLEAN", builtin);
+    addType("string", builtin);
+    addType("STRING", builtin);
+
+    //Initialize builtin constants
+    std::shared_ptr<Expression> true_expr(new LiteralExpression(1));
+    addConstant("true", true_expr);
+    addConstant("TRUE", true_expr);
+
+    std::shared_ptr<Expression> false_expr(new LiteralExpression(0));
+    addConstant("false", false_expr);
+    addConstant("FALSE", false_expr);
 }
 
 void SymbolTable::addVariable(const std::string &id, std::shared_ptr<Type> type) {
     if (scopes.size() == 1) {
         //Global variable
-        scopes[0].addVariable(id, type, "$gp");
+        scopes[0].addVariable(id, type, "$gp", type->getSize(*this));
     } else {
         //Local variable
-        scopes[1].addVariable(id, type, "$sp");
+        scopes[1].addVariable(id, type, "$sp", type->getSize(*this));
     }
 }
 
-void SymbolTable::Scope::addVariable(const std::string &id, std::shared_ptr<Type> type, std::string base) {
+void SymbolTable::Scope::addVariable(const std::string &id, std::shared_ptr<Type> type, std::string base, int size) {
     variables[id] = Variable(id, std::move(type), std::move(base), varSize);
-    varSize += 4;//TODO: support for other sizes
+    varSize += size;//TODO: support for other sizes
 }
 
 void SymbolTable::addConstant(const std::string &id, std::shared_ptr<Expression> expr) {
@@ -32,13 +54,11 @@ void SymbolTable::Scope::addConstant(const std::string &id, std::shared_ptr<Expr
 }
 
 void SymbolTable::addType(const std::string &id, std::shared_ptr<Type> type) {
-    if (scopes.size() == 1) {
-        //Global variable
-        scopes[0].types[id] = std::move(type);
-    } else {
-        //Local variable
-        scopes[1].types[id] = std::move(type);
-    }
+    scopes.back().addType(id, type);
+}
+
+void SymbolTable::Scope::addType(const std::string &id, std::shared_ptr<Type> type) {
+    types[id] = std::move(type);
 }
 
 const Variable &SymbolTable::lookupVariable(const std::string &id) {
@@ -48,6 +68,16 @@ const Variable &SymbolTable::lookupVariable(const std::string &id) {
         }
     }
     std::cerr << "Variable " << id << " has not been declared\n";
+    std::exit(4);
+}
+
+std::shared_ptr<Type> SymbolTable::lookupType(const std::string &id) {
+    for (auto it = scopes.rbegin(); it != scopes.rend(); it++) {
+        if (it->types.find(id) != it->types.end()) {
+            return it->types[id];
+        }
+    }
+    std::cerr << "Type " << id << " has not been declared\n";
     std::exit(4);
 }
 

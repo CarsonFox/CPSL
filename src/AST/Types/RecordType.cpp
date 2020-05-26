@@ -33,3 +33,11 @@ void RecordType::fold_constants() {
     for (auto &[ids, type]: members)
         type->fold_constants();
 }
+
+int RecordType::getSize(SymbolTable &table) {
+    int sum = 0;
+    for (const auto &[ids, type]: members) {
+        sum += static_cast<int>(ids.size()) * type->getSize(table);
+    }
+    return sum;
+}

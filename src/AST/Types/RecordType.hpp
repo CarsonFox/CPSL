@@ -20,4 +20,6 @@ struct RecordType : Type {
     void print() const override;
 
     void fold_constants() override;
+
+    int getSize(SymbolTable &table) override;
 };

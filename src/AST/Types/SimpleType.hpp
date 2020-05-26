@@ -12,4 +12,6 @@ struct SimpleType : Type {
     ~SimpleType() override = default;
 
     void print() const override;
+
+    int getSize(SymbolTable &table) override;
 };

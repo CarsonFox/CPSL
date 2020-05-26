@@ -21,7 +21,9 @@ class SymbolTable {
 
         Scope() = default;
 
-        void addVariable(const std::string &, std::shared_ptr<Type>, std::string);
+        void addVariable(const std::string &, std::shared_ptr<Type>, std::string, int);
+
+        void addType(const std::string &, std::shared_ptr<Type>);
 
         void addConstant(const std::string &, std::shared_ptr<Expression>);
     };
@@ -33,11 +35,13 @@ public:
 
     void addVariable(const std::string &, std::shared_ptr<Type>);
 
-    void addConstant(const std::string &, std::shared_ptr<Expression>);
-
     void addType(const std::string &, std::shared_ptr<Type>);
 
+    void addConstant(const std::string &, std::shared_ptr<Expression>);
+
     const Variable &lookupVariable(const std::string &);
+
+    std::shared_ptr<Type> lookupType(const std::string &);
 
     std::shared_ptr<Expression> lookupConstant(const std::string &);
 

@@ -30,3 +30,7 @@ void ArrayType::fold_constants() {
 //        std::exit(7);
 //    }
 }
+
+int ArrayType::getSize(SymbolTable &table) {
+    return (right - left + 1) * type->getSize(table);
+}
