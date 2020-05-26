@@ -21,4 +21,6 @@ public:
     std::string getBase() const;
 
     int getOffset() const;
+
+    std::shared_ptr<Type> getConcreteType() const;
 };

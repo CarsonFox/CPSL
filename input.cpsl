@@ -3,6 +3,4 @@ var tuple: array [0:1] of integer;
 BEGIN
     tuple[0] := 1;
     tuple[1] := 2;
-
-    write("Sum: ", tuple[0] + tuple[1], '\n');
 END.

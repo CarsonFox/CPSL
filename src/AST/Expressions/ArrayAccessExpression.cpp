@@ -1,5 +1,7 @@
 #include "ArrayAccessExpression.hpp"
 
+#include "src/AST/Types/ArrayType.hpp"
+
 ArrayAccessExpression::ArrayAccessExpression(LValue *l, Expression *r) : left(l), right(r) {}
 
 void ArrayAccessExpression::print() const {
@@ -23,8 +25,8 @@ std::string ArrayAccessExpression::emitLocationToRegister(SymbolTable &table, Re
     const auto offsetReg = right->emitToRegister(table, pool);
     const auto elementSizeReg = pool.getRegister();
 
-    //TODO fix: lvalues must report their type, so we can get the size of an array's elements
-    std::cout << "li " << elementSizeReg << ", " << 4 << " #Get array element size\n";
+    std::cout << "li " << elementSizeReg << ", " << this->getConcreteType(table)->getSize(table)
+              << " #Get array element size\n";
     std::cout << "mul " << offsetReg << ", " << offsetReg << ", " << elementSizeReg << " #Compute offset\n";
 
     pool.freeRegister(elementSizeReg);
@@ -46,4 +48,17 @@ std::string ArrayAccessExpression::emitToRegister(SymbolTable &table, RegisterPo
     std::cout << std::endl;
 
     return reg;
+}
+
+std::shared_ptr<Type> ArrayAccessExpression::getConcreteType(SymbolTable &table) {
+    const auto arr = std::dynamic_pointer_cast<ArrayType>(left->getConcreteType(table));
+
+    if (!arr) {
+        std::cout << "Cannot access non-array type ";
+        left->print();
+        std::cout << std::endl;
+        std::exit(10);
+    }
+
+    return arr->type;
 }

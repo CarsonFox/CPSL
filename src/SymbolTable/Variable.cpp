@@ -22,3 +22,7 @@ std::string Variable::getBase() const {
 int Variable::getOffset() const {
     return offset;
 }
+
+std::shared_ptr<Type> Variable::getConcreteType() const {
+    return type;
+}

@@ -53,3 +53,7 @@ std::string IdentifierExpression::emitLocationToRegister(SymbolTable &table, Reg
 
     return reg;
 }
+
+std::shared_ptr<Type> IdentifierExpression::getConcreteType(SymbolTable &table) {
+    return table.lookupVariable(id).getConcreteType();
+}
