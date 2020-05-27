@@ -15,4 +15,6 @@ struct RecordAccessExpression : LValue {
     void print() const override;
 
     bool isConst() const override;
+
+    std::string emitLocationToRegister(SymbolTable &table, RegisterPool &pool) override;
 };
