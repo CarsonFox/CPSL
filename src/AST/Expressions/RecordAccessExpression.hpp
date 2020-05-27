@@ -17,4 +17,8 @@ struct RecordAccessExpression : LValue {
     bool isConst() const override;
 
     std::string emitLocationToRegister(SymbolTable &table, RegisterPool &pool) override;
+
+    std::string emitToRegister(SymbolTable &table, RegisterPool &pool) override;
+
+    std::shared_ptr<Type> getConcreteType(SymbolTable &table) override;
 };

@@ -31,7 +31,8 @@ std::string RecordAccessExpression::emitLocationToRegister(SymbolTable &table, R
     for (const auto &[ids, type]: record->members) {
         for (const auto &id : ids) {
             if (id == this->right) {
-                std::cout << "addi " << locReg << ", " << locReg << ", " << offset;
+                std::cout << "addi " << locReg << ", " << locReg << ", " << offset
+                          << " #Compute location of member " << id << std::endl;
                 return locReg;
             } else {
                 offset += type->getSize(table);
@@ -41,6 +42,40 @@ std::string RecordAccessExpression::emitLocationToRegister(SymbolTable &table, R
 
     std::cout << right << " does not name a member of ";
     record->print();
+    std::cout << std::endl;
+    std::exit(12);
+}
+
+std::string RecordAccessExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
+    auto reg = this->emitLocationToRegister(table, pool);
+
+    std::cout << "lw " << reg << ", (" << reg << ") #";
+    this->print();
+    std::cout << std::endl;
+
+    return reg;
+}
+
+std::shared_ptr<Type> RecordAccessExpression::getConcreteType(SymbolTable &table) {
+    const auto record = std::dynamic_pointer_cast<RecordType>(left->getConcreteType(table));
+
+    if (!record) {
+        std::cout << "Cannot access non-record type ";
+        left->print();
+        std::cout << std::endl;
+        std::exit(10);
+    }
+
+    for (const auto &[ids, type]: record->members) {
+        for (const auto &id: ids) {
+            if (id == this->right) {
+                return type;
+            }
+        }
+    }
+
+    std::cout << this->right << " does not name a member of record ";
+    this->left->print();
     std::cout << std::endl;
     std::exit(12);
 }

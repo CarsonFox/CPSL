@@ -1,6 +1,8 @@
-var tuple: array [0:1] of integer;
+var foo: record arr: array [0: 5] of char; x, y: integer; end;
 
 BEGIN
-    tuple[0] := 1;
-    tuple[1] := 2;
+    foo.x := 1;
+    foo.y := 2;
+
+    foo.arr[0] := 69;
 END.
