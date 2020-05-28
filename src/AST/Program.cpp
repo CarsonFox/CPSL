@@ -64,6 +64,12 @@ void Program::fold_constants() {
 }
 
 void Program::emit() {
+    /*
+     * Programs are assumed to be syntactically correct.
+     * This includes assuming no duplicate procedure/function identifiers.
+     * Along with making no attempts to optimize the assembly, this simplifies things a lot.
+     */
+
     SymbolTable symbolTable;
     RegisterPool registerPool;
 
@@ -82,6 +88,10 @@ void Program::emit() {
     }
 
     std::cout << "li $v0, 10\n" << "syscall\n\n";
+
+    for (auto &sub: subroutines) {
+        sub->emit(symbolTable, registerPool);
+    }
 
     std::cout << ".data\n";
     Labels::emitStrings();

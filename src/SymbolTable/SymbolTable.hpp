@@ -48,4 +48,6 @@ public:
     bool isVariable(const std::string &) const;
 
     bool isConstant(const std::string &) const;
+
+
 };

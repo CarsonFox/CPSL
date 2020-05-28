@@ -1,17 +1,8 @@
-var x: integer;
+procedure print2(x, y: integer);
+begin
+    write(x, ' ', y, '\n');
+end;
 
 begin
-    x := 1;
-    while (x < 20) do
-        if (x % 3) = 0 & (x % 5) = 0 then
-            write("FizzBuzz\n");
-        elseif (x % 5) = 0 then
-            write("Buzz\n");
-        elseif (x % 3) = 0 then
-            write("Fizz\n");
-        else
-            write(x, '\n');
-        end;
-        x := x + 1;
-    end
+    print2(1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1);
 end.
