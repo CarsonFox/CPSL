@@ -24,6 +24,9 @@ li $s2, 1 #Load literal 1
 add $s1, $s1, $s2 #x + 1
 sw $s1, 0($gp) #x := x + 1;
 
+li $v0, 10
+syscall
+
 j while_begin_0 #Next while iteration
 while_end_0:
 

@@ -7,7 +7,7 @@ struct StopStatement : Statement {
 
     ~StopStatement() override = default;
 
-    void print() const override {
-        std::cout << "STOP";
-    }
+    void print() const override;
+
+    void emit(SymbolTable &table, RegisterPool &pool) override;
 };
