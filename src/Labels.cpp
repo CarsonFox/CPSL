@@ -30,3 +30,9 @@ StringPair Labels::getWhileLabels() {
 
     return {ssBegin.str(), ssEnd.str()};
 }
+
+std::string Labels::getRepeatLabel() {
+    std::stringstream ss;
+    ss << "repeat_" << x++;
+    return ss.str();
+}

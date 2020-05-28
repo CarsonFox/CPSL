@@ -3,6 +3,8 @@
 
 #include "src/AST/Util.hpp"
 
+#include "src/Labels.hpp"
+
 RepeatStatement::RepeatStatement(StatementList *l, Expression *e) : stmts(l->toVector()), pred(e) {
     delete l;
 }
@@ -21,4 +23,22 @@ void RepeatStatement::fold_constants() {
 
     for (auto &stmt: stmts)
         stmt->fold_constants();
+}
+
+void RepeatStatement::emit(SymbolTable &table, RegisterPool &pool) {
+    const auto label = Labels::getRepeatLabel();
+
+    std::cout << label << ":\n";
+
+    for (auto &stmt: stmts) {
+        stmt->emit(table, pool);
+    }
+
+    const auto reg = pred->emitToRegister(table, pool);
+
+    std::cout << "bnez " << reg << ", " << label << " #test ";
+    pred->print();
+    std::cout << "\n\n";
+
+    pool.freeRegister(reg);
 }

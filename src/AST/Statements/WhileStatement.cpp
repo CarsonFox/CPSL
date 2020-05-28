@@ -36,6 +36,8 @@ void WhileStatement::emit(SymbolTable &table, RegisterPool &pool) {
     pred->print();
     std::cout << "\n\n";
 
+    pool.freeRegister(reg);
+
     for (auto &stmt: stmts) {
         stmt->emit(table, pool);
     }
