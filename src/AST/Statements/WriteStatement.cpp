@@ -34,6 +34,7 @@ void WriteStatement::emit(SymbolTable &table, RegisterPool &pool) {
     for (auto &expr: args) {
         switch (expr->getType(table)) {
             case Expression::integral:
+            case Expression::boolean:
                 printIntegral(table, pool, expr);
                 continue;
 
@@ -54,7 +55,8 @@ void WriteStatement::emit(SymbolTable &table, RegisterPool &pool) {
     }
 }
 
-void WriteStatement::printIntegral(SymbolTable &table, RegisterPool &pool, const std::shared_ptr<Expression> &expr) {
+void
+WriteStatement::printIntegral(SymbolTable &table, RegisterPool &pool, const std::shared_ptr<Expression> &expr) const {
     const auto reg = expr->emitToRegister(table, pool);
     std::cout << "li $v0, 1 #Print integer syscall\n";
     std::cout << "move $a0, " << reg << " #";
@@ -63,7 +65,8 @@ void WriteStatement::printIntegral(SymbolTable &table, RegisterPool &pool, const
     pool.freeRegister(reg);
 }
 
-void WriteStatement::printCharacter(SymbolTable &table, RegisterPool &pool, const std::shared_ptr<Expression> &expr) {
+void
+WriteStatement::printCharacter(SymbolTable &table, RegisterPool &pool, const std::shared_ptr<Expression> &expr) const {
     const auto reg = expr->emitToRegister(table, pool);
     std::cout << "li $v0, 11 #Print character syscall\n";
     std::cout << "move $a0, " << reg << " #";
@@ -72,7 +75,8 @@ void WriteStatement::printCharacter(SymbolTable &table, RegisterPool &pool, cons
     pool.freeRegister(reg);
 }
 
-void WriteStatement::printString(SymbolTable &table, RegisterPool &pool, const std::shared_ptr<Expression> &expr) {
+void
+WriteStatement::printString(SymbolTable &table, RegisterPool &pool, const std::shared_ptr<Expression> &expr) const {
     const auto reg = expr->emitToRegister(table, pool);
     std::cout << "li $v0, 4 #Print string syscall\n";
     std::cout << "move $a0, " << reg << " #";

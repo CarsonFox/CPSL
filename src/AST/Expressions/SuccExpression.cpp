@@ -22,13 +22,34 @@ std::optional<int> SuccExpression::try_fold() {
 }
 
 std::string SuccExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
-    const auto exprReg = expr->emitToRegister(table, pool);
-    auto destReg = pool.getRegister();
+    const auto type = expr->getType(table);
 
-    std::cout << "addi " << destReg << ", " << exprReg << ", " << "1 #";
-    this->print();
-    std::cout << std::endl;
+    if (type == Expression::integral || type == Expression::character) {
+        const auto exprReg = expr->emitToRegister(table, pool);
+        auto destReg = pool.getRegister();
 
-    pool.freeRegister(exprReg);
-    return destReg;
+        std::cout << "addi " << destReg << ", " << exprReg << ", " << "1 #";
+        this->print();
+        std::cout << std::endl;
+
+        pool.freeRegister(exprReg);
+        return destReg;
+    } else if (type == Expression::boolean) {
+        auto reg = expr->emitToRegister(table, pool);
+
+        std::cout << "seq " << reg << ", " << reg << ", $zero #";
+        this->print();
+        std::cout << std::endl;
+
+        return reg;
+    } else {
+        std::cout << "Succ undefined for ";
+        expr->print();
+        std::cout << std::endl;
+        std::exit(12);
+    }
+}
+
+Expression::type SuccExpression::getType(SymbolTable &table) {
+    return expr->getType(table);
 }

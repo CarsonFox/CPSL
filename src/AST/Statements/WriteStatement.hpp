@@ -20,9 +20,9 @@ struct WriteStatement : Statement {
     void emit(SymbolTable &table, RegisterPool &pool) override;
 
 private:
-    void printIntegral(SymbolTable &table, RegisterPool &pool, const std::shared_ptr<Expression> &expr);
+    void printIntegral(SymbolTable &table, RegisterPool &pool, const std::shared_ptr<Expression> &expr) const;
 
-    void printCharacter(SymbolTable &table, RegisterPool &pool, const std::shared_ptr<Expression> &expr);
+    void printCharacter(SymbolTable &table, RegisterPool &pool, const std::shared_ptr<Expression> &expr) const;
 
-    void printString(SymbolTable &table, RegisterPool &pool, const std::shared_ptr<Expression> &expr);
+    void printString(SymbolTable &table, RegisterPool &pool, const std::shared_ptr<Expression> &expr) const;
 };

@@ -5,4 +5,7 @@ BEGIN
     foo.y := 2;
 
     foo.arr[0] := 69;
+
+    write("succ(true) = ", succ(true), '\n');
+    write("pred(true) = ", pred(true), '\n');
 END.

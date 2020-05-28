@@ -4,9 +4,6 @@
 
 #include "Expression.hpp"
 
-//TODO: Pred and succ have different behavior for booleans.
-//This requires a boolean type
-
 struct PredExpression : Expression {
     std::shared_ptr<Expression> expr;
 
@@ -21,4 +18,6 @@ struct PredExpression : Expression {
     std::optional<int> try_fold() override;
 
     std::string emitToRegister(SymbolTable &table, RegisterPool &pool) override;
+
+    type getType(SymbolTable &table) override;
 };

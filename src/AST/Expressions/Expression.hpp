@@ -10,6 +10,7 @@ struct Expression : ASTNode {
     //The spaghetti grows...
     enum type {
         integral,
+        boolean,
         character,
         string,
         userDefined,
