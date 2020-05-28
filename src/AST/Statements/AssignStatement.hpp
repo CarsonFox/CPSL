@@ -11,6 +11,8 @@ struct AssignStatement : Statement {
 
     AssignStatement(LValue *, Expression *);
 
+    AssignStatement(LValue *, std::shared_ptr<Expression>);
+
     ~AssignStatement() override = default;
 
     void print() const override;

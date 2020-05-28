@@ -1,8 +1,5 @@
-procedure print2(x, y: integer);
 begin
-    write(x, ' ', y, '\n');
-end;
-
-begin
-    print2(1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1);
+    for i := 10 downto 1 do
+        write(i, '\n');
+    end
 end.

@@ -5,6 +5,10 @@ LessExpression::LessExpression(Expression *l, Expression *r) : BinaryOpExpressio
 
 }
 
+LessExpression::LessExpression(Expression *l, std::shared_ptr<Expression> r) : BinaryOpExpression(l, nullptr) {
+    right = std::move(r);
+}
+
 void LessExpression::print() const {
     left->print();
     std::cout << " < ";

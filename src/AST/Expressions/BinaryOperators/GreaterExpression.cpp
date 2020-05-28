@@ -5,6 +5,10 @@ GreaterExpression::GreaterExpression(Expression *l, Expression *r) : BinaryOpExp
 
 }
 
+GreaterExpression::GreaterExpression(Expression *l, std::shared_ptr<Expression> r) : BinaryOpExpression(l, nullptr) {
+    right = std::move(r);
+}
+
 void GreaterExpression::print() const {
     left->print();
     std::cout << " > ";

@@ -31,6 +31,15 @@ StringPair Labels::getWhileLabels() {
     return {ssBegin.str(), ssEnd.str()};
 }
 
+StringPair Labels::getForLabels() {
+    std::stringstream ssBegin, ssEnd;
+
+    ssBegin << "for_begin_" << x;
+    ssEnd << "for_end_" << x++;
+
+    return {ssBegin.str(), ssEnd.str()};
+}
+
 std::string Labels::getRepeatLabel() {
     std::stringstream ss;
     ss << "repeat_" << x++;

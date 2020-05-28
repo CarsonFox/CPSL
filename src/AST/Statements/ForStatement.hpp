@@ -26,4 +26,6 @@ struct ForStatement : Statement {
     void print() const override;
 
     void fold_constants() override;
+
+    void emit(SymbolTable &table, RegisterPool &pool) override;
 };

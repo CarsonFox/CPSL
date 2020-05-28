@@ -5,6 +5,8 @@
 
 AssignStatement::AssignStatement(LValue *l, Expression *e) : lvalue(l), expr(e) {}
 
+AssignStatement::AssignStatement(LValue *l, std::shared_ptr<Expression> e) : lvalue(l), expr(std::move(e)) {}
+
 void AssignStatement::print() const {
     lvalue->print();
     std::cout << " := ";

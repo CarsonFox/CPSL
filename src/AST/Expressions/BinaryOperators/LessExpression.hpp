@@ -5,6 +5,8 @@
 struct LessExpression : BinaryOpExpression {
     LessExpression(Expression *, Expression *);
 
+    LessExpression(Expression *, std::shared_ptr<Expression>);
+
     ~LessExpression() override = default;
 
     void print() const override;

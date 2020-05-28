@@ -18,6 +18,8 @@ public:
 
     static StringPair getWhileLabels();
 
+    static StringPair getForLabels();
+
     static std::string getRepeatLabel();
 
     static std::string getIfLabel();

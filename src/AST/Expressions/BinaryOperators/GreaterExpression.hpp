@@ -5,6 +5,8 @@
 struct GreaterExpression : BinaryOpExpression {
     GreaterExpression(Expression *, Expression *);
 
+    GreaterExpression(Expression *, std::shared_ptr<Expression>);
+
     ~GreaterExpression() override = default;
 
     void print() const override;
