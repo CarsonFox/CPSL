@@ -1,11 +1,2 @@
-var foo: record arr: array [0: 5] of char; x, y: integer; end;
-
 BEGIN
-    foo.x := 1;
-    foo.y := 2;
-
-    foo.arr[0] := 69;
-
-    write("succ(true) = ", succ(true), '\n');
-    write("pred(true) = ", pred(true), '\n');
 END.

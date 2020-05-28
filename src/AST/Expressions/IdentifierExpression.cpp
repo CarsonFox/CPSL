@@ -57,5 +57,10 @@ std::shared_ptr<Type> IdentifierExpression::getConcreteType(SymbolTable &table) 
 }
 
 Expression::type IdentifierExpression::getType(SymbolTable &table) {
-    return Expression::getType(table);
+    if (table.isConstant(id)) {
+        return table.lookupConstant(id)->getType(table);
+    }
+
+    //TODO fix this
+    return integral;
 }
