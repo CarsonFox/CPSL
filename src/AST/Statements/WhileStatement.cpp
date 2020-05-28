@@ -2,6 +2,7 @@
 #include "WhileStatement.hpp"
 
 #include "src/AST/Util.hpp"
+#include "src/Labels.hpp"
 
 WhileStatement::WhileStatement(Expression *e, StatementList *l) : pred(e) {
     stmts = l->toVector();
@@ -23,4 +24,22 @@ void WhileStatement::fold_constants() {
 
     for (auto &stmt: stmts)
         stmt->fold_constants();
+}
+
+void WhileStatement::emit(SymbolTable &table, RegisterPool &pool) {
+    const auto[begin, end] = Labels::getWhileLabels();
+
+    std::cout << begin << ":\n";
+
+    const auto reg = pred->emitToRegister(table, pool);
+    std::cout << "beqz " << reg << ", " << end << " #test ";
+    pred->print();
+    std::cout << "\n\n";
+
+    for (auto &stmt: stmts) {
+        stmt->emit(table, pool);
+    }
+
+    std::cout << "j " << begin << " #Next while iteration\n";
+    std::cout << end << ":\n\n";
 }

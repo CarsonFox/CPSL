@@ -15,4 +15,6 @@ public:
     static void emitStrings();
 
     static std::string getStringLabel(const std::string &);
+
+    static StringPair getWhileLabels();
 };

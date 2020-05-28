@@ -21,3 +21,12 @@ std::string Labels::getStringLabel(const std::string &str) {
 
     return ss.str();
 }
+
+StringPair Labels::getWhileLabels() {
+    std::stringstream ssBegin, ssEnd;
+
+    ssBegin << "while_begin_" << x;
+    ssEnd << "while_end_" << x++;
+
+    return {ssBegin.str(), ssEnd.str()};
+}
