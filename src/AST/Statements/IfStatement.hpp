@@ -26,4 +26,10 @@ struct IfStatement : Statement {
     void print() const override;
 
     void fold_constants() override;
+
+    void emit(SymbolTable &table, RegisterPool &pool) override;
+
+private:
+    static void emitIf(SymbolTable &table, RegisterPool &pool, std::shared_ptr<Expression> &pred,
+                       std::vector<std::shared_ptr<Statement>> &stmts, const std::string &);
 };

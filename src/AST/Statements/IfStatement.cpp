@@ -3,6 +3,8 @@
 
 #include "src/AST/Util.hpp"
 
+#include "src/Labels.hpp"
+
 IfStatement::IfStatement(Expression *e, StatementList *l) : pred(e) {
     stmts = l->toVector();
     delete l;
@@ -68,4 +70,43 @@ void IfStatement::fold_constants() {
 
     for (auto &stmt: elseStmts)
         stmt->fold_constants();
+}
+
+void IfStatement::emit(SymbolTable &table, RegisterPool &pool) {
+    const auto endLabel = Labels::getIfLabel();
+
+    emitIf(table, pool, pred, stmts, endLabel);
+
+    for (auto &[pred, stmts]: elseIfs) {
+        emitIf(table, pool, pred, stmts, endLabel);
+    }
+
+    if (!elseStmts.empty()) {
+        std::cout << "#Else:\n";
+        for (auto &stmt: elseStmts) {
+            stmt->emit(table, pool);
+        }
+    }
+
+    std::cout << endLabel << ":\n\n";
+}
+
+void IfStatement::emitIf(SymbolTable &table, RegisterPool &pool, std::shared_ptr<Expression> &pred,
+                         std::vector<std::shared_ptr<Statement>> &stmts, const std::string &endLabel) {
+    const auto ifLabel = Labels::getIfLabel();
+    const auto reg = pred->emitToRegister(table, pool);
+
+    std::cout << "beqz " << reg << ", " << ifLabel << " #Test condition ";
+    pred->print();
+    std::cout << std::endl;
+
+    pool.freeRegister(reg);
+
+    for (auto &stmt: stmts) {
+        stmt->emit(table, pool);
+    }
+
+    std::cout << "j " << endLabel << " #Jump to end of if statement\n\n";
+
+    std::cout << ifLabel << ":\n\n";
 }

@@ -19,4 +19,6 @@ public:
     static StringPair getWhileLabels();
 
     static std::string getRepeatLabel();
+
+    static std::string getIfLabel();
 };

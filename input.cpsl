@@ -1,9 +1,17 @@
 var x: integer;
 
 begin
-    x := 0;
-    repeat
-        write(x, '\n');
+    x := 1;
+    while (x < 20) do
+        if (x % 3) = 0 & (x % 5) = 0 then
+            write("FizzBuzz\n");
+        elseif (x % 5) = 0 then
+            write("Buzz\n");
+        elseif (x % 3) = 0 then
+            write("Fizz\n");
+        else
+            write(x, '\n');
+        end;
         x := x + 1;
-    until x < 10
+    end
 end.

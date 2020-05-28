@@ -36,3 +36,9 @@ std::string Labels::getRepeatLabel() {
     ss << "repeat_" << x++;
     return ss.str();
 }
+
+std::string Labels::getIfLabel() {
+    std::stringstream ss;
+    ss << "if_" << x++;
+    return ss.str();
+}
