@@ -36,7 +36,7 @@ void RepeatStatement::emit(SymbolTable &table, RegisterPool &pool) {
 
     const auto reg = pred->emitToRegister(table, pool);
 
-    std::cout << "bnez " << reg << ", " << label << " #test ";
+    std::cout << "beqz " << reg << ", " << label << " #test ";
     pred->print();
     std::cout << "\n\n";
 
