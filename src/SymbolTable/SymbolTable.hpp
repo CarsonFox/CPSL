@@ -49,5 +49,7 @@ public:
 
     bool isConstant(const std::string &) const;
 
+    void pushScope();
 
+    void popScope();
 };

@@ -108,3 +108,11 @@ bool SymbolTable::isConstant(const std::string &id) const {
     }
     return false;
 }
+
+void SymbolTable::pushScope() {
+    scopes.emplace_back();
+}
+
+void SymbolTable::popScope() {
+    scopes.pop_back();
+}

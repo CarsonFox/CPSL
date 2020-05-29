@@ -1,31 +1,36 @@
 .text
 
-li $s0, 10 #Load literal 10
-sw $s0, 0($gp) #i := 10;
+li $s0, 1 #Load literal 1
+sw $s0, 0($gp) #a := 1;
 
-for_begin_0: #Begin for loop
-lw $s0, 0($gp) #Load i
-li $s1, 1 #Load literal 1
-slt $s0, $s0, $s1 #i < 1
-bnez $s0, for_end_0 #Test condition i < 1
+li $s0, 98 #Load literal b
+sw $s0, 4($gp) #b := b;
 
-lw $s1, 0($gp) #Load i
+li $s0, 1 #Load literal 1
+sw $s0, 8($gp) #c := true;
+
+li $s0, 0 #Load literal 0
+sw $s0, 12($gp) #d := false;
+
+lw $s0, 0($gp) #Load a
 li $v0, 1 #Print integer syscall
-move $a0, $s1 #WRITE(i, \n);
+move $a0, $s0 #WRITE(a, b, c, d);
 syscall
 
-li $s1, 10 #Load literal \n
-li $v0, 11 #Print character syscall
-move $a0, $s1 #WRITE(i, \n);
+lw $s0, 4($gp) #Load b
+li $v0, 1 #Print integer syscall
+move $a0, $s0 #WRITE(a, b, c, d);
 syscall
 
-lw $s1, 0($gp) #Load i
-li $s2, -1 #Load literal -1
-add $s1, $s1, $s2 #i + -1
-sw $s1, 0($gp) #i := i + -1;
+lw $s0, 8($gp) #Load c
+li $v0, 1 #Print integer syscall
+move $a0, $s0 #WRITE(a, b, c, d);
+syscall
 
-j for_begin_0 #Jump to next iteration of the for loop
-for_end_0: #End for loop
+lw $s0, 12($gp) #Load d
+li $v0, 1 #Print integer syscall
+move $a0, $s0 #WRITE(a, b, c, d);
+syscall
 
 li $v0, 10
 syscall
