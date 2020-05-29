@@ -42,7 +42,7 @@ void SymbolTable::addVariable(const std::string &id, std::shared_ptr<Type> type)
 
 void SymbolTable::Scope::addVariable(const std::string &id, std::shared_ptr<Type> type, std::string base, int size) {
     variables[id] = Variable(id, std::move(type), std::move(base), varSize);
-    varSize += size;//TODO: support for other sizes
+    varSize += size;
 }
 
 void SymbolTable::addConstant(const std::string &id, std::shared_ptr<Expression> expr) {
