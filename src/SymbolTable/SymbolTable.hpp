@@ -18,10 +18,13 @@ class SymbolTable {
         std::unordered_map<std::string, std::shared_ptr<Expression>> constants;
 
         int varSize = 0;
+        std::string base;
 
-        Scope() = default;
+        Scope();
 
-        void addVariable(const std::string &, std::shared_ptr<Type>, std::string, int);
+        explicit Scope(std::string);
+
+        void addVariable(const std::string &, std::shared_ptr<Type>, int);
 
         void addType(const std::string &, std::shared_ptr<Type>);
 
@@ -50,6 +53,8 @@ public:
     bool isConstant(const std::string &) const;
 
     void pushScope();
+
+    void pushForScope();
 
     void popScope();
 };

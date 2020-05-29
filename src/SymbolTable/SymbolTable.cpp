@@ -30,18 +30,20 @@ SymbolTable::SymbolTable() {
     addConstant("FALSE", false_expr);
 }
 
-void SymbolTable::addVariable(const std::string &id, std::shared_ptr<Type> type) {
-    if (scopes.size() == 1) {
-        //Global variable
-        scopes[0].addVariable(id, type, "$gp", type->getSize(*this));
-    } else {
-        //Local variable
-        scopes[1].addVariable(id, type, "$sp", type->getSize(*this));
-    }
+SymbolTable::Scope::Scope() {
+    base = "$gp";
 }
 
-void SymbolTable::Scope::addVariable(const std::string &id, std::shared_ptr<Type> type, std::string base, int size) {
-    variables[id] = Variable(id, std::move(type), std::move(base), varSize);
+SymbolTable::Scope::Scope(std::string base) : Scope() {
+    this->base = std::move(base);
+}
+
+void SymbolTable::addVariable(const std::string &id, std::shared_ptr<Type> type) {
+    scopes.back().addVariable(id, type, type->getSize(*this));
+}
+
+void SymbolTable::Scope::addVariable(const std::string &id, std::shared_ptr<Type> type, int size) {
+    variables[id] = Variable(id, std::move(type), base, varSize);
     varSize += size;
 }
 
@@ -110,7 +112,13 @@ bool SymbolTable::isConstant(const std::string &id) const {
 }
 
 void SymbolTable::pushScope() {
-    scopes.emplace_back();
+    scopes.emplace_back("$sp");
+}
+
+void SymbolTable::pushForScope() {
+    scopes.emplace_back(scopes.back().base);
+    //This isn't sound. For one - function calls within loops will overwrite the loop variable on the stack.
+    scopes.back().varSize = scopes[scopes.size() - 2].varSize;
 }
 
 void SymbolTable::popScope() {

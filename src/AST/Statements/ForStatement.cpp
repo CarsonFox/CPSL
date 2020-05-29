@@ -45,6 +45,8 @@ void ForStatement::fold_constants() {
 }
 
 void ForStatement::emit(SymbolTable &table, RegisterPool &pool) {
+    table.pushForScope();
+
     //Hack: treat the variable as an integer no matter what
     table.addVariable(id, std::shared_ptr<Type>(new BuiltinType()));
 
@@ -87,4 +89,6 @@ void ForStatement::emit(SymbolTable &table, RegisterPool &pool) {
 
     std::cout << "j " << beginLabel << " #Jump to next iteration of the for loop\n";
     std::cout << endLabel << ": #End for loop\n\n";
+
+    table.popScope();
 }
