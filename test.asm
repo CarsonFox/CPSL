@@ -2,130 +2,99 @@
 
 j main #Begin with main entry point
 
-functionOne:
+fibonacci:
 addiu $sp, $sp, -8 #Set up stack frame
-sw $s0, 0($sp) #Store argument a
+sw $a0, 0($sp) #Store argument n
 sw $ra, 4($sp) #Save return address
 
-la $s0, string_0 #Load string "Function One Recieved:"
-li $v0, 4 #Print string syscall
-move $a0, $s0 #WRITE("Function One Recieved:", a, ". \nCalling Function Two From Function One With ", a + 5, "\n");
-syscall
-
-lw $s0, 0($sp) #Load a
-li $v0, 1 #Print integer syscall
-move $a0, $s0 #WRITE("Function One Recieved:", a, ". \nCalling Function Two From Function One With ", a + 5, "\n");
-syscall
-
-la $s0, string_1 #Load string ". \nCalling Function Two From Function One With "
-li $v0, 4 #Print string syscall
-move $a0, $s0 #WRITE("Function One Recieved:", a, ". \nCalling Function Two From Function One With ", a + 5, "\n");
-syscall
-
-lw $s0, 0($sp) #Load a
-li $s1, 5 #Load literal 5
-add $s0, $s0, $s1 #a + 5
-li $v0, 1 #Print integer syscall
-move $a0, $s0 #WRITE("Function One Recieved:", a, ". \nCalling Function Two From Function One With ", a + 5, "\n");
-syscall
-
-la $s0, string_2 #Load string "\n"
-li $v0, 4 #Print string syscall
-move $a0, $s0 #WRITE("Function One Recieved:", a, ". \nCalling Function Two From Function One With ", a + 5, "\n");
-syscall
-
-lw $s0, 0($sp) #Load a
-li $s1, 5 #Load literal 5
-add $s0, $s0, $s1 #a + 5
-jal functionTwo #Call function
-move $s0, $v0 #Load return value
-move $v0, $s0 #RETURN functionTwo(a + 5);
+lw $t0, 0($sp) #Load n
+li $t1, 0 #Load literal 0
+seq $t0, $t0, $t1 #n = 0
+beqz $t0, if_1 #Test condition n = 0
+li $t0, 0 #Load literal 0
+move $v0, $t0 #RETURN 0;
 lw $ra, 4($sp) #Restore return address
 addiu $sp, $sp, 8 #Delete stack frame
 jr $ra #Return to caller
-lw $ra, 4($sp) #Restore return address
-addiu $sp, $sp, 8 #Delete stack frame
-jr $ra #Return from procedure functionOne
+j if_0 #Jump to end of if statement
 
-functionTwo:
-addiu $sp, $sp, -8 #Set up stack frame
-sw $s0, 0($sp) #Store argument a
-sw $ra, 4($sp) #Save return address
+if_1:
 
-la $s0, string_3 #Load string "Function Two Recieved:"
-li $v0, 4 #Print string syscall
-move $a0, $s0 #WRITE("Function Two Recieved:", a, "\n");
-syscall
-
-lw $s0, 0($sp) #Load a
-li $v0, 1 #Print integer syscall
-move $a0, $s0 #WRITE("Function Two Recieved:", a, "\n");
-syscall
-
-la $s0, string_4 #Load string "\n"
-li $v0, 4 #Print string syscall
-move $a0, $s0 #WRITE("Function Two Recieved:", a, "\n");
-syscall
-
-la $s0, string_5 #Load string "Returning "
-li $v0, 4 #Print string syscall
-move $a0, $s0 #WRITE("Returning ", a + 5, "\n");
-syscall
-
-lw $s0, 0($sp) #Load a
-li $s1, 5 #Load literal 5
-add $s0, $s0, $s1 #a + 5
-li $v0, 1 #Print integer syscall
-move $a0, $s0 #WRITE("Returning ", a + 5, "\n");
-syscall
-
-la $s0, string_6 #Load string "\n"
-li $v0, 4 #Print string syscall
-move $a0, $s0 #WRITE("Returning ", a + 5, "\n");
-syscall
-
-lw $s0, 0($sp) #Load a
-li $s1, 5 #Load literal 5
-add $s0, $s0, $s1 #a + 5
-move $v0, $s0 #RETURN a + 5;
+lw $t0, 0($sp) #Load n
+li $t1, 1 #Load literal 1
+seq $t0, $t0, $t1 #n = 1
+beqz $t0, if_2 #Test condition n = 1
+li $t0, 1 #Load literal 1
+move $v0, $t0 #RETURN 1;
 lw $ra, 4($sp) #Restore return address
 addiu $sp, $sp, 8 #Delete stack frame
 jr $ra #Return to caller
+j if_0 #Jump to end of if statement
+
+if_2:
+
+#Else:
+lw $t0, 0($sp) #Load n
+li $t1, 1 #Load literal 1
+sub $t0, $t0, $t1 #n - 1
+move $a0, $t0 #Hack: move to arg register
+jal fibonacci #Call function
+move $t0, $v0 #Load return value
+lw $t1, 0($sp) #Load n
+li $t2, 2 #Load literal 2
+sub $t1, $t1, $t2 #n - 2
+move $a0, $t1 #Hack: move to arg register
+jal fibonacci #Call function
+move $t1, $v0 #Load return value
+add $t0, $t0, $t1 #fibonacci(n - 1) + fibonacci(n - 2)
+move $v0, $t0 #RETURN fibonacci(n - 1) + fibonacci(n - 2);
 lw $ra, 4($sp) #Restore return address
 addiu $sp, $sp, 8 #Delete stack frame
-jr $ra #Return from procedure functionTwo
+jr $ra #Return to caller
+if_0:
+
+lw $ra, 4($sp) #Restore return address
+addiu $sp, $sp, 8 #Delete stack frame
+jr $ra #Return from procedure fibonacci
 
 main:
-la $s0, string_7 #Load string "Calling Function One With 5\n"
+la $t0, string_3 #Load string "This should display the fibonacci sequence from 1-10\n"
 li $v0, 4 #Print string syscall
-move $a0, $s0 #WRITE("Calling Function One With 5\n");
+move $a0, $t0 #WRITE("This should display the fibonacci sequence from 1-10\n");
 syscall
 
-li $s0, 5 #Load literal 5
-jal functionOne #Call function
-move $s0, $v0 #Load return value
-sw $s0, 0($gp) #a := functionOne(5);
+li $t0, 1 #Load literal 1
+sw $t0, 4($gp) #i := 1;
 
-la $s0, string_8 #Load string "Function One Returned:"
-li $v0, 4 #Print string syscall
-move $a0, $s0 #WRITE("Function One Returned:", a);
-syscall
+for_begin_4: #Begin for loop
+lw $t0, 4($gp) #Load i
+li $t1, 10 #Load literal 10
+sgt $t0, $t0, $t1 #i > 10
+bnez $t0, for_end_4 #Test condition i > 10
 
-lw $s0, 0($gp) #Load a
+lw $t0, 4($gp) #Load i
+move $a0, $t0 #Hack: move to arg register
+jal fibonacci #Call function
+move $t0, $v0 #Load return value
 li $v0, 1 #Print integer syscall
-move $a0, $s0 #WRITE("Function One Returned:", a);
+move $a0, $t0 #WRITE(fibonacci(i), \n);
 syscall
+
+li $t0, 10 #Load literal \n
+li $v0, 11 #Print character syscall
+move $a0, $t0 #WRITE(fibonacci(i), \n);
+syscall
+
+lw $t0, 4($gp) #Load i
+li $t1, 1 #Load literal 1
+add $t0, $t0, $t1 #i + 1
+sw $t0, 4($gp) #i := i + 1;
+
+j for_begin_4 #Jump to next iteration of the for loop
+for_end_4: #End for loop
 
 li $v0, 10
 syscall
 
 .data
-string_0: .asciiz "Function One Recieved:"
-string_1: .asciiz ". \nCalling Function Two From Function One With "
-string_2: .asciiz "\n"
-string_3: .asciiz "Function Two Recieved:"
-string_4: .asciiz "\n"
-string_5: .asciiz "Returning "
-string_6: .asciiz "\n"
-string_7: .asciiz "Calling Function One With 5\n"
-string_8: .asciiz "Function One Returned:"
+string_3: .asciiz "This should display the fibonacci sequence from 1-10\n"

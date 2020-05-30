@@ -34,11 +34,13 @@ void ProcedureCallStatement::emit(SymbolTable &table, RegisterPool &pool) {
 
     //Load arguments into registers
     for (auto &arg: args) {
-        arg->emitToRegister(table, pool);
+        const auto reg = arg->emitToRegister(table, pool);
+        std::cout << "move " << pool.getArgRegister() << ", " << reg << " #Hack: move to arg register\n";
+        pool.freeRegister(reg);
     }
 
     //Call subroutine
     std::cout << "jal " << id << " #Call procedure\n";
 
-    pool.clearRegisters();
+    pool.clearArgRegisters();
 }

@@ -33,13 +33,15 @@ std::optional<int> FunctionCallExpression::try_fold() {
 std::string FunctionCallExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
     //Load arguments into registers
     for (auto &arg: args) {
-        arg->emitToRegister(table, pool);
+        const auto reg = arg->emitToRegister(table, pool);
+        std::cout << "move " << pool.getArgRegister() << ", " << reg << " #Hack: move to arg register\n";
+        pool.freeRegister(reg);
     }
 
     //Call function
     std::cout << "jal " << id << " #Call function\n";
 
-    pool.clearRegisters();
+    pool.clearArgRegisters();
 
     auto reg = pool.getRegister();
     std::cout << "move " << reg << ", $v0 #Load return value\n";

@@ -1,23 +1,20 @@
 VAR
-	a:integer;
+  i:integer;
 
-function functionTwo(a:integer) : integer; forward;
-function functionOne(a:integer) : integer;
+function fibonacci(var n:integer) : integer;
 BEGIN
-	write("Function One Recieved:",a,". \nCalling Function Two From Function One With ",a+5, "\n");
-	return functionTwo(a+5);
-END;
-
-function functionTwo(a:integer) : integer;
-BEGIN
-	write("Function Two Recieved:", a, "\n");
-	write("Returning ",a+5,"\n");
-	return a+5;
+    if n = 0 then
+        return 0;
+    elseif n = 1 then
+      return 1;
+   	else
+      	return fibonacci(n - 1) + fibonacci(n - 2);
+    END
 END;
 
 BEGIN
-
-	write("Calling Function One With 5\n");
-	a:=functionOne(5);
-	write("Function One Returned:", a);
+	write("This should display the fibonacci sequence from 1-10\n");
+	for i:=1 to 10 do
+		write(fibonacci(i),'\n');
+	END
 END.

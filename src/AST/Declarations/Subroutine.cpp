@@ -55,13 +55,13 @@ void Subroutine::saveParameters(SymbolTable &table, RegisterPool &pool) {
         } else {
             for (const auto &var_id: ids) {
                 table.addVariable(var_id, type);
-                const auto reg = pool.getRegister();
+                const auto reg = pool.getArgRegister();
                 std::cout << "sw " << reg << ", " << table.lookupVariable(var_id).getLocation() << " #Store argument "
                           << var_id << std::endl;
             }
         }
     }
-    pool.clearRegisters();
+    pool.clearArgRegisters();
 }
 
 bool Subroutine::isForward() const {
