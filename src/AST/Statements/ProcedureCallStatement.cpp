@@ -32,10 +32,6 @@ void ProcedureCallStatement::emit(SymbolTable &table, RegisterPool &pool) {
      * Then save them in that order after calling.
      */
 
-    //Empty string is an invalid identifier, so it can be used for the stack pointer
-    table.addVariable("", std::shared_ptr<Type>(new BuiltinType(Expression::integral)));
-    std::cout << "sw $sp, " << table.lookupVariable("").getLocation() << " #Save stack pointer\n";
-
     //Load arguments into registers
     for (auto &arg: args) {
         arg->emitToRegister(table, pool);
@@ -43,9 +39,6 @@ void ProcedureCallStatement::emit(SymbolTable &table, RegisterPool &pool) {
 
     //Call subroutine
     std::cout << "jal " << id << " #Call procedure\n";
-
-    //Restore stack pointer
-    std::cout << "lw $sp, " << table.lookupVariable("").getLocation() << " #Restore stack pointer\n\n";
 
     pool.clearRegisters();
 }

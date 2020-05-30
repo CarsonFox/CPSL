@@ -1,34 +1,23 @@
 VAR
 	a:integer;
 
-procedure localScope();
-VAR
-	a:integer;
+function functionTwo(a:integer) : integer; forward;
+function functionOne(a:integer) : integer;
 BEGIN
-	a:=10;
-	write(a);
+	write("Function One Recieved:",a,". \nCalling Function Two From Function One With ",a+5, "\n");
+	return functionTwo(a+5);
 END;
 
-procedure paramScope(a:integer);
+function functionTwo(a:integer) : integer;
 BEGIN
-	a:=15;
-	write(15);
-END;
-
-procedure globalScope();
-BEGIN
-	write(a);
+	write("Function Two Recieved:", a, "\n");
+	write("Returning ",a+5,"\n");
+	return a+5;
 END;
 
 BEGIN
-	a:=5;
-	write(a);
-	write('\n');
-	localScope();
-	write('\n');
-	paramScope(a);
-	write('\n');
-	globalScope();
-	write('\n');
-	write(a);
+
+	write("Calling Function One With 5\n");
+	a:=functionOne(5);
+	write("Function One Returned:", a);
 END.

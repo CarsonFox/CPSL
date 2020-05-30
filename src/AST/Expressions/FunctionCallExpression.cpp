@@ -1,6 +1,8 @@
 #include "FunctionCallExpression.hpp"
+
 #include "src/AST/Util.hpp"
 #include "LiteralExpression.hpp"
+#include "src/AST/Types/BuiltinType.hpp"
 
 FunctionCallExpression::FunctionCallExpression(char *s, ExpressionList *list) : id(s) {
     args = list->toVector();
@@ -26,4 +28,20 @@ std::optional<int> FunctionCallExpression::try_fold() {
             arg = std::shared_ptr<Expression>(new LiteralExpression(*f_arg));
     }
     return {};
+}
+
+std::string FunctionCallExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
+    //Load arguments into registers
+    for (auto &arg: args) {
+        arg->emitToRegister(table, pool);
+    }
+
+    //Call function
+    std::cout << "jal " << id << " #Call function\n";
+
+    pool.clearRegisters();
+
+    auto reg = pool.getRegister();
+    std::cout << "move " << reg << ", $v0 #Load return value\n";
+    return reg;
 }

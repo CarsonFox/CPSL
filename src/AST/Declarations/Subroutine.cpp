@@ -28,9 +28,9 @@ void Subroutine::emit(SymbolTable &table, RegisterPool &pool) {
     table.pushScope();
     saveParameters(table, pool);
 
-    //Use " ", an invalid identifier, to store return address on stack
-    table.addVariable(" ", std::shared_ptr<Type>(new BuiltinType(Expression::integral)));
-    std::cout << "sw $ra, " << table.lookupVariable(" ").getLocation() << " #Save return address\n\n";
+    //Use "", an invalid identifier, to store return address on stack
+    table.addVariable("", std::shared_ptr<Type>(new BuiltinType(Expression::integral)));
+    std::cout << "sw $ra, " << table.lookupVariable("").getLocation() << " #Save return address\n\n";
 
     body->emit(table, pool);
 
@@ -40,7 +40,8 @@ void Subroutine::emit(SymbolTable &table, RegisterPool &pool) {
     //Create a stack frame, then emit code for body
     std::cout << "addiu $sp, $sp, -" << table.stackFrameSize() << " #Set up stack frame\n";
     std::cout << ss_out.str();
-    std::cout << "lw $ra, " << table.lookupVariable(" ").getLocation() << " #Restore return address\n";
+    std::cout << "lw $ra, " << table.lookupVariable("").getLocation() << " #Restore return address\n";
+    std::cout << "addiu $sp, $sp, " << table.stackFrameSize() << " #Delete stack frame\n";
     std::cout << "jr $ra #Return from procedure " << id << "\n\n";
 
     table.popScope();
