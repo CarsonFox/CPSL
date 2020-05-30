@@ -1,15 +1,11 @@
 #include "Function.hpp"
 
-Function::Function(char *s, FormalParameters *fp, Type *t) : id(s), param(fp), type(t) {
-    free(s);
+Function::Function(char *s, FormalParameters *fp, Type *t) : Subroutine(s, fp) {
+    type = std::shared_ptr<Type>(t);
 }
 
-Function::Function(char *s, FormalParameters *fp, Type *t, Body *b) : id(s), param(fp), type(t), body(b) {
-    free(s);
-}
-
-bool Function::isForward() const {
-    return !body;
+Function::Function(char *s, FormalParameters *fp, Type *t, Body *b) : Subroutine(s, fp, b) {
+    type = std::shared_ptr<Type>(t);
 }
 
 void Function::print() const {
