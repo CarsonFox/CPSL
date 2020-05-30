@@ -11,3 +11,7 @@ void SimpleType::print() const {
 int SimpleType::getSize(SymbolTable &table) {
     return table.lookupType(id)->getSize(table);
 }
+
+Expression::type SimpleType::getTypeEnum(SymbolTable &table) const {
+    return table.lookupType(id)->getTypeEnum(table);
+}

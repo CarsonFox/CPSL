@@ -37,3 +37,7 @@ void ArrayType::fold_constants() {
 int ArrayType::getSize(SymbolTable &table) {
     return (right - left + 1) * type->getSize(table);
 }
+
+Expression::type ArrayType::getTypeEnum(SymbolTable &) const {
+    return Expression::userDefined;
+}

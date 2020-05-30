@@ -22,4 +22,6 @@ struct RecordType : Type {
     void fold_constants() override;
 
     int getSize(SymbolTable &table) override;
+
+    Expression::type getTypeEnum(SymbolTable &table) const override;
 };

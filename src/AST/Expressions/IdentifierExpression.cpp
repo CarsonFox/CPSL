@@ -1,5 +1,7 @@
 #include "IdentifierExpression.hpp"
 
+#include "src/AST/Types/Type.hpp"
+
 IdentifierExpression::IdentifierExpression(char *s) : id(s) {
     free(s);
 }
@@ -61,6 +63,5 @@ Expression::type IdentifierExpression::getType(SymbolTable &table) {
         return table.lookupConstant(id)->getType(table);
     }
 
-    //TODO fix this
-    return integral;
+    return table.lookupVariable(id).getConcreteType()->getTypeEnum(table);
 }

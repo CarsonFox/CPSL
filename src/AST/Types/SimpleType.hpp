@@ -14,4 +14,6 @@ struct SimpleType : Type {
     void print() const override;
 
     int getSize(SymbolTable &table) override;
+
+    Expression::type getTypeEnum(SymbolTable &table) const override;
 };

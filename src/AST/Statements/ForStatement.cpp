@@ -47,8 +47,7 @@ void ForStatement::fold_constants() {
 void ForStatement::emit(SymbolTable &table, RegisterPool &pool) {
     table.pushForScope();
 
-    //Hack: treat the variable as an integer no matter what
-    table.addVariable(id, std::shared_ptr<Type>(new BuiltinType()));
+    table.addVariable(id, std::shared_ptr<Type>(new BuiltinType(Expression::integral)));
 
     //Emit code to assign the initial value
     AssignStatement(new IdentifierExpression(id), init).emit(table, pool);

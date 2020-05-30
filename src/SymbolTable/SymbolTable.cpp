@@ -4,21 +4,27 @@
 
 #include "src/AST/Types/BuiltinType.hpp"
 #include "src/AST/Expressions/LiteralExpression.hpp"
+#include "src/AST/Expressions/Expression.hpp"
 
 SymbolTable::SymbolTable() {
     //Initialize global scope
     scopes.emplace_back();
 
     //Initialize builtin types
-    std::shared_ptr<Type> builtin(new BuiltinType());
-    addType("integer", builtin);
-    addType("INTEGER", builtin);
-    addType("char", builtin);
-    addType("CHAR", builtin);
-    addType("boolean", builtin);
-    addType("BOOLEAN", builtin);
-    addType("string", builtin);
-    addType("STRING", builtin);
+    std::shared_ptr<Type>
+            integerType(new BuiltinType(Expression::integral)),
+            characterType(new BuiltinType(Expression::character)),
+            booleanType(new BuiltinType(Expression::boolean)),
+            stringType(new BuiltinType(Expression::string));
+
+    addType("integer", integerType);
+    addType("INTEGER", integerType);
+    addType("char", characterType);
+    addType("CHAR", characterType);
+    addType("boolean", booleanType);
+    addType("BOOLEAN", booleanType);
+    addType("string", stringType);
+    addType("STRING", stringType);
 
     //Initialize builtin constants
     std::shared_ptr<Expression> true_expr(new LiteralExpression(1));

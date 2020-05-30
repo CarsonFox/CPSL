@@ -1,21 +1,14 @@
-VAR a,b : integer;
+VAR a   : integer;
+    b   : char;
+    c,d : boolean;
 
-BEGIN
+begin
 
-for a := 2 to 4 do
-  write("a is ",a,'\n');
-  for b := 4 downto 2 do
-    write("b is ",b,'\n');
-  end;
-end;
+a := 1;
+b := 'b';
+c := true;
+d := false;
 
-write('\n');
+write(a,b,c,d);
 
-for a := 4 downto 2 do
-  write("a is ",a,'\n');
-  for b := 2 to 4 do
-    write("b is ",b,'\n');
-  end;
-end;
-
-END.
+end.

@@ -41,3 +41,7 @@ int RecordType::getSize(SymbolTable &table) {
     }
     return sum;
 }
+
+Expression::type RecordType::getTypeEnum(SymbolTable &) const {
+    return Expression::userDefined;
+}
