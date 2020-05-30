@@ -89,5 +89,5 @@ void ForStatement::emit(SymbolTable &table, RegisterPool &pool) {
     std::cout << "j " << beginLabel << " #Jump to next iteration of the for loop\n";
     std::cout << endLabel << ": #End for loop\n\n";
 
-    table.popScope();
+    table.popForScope();
 }

@@ -54,7 +54,9 @@ public:
 
     void pushScope();
 
+    void popScope();
+
     void pushForScope();
 
-    void popScope();
+    void popForScope();
 };

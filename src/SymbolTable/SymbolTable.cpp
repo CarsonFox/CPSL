@@ -121,12 +121,21 @@ void SymbolTable::pushScope() {
     scopes.emplace_back("$sp");
 }
 
+void SymbolTable::popScope() {
+    scopes.pop_back();
+}
+
 void SymbolTable::pushForScope() {
     scopes.emplace_back(scopes.back().base);
-    //This isn't sound. For one - function calls within loops will overwrite the loop variable on the stack.
     scopes.back().varSize = scopes[scopes.size() - 2].varSize;
 }
 
-void SymbolTable::popScope() {
-    scopes.pop_back();
+void SymbolTable::popForScope() {
+    /*
+     * In order to keep track of stack size properly, add
+     * the size of the variable introduced in this loop to the size of
+     * the enclosing scope.
+     */
+    scopes[scopes.size() - 2].varSize += scopes.back().varSize;
+    popScope();
 }
