@@ -73,6 +73,16 @@ void Program::emit() {
     SymbolTable symbolTable;
     RegisterPool registerPool;
 
+    if (varDecl) {
+        varDecl->emit(symbolTable, registerPool);
+    }
+    if (constDecl) {
+        constDecl->emit(symbolTable, registerPool);
+    }
+    if (typeDecl) {
+        typeDecl->emit(symbolTable, registerPool);
+    }
+
     std::cout << ".text\n\n";
 
     std::cout << "j main #Begin with main entry point\n\n";
@@ -82,14 +92,6 @@ void Program::emit() {
     }
 
     std::cout << "main:\n";
-
-    if (varDecl) {
-        varDecl->emit(symbolTable, registerPool);
-    }
-
-    if (constDecl) {
-        constDecl->emit(symbolTable, registerPool);
-    }
 
     if (block) {
         block->emit(symbolTable, registerPool);

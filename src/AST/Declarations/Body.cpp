@@ -26,5 +26,12 @@ void Body::fold_constants() {
 }
 
 void Body::emit(SymbolTable &table, RegisterPool &pool) {
-    block->emit(table, pool);
+    if (constDecl)
+        constDecl->emit(table, pool);
+    if (typeDecl)
+        typeDecl->emit(table, pool);
+    if (varDecl)
+        varDecl->emit(table, pool);
+    if (block)
+        block->emit(table, pool);
 }
