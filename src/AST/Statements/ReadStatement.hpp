@@ -14,4 +14,6 @@ struct ReadStatement : Statement {
     ~ReadStatement() override = default;
 
     void print() const override;
+
+    void emit(SymbolTable &table, RegisterPool &pool) override;
 };

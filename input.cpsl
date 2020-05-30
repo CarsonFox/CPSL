@@ -1,14 +1,12 @@
 VAR a   : integer;
     b   : char;
-    c,d : boolean;
 
 begin
+    write("Enter a number: ");
+    read(a);
 
-a := 1;
-b := 'b';
-c := true;
-d := false;
+    write("Enter a character: ");
+    read(b);
 
-write(a,b,c,d);
-
+    write("You entered: ", a, ", ", b);
 end.
