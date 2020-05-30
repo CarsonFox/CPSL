@@ -143,3 +143,11 @@ void SymbolTable::popForScope() {
 int SymbolTable::stackFrameSize() const {
     return scopes.back().varSize;
 }
+
+void SymbolTable::addFunction(const std::string &id, std::shared_ptr<Type> type) {
+    functions[id] = std::move(type);
+}
+
+std::shared_ptr<Type> SymbolTable::lookupFunction(const std::string &id) {
+    return functions[id];
+}

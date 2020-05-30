@@ -31,3 +31,8 @@ void Function::fold_constants() {
     if (body)
         body->fold_constants();
 }
+
+void Function::emit(SymbolTable &table, RegisterPool &pool) {
+    table.addFunction(id, type);
+    Subroutine::emit(table, pool);
+}

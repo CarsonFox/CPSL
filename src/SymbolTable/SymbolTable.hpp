@@ -32,6 +32,7 @@ class SymbolTable {
     };
 
     std::vector<Scope> scopes;
+    std::unordered_map<std::string, std::shared_ptr<Type>> functions;//Functions cannot be nested.
 
 public:
     SymbolTable();
@@ -42,11 +43,15 @@ public:
 
     void addConstant(const std::string &, std::shared_ptr<Expression>);
 
+    void addFunction(const std::string &, std::shared_ptr<Type>);
+
     const Variable &lookupVariable(const std::string &);
 
     std::shared_ptr<Type> lookupType(const std::string &);
 
     std::shared_ptr<Expression> lookupConstant(const std::string &);
+
+    std::shared_ptr<Type> lookupFunction(const std::string &);
 
     bool isVariable(const std::string &) const;
 

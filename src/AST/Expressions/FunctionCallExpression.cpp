@@ -45,3 +45,7 @@ std::string FunctionCallExpression::emitToRegister(SymbolTable &table, RegisterP
     std::cout << "move " << reg << ", $v0 #Load return value\n";
     return reg;
 }
+
+Expression::type FunctionCallExpression::getType(SymbolTable &table) {
+    return table.lookupFunction(id)->getTypeEnum(table);
+}
