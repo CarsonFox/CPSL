@@ -23,4 +23,9 @@ struct Procedure : Subroutine {
     bool isForward() const override;
 
     void fold_constants() override;
+
+    void emit(SymbolTable &table, RegisterPool &pool) override;
+
+private:
+    void saveParameters(SymbolTable &table, RegisterPool &pool);
 };

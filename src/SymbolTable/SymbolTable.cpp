@@ -139,3 +139,7 @@ void SymbolTable::popForScope() {
     scopes[scopes.size() - 2].varSize += scopes.back().varSize;
     popScope();
 }
+
+int SymbolTable::stackFrameSize() const {
+    return scopes.back().varSize;
+}

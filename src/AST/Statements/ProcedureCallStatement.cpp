@@ -46,4 +46,6 @@ void ProcedureCallStatement::emit(SymbolTable &table, RegisterPool &pool) {
 
     //Restore stack pointer
     std::cout << "lw $sp, " << table.lookupVariable("").getLocation() << " #Restore stack pointer\n\n";
+
+    pool.clearRegisters();
 }

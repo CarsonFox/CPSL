@@ -1,12 +1,10 @@
-VAR a   : integer;
-    b   : char;
+procedure foo(x: integer);
+begin
+    write("x = ", x, '\n');
+end;
 
 begin
-    write("Enter a number: ");
-    read(a);
-
-    write("Enter a character: ");
-    read(b);
-
-    write("You entered: ", a, ", ", b);
+    for i := 1 to 10 do
+        foo(i);
+    end
 end.

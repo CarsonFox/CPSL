@@ -75,6 +75,14 @@ void Program::emit() {
 
     std::cout << ".text\n\n";
 
+    std::cout << "j main #Begin with main entry point\n\n";
+
+    for (auto &sub: subroutines) {
+        sub->emit(symbolTable, registerPool);
+    }
+
+    std::cout << "main:\n";
+
     if (varDecl) {
         varDecl->emit(symbolTable, registerPool);
     }
@@ -88,10 +96,6 @@ void Program::emit() {
     }
 
     std::cout << "li $v0, 10\n" << "syscall\n\n";
-
-    for (auto &sub: subroutines) {
-        sub->emit(symbolTable, registerPool);
-    }
 
     std::cout << ".data\n";
     Labels::emitStrings();

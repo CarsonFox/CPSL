@@ -59,4 +59,6 @@ public:
     void pushForScope();
 
     void popForScope();
+
+    int stackFrameSize() const;
 };

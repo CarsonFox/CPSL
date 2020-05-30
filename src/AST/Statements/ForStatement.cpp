@@ -71,6 +71,8 @@ void ForStatement::emit(SymbolTable &table, RegisterPool &pool) {
 
     delete pred;
 
+    pool.freeRegister(reg);
+
     for (auto &stmt: statements) {
         stmt->emit(table, pool);
     }

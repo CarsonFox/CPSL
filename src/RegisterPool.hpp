@@ -11,4 +11,6 @@ public:
     std::string getRegister();
 
     void freeRegister(const std::string &);
+
+    void clearRegisters();
 };

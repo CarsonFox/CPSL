@@ -35,3 +35,9 @@ std::string RegisterPool::getRegister() {
 void RegisterPool::freeRegister(const std::string &reg) {
     registers[reg] = false;
 }
+
+void RegisterPool::clearRegisters() {
+    for (auto &it: registers) {
+        it.second = false;
+    }
+}
