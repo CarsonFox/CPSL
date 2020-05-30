@@ -32,7 +32,7 @@ void ProcedureCallStatement::emit(SymbolTable &table, RegisterPool &pool) {
      * Then save them in that order after calling.
      */
 
-    //Empty string is invalid, so can be used for stack pointer
+    //Empty string is an invalid identifier, so it can be used for the stack pointer
     table.addVariable("", std::shared_ptr<Type>(new BuiltinType(Expression::integral)));
     std::cout << "sw $sp, " << table.lookupVariable("").getLocation() << " #Save stack pointer\n";
 
