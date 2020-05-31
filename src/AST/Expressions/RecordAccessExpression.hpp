@@ -21,4 +21,6 @@ struct RecordAccessExpression : LValue {
     std::string emitToRegister(SymbolTable &table, RegisterPool &pool) override;
 
     std::shared_ptr<Type> getConcreteType(SymbolTable &table) override;
+
+    type getType(SymbolTable &table) override;
 };

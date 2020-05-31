@@ -60,3 +60,9 @@ void RegisterPool::clearArgRegisters() {
         it.second = false;
     }
 }
+
+/*
+ * In a subroutine, mark all registers used. Then at the beginning of the subroutine,
+ * emit code to save those registers' values to the stack. At the end or in a return statement,
+ * load those values back into registers.
+ */

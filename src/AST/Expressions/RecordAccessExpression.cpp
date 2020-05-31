@@ -79,3 +79,7 @@ std::shared_ptr<Type> RecordAccessExpression::getConcreteType(SymbolTable &table
     std::cout << std::endl;
     std::exit(12);
 }
+
+Expression::type RecordAccessExpression::getType(SymbolTable &table) {
+    return getConcreteType(table)->getTypeEnum(table);
+}

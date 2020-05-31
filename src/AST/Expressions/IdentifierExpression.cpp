@@ -40,7 +40,7 @@ std::string IdentifierExpression::emitToRegister(SymbolTable &table, RegisterPoo
 
 std::string IdentifierExpression::emitLocationToRegister(SymbolTable &table, RegisterPool &pool) {
     if (!table.isVariable(id)) {
-        std::cerr << "Constants do not have a memory location!\n";
+        std::cerr << id << "Is a constant, and does not have a memory location!\n";
         std::exit(9);
     }
 

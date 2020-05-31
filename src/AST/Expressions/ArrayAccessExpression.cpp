@@ -62,3 +62,7 @@ std::shared_ptr<Type> ArrayAccessExpression::getConcreteType(SymbolTable &table)
 
     return arr->type;
 }
+
+Expression::type ArrayAccessExpression::getType(SymbolTable &table) {
+    return getConcreteType(table)->getTypeEnum(table);
+}
