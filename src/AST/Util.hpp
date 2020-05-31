@@ -26,3 +26,5 @@ void printExprList(const std::vector<std::shared_ptr<T>> &list) {
 void indentStatementList(const std::vector<std::shared_ptr<Statement>> &);
 
 void indent();
+
+void fillStackSize(const std::string &, int stackSize);

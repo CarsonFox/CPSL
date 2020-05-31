@@ -3,6 +3,7 @@
 #include <sstream>
 
 #include "src/AST/Types/BuiltinType.hpp"
+#include "src/AST/Util.hpp"
 
 Subroutine::Subroutine(char *s, FormalParameters *fp) : id(s), param(fp) {
     free(s);
@@ -39,7 +40,10 @@ void Subroutine::emit(SymbolTable &table, RegisterPool &pool) {
 
     //Create a stack frame, then emit code for body
     std::cout << "addiu $sp, $sp, -" << table.stackFrameSize() << " #Set up stack frame\n";
-    std::cout << ss_out.str();
+
+    //Emit code for the body, filling in the placeholders with size of stack frame
+    fillStackSize(ss_out.str(), table.stackFrameSize());
+
     std::cout << "lw $ra, " << table.lookupVariable("").getLocation() << " #Restore return address\n";
     std::cout << "addiu $sp, $sp, " << table.stackFrameSize() << " #Delete stack frame\n";
     std::cout << "jr $ra #Return from procedure " << id << "\n\n";

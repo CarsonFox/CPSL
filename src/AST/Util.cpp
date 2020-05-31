@@ -22,3 +22,12 @@ void indent() {
     for (int i = 0; i < indentLevel; i++)
         std::cout << '\t';
 }
+
+void fillStackSize(const std::string &s, int stackSize) {
+    for (char c: s) {
+        if (c == '*')
+            std::cout << stackSize;
+        else
+            std::cout << c;
+    }
+}

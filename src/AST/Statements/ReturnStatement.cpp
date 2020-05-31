@@ -28,6 +28,6 @@ void ReturnStatement::emit(SymbolTable &table, RegisterPool &pool) {
     }
 
     std::cout << "lw $ra, " << table.lookupVariable("").getLocation() << " #Restore return address\n";
-    std::cout << "addiu $sp, $sp, " << table.stackFrameSize() << " #Delete stack frame\n";
+    std::cout << "addiu $sp, $sp, * #Delete stack frame\n";
     std::cout << "jr $ra #Return to caller\n";
 }
