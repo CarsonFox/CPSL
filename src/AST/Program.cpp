@@ -4,6 +4,8 @@
 #include "src/Labels.hpp"
 
 std::shared_ptr<Program> Program::main;
+SymbolTable Program::symbolTable;
+RegisterPool Program::registerPool;
 
 void Program::prettyPrint() {
     if (constDecl) {
@@ -69,18 +71,14 @@ void Program::emit() {
      * This includes assuming no duplicate procedure/function identifiers.
      * Along with making no attempts to optimize the assembly, this simplifies things a lot.
      */
-
-    SymbolTable symbolTable;
-    RegisterPool registerPool;
-
-    if (varDecl) {
-        varDecl->emit(symbolTable, registerPool);
-    }
     if (constDecl) {
         constDecl->emit(symbolTable, registerPool);
     }
     if (typeDecl) {
         typeDecl->emit(symbolTable, registerPool);
+    }
+    if (varDecl) {
+        varDecl->emit(symbolTable, registerPool);
     }
 
     std::cout << ".text\n\n";

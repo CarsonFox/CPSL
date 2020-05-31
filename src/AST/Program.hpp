@@ -12,6 +12,8 @@
 
 struct Program {
     static std::shared_ptr<Program> main;
+    static SymbolTable symbolTable;
+    static RegisterPool registerPool;
 
     std::shared_ptr<ConstDeclaration> constDecl;
     std::shared_ptr<TypeDeclaration> typeDecl;
