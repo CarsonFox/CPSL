@@ -11,7 +11,7 @@ before_install:
 script:
   - mkdir cmake-build-debug
   - cd cmake-build-debug
-  - cmake .
+  - cmake ..
   - make all
   - cd ..
   - bash tester/tester.sh
