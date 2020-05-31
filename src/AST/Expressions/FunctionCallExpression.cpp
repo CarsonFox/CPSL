@@ -31,6 +31,8 @@ std::optional<int> FunctionCallExpression::try_fold() {
 }
 
 std::string FunctionCallExpression::emitToRegister(SymbolTable &table, RegisterPool &pool) {
+    pool.saveRegisters(table);
+
     //Load arguments into registers
     for (auto &arg: args) {
         const auto reg = arg->emitToRegister(table, pool);
@@ -42,6 +44,7 @@ std::string FunctionCallExpression::emitToRegister(SymbolTable &table, RegisterP
     std::cout << "jal " << id << " #Call function\n";
 
     pool.clearArgRegisters();
+    pool.loadRegisters(table);
 
     auto reg = pool.getRegister();
     std::cout << "move " << reg << ", $v0 #Load return value\n";

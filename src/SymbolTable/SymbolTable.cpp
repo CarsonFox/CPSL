@@ -108,6 +108,11 @@ bool SymbolTable::isVariable(const std::string &id) const {
     return false;
 }
 
+bool SymbolTable::isLocalVariable(const std::string &id) const {
+    const auto &localVars = scopes.back().variables;
+    return localVars.find(id) != localVars.end();
+}
+
 bool SymbolTable::isConstant(const std::string &id) const {
     for (const auto &scope : scopes) {
         if (scope.constants.find(id) != scope.constants.end()) {

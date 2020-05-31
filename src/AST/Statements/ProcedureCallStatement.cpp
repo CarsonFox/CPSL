@@ -32,6 +32,8 @@ void ProcedureCallStatement::emit(SymbolTable &table, RegisterPool &pool) {
      * Then save them in that order after calling.
      */
 
+    pool.saveRegisters(table);
+
     //Load arguments into registers
     for (auto &arg: args) {
         const auto reg = arg->emitToRegister(table, pool);
@@ -43,4 +45,5 @@ void ProcedureCallStatement::emit(SymbolTable &table, RegisterPool &pool) {
     std::cout << "jal " << id << " #Call procedure\n";
 
     pool.clearArgRegisters();
+    pool.loadRegisters(table);
 }

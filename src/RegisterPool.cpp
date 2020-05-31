@@ -1,6 +1,9 @@
 #include "RegisterPool.hpp"
 
 #include <iostream>
+#include <sstream>
+
+#include "src/AST/Types/BuiltinType.hpp"
 
 RegisterPool::RegisterPool() {
     registers = {
@@ -32,7 +35,7 @@ RegisterPool::RegisterPool() {
 std::string RegisterPool::getRegister() {
     for (const auto &[reg, inUse]: registers) {
         if (!inUse) {
-            registers[reg] = true;
+            registers.at(reg) = true;
             return reg;
         }
     }
@@ -43,7 +46,7 @@ std::string RegisterPool::getRegister() {
 std::string RegisterPool::getArgRegister() {
     for (const auto &[reg, inUse]: argumentRegisters) {
         if (!inUse) {
-            registers[reg] = true;
+            argumentRegisters.at(reg) = true;
             return reg;
         }
     }
@@ -52,7 +55,7 @@ std::string RegisterPool::getArgRegister() {
 }
 
 void RegisterPool::freeRegister(const std::string &reg) {
-    registers[reg] = false;
+    registers.at(reg) = false;
 }
 
 void RegisterPool::clearArgRegisters() {
@@ -61,8 +64,42 @@ void RegisterPool::clearArgRegisters() {
     }
 }
 
+void RegisterPool::saveRegisters(SymbolTable &table) const {
+    const std::shared_ptr<Type> word(new BuiltinType(Expression::integral));
+
+    for (const auto &[reg, inUse]: registers) {
+        if (inUse) {
+            std::stringstream ss;
+            ss << " " << reg; //Identifiers can't have whitespace, so this is safe
+
+            if (!table.isLocalVariable(ss.str())) {
+                table.addVariable(ss.str(), word);
+            }
+
+            std::cout << "sw " << reg << ", " << table.lookupVariable(ss.str()).getLocation()
+                      << " #Save state of register\n";
+        }
+    }
+}
+
+void RegisterPool::loadRegisters(SymbolTable &table) const {
+    for (const auto &[reg, inUse]: registers) {
+        if (inUse) {
+            std::stringstream ss;
+            ss << " " << reg;
+
+            if (!table.isVariable(ss.str())) {
+                std::cout << "Expected to find saved register " << reg << std::endl;
+                std::exit(16);
+            }
+
+            std::cout << "lw " << reg << ", " << table.lookupVariable(ss.str()).getLocation()
+                      << " #Load state of register\n";
+        }
+    }
+}
+
 /*
- * In a subroutine, mark all registers used. Then at the beginning of the subroutine,
- * emit code to save those registers' values to the stack. At the end or in a return statement,
- * load those values back into registers.
+ * Problem: return statements don't know how big the stack frame is.
+ * solution: since we're writing to a string anyways, add a placeholder to fill in with the stack size
  */
