@@ -6,7 +6,7 @@ compiler:
 os:
   - linux
 before_install:
-  - sudo apt-get -y install libboost-test-dev flex bison default-jre
+  - sudo apt-get -y install flex bison default-jre
   - wget 'https://courses.missouristate.edu/KenVollmar/mars/MARS_4_5_Aug2014/Mars4_5.jar'
 script:
   - mkdir cmake-build-debug
