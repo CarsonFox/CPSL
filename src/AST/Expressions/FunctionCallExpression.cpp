@@ -16,7 +16,6 @@ void FunctionCallExpression::print() const {
     std::cout << ')';
 }
 
-//No constexpr support :( unless...
 bool FunctionCallExpression::isConst() const {
     return false;
 }
@@ -53,4 +52,24 @@ std::string FunctionCallExpression::emitToRegister(SymbolTable &table, RegisterP
 
 Expression::type FunctionCallExpression::getType(SymbolTable &table) {
     return table.lookupFunction(id)->getTypeEnum(table);
+}
+
+void FunctionCallExpression::emitTailCall(SymbolTable &table, RegisterPool &pool) {
+    //Tail call: the expression being returned is a function call.
+    //Temporaries from previous stack frames were already saved, and this frame is junk.
+    //Load arguments, delete stack frame, then jump to new function.
+
+    //Load arguments into registers
+    for (auto &arg: args) {
+        const auto reg = arg->emitToRegister(table, pool);
+        std::cout << "move " << pool.getArgRegister() << ", " << reg << " #Hack: move to arg register\n";
+        pool.freeRegister(reg);
+    }
+    pool.clearArgRegisters();
+
+    //Delete stack frame
+    std::cout << "addiu $sp, $sp, * #Delete stack frame\n";
+
+    //Call function
+    std::cout << "j " << id << " #Tail call function\n";
 }

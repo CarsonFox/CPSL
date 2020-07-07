@@ -1,0 +1,23 @@
+const n = 10000;
+
+function iota(n: integer): integer;
+begin
+    if n = 0 then
+        return 0;
+    else
+        return iotaAcc(0, n);
+    end
+end;
+
+function iotaAcc(acc, n: integer): integer;
+begin
+    if n = 0 then
+        return acc;
+    else
+        return iotaAcc(acc + n, n - 1);
+    end
+end;
+
+begin
+    write(n*(n+1)/2, " = ", iota(n));
+end.
