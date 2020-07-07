@@ -1,5 +1,7 @@
-#include <src/AST/Expressions/LiteralExpression.hpp>
 #include "ReturnStatement.hpp"
+
+#include <src/AST/Expressions/LiteralExpression.hpp>
+#include <src/AST/Expressions/FunctionCallExpression.hpp>
 
 ReturnStatement::ReturnStatement(Expression *e) : expr(e) {
 }
@@ -17,6 +19,11 @@ void ReturnStatement::fold_constants() {
 }
 
 void ReturnStatement::emit(SymbolTable &table, RegisterPool &pool) {
+    if (std::dynamic_pointer_cast<FunctionCallExpression>(expr)) {
+        std::dynamic_pointer_cast<FunctionCallExpression>(expr)->emitTailCall(table, pool);
+        return;
+    }
+
     if (expr) {
         const auto reg = expr->emitToRegister(table, pool);
 

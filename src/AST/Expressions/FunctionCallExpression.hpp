@@ -18,5 +18,7 @@ struct FunctionCallExpression : Expression {
 
     std::string emitToRegister(SymbolTable &table, RegisterPool &pool) override;
 
+    void emitTailCall(SymbolTable &table, RegisterPool &pool);
+
     type getType(SymbolTable &table) override;
 };
